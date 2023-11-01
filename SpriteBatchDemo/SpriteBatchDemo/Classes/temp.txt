@@ -1,7 +1,10 @@
-    @implementation ImmediateVsDeffered void initialize()
+namespace Default.Namespace
+{
+
+    @implementation TextureSorting void initialize()
     {
-        sortMode = SpriteSortModeImmediate;
-        maxItems = 4000;
+        sortMode = SpriteSortModeDeffered;
+        maxItems = 2000;
         base.initialize();
     }
 
@@ -12,15 +15,15 @@
         {
             if (touch.State == TouchLocationStatePressed)
             {
-                if (sortMode == SpriteSortModeImmediate)
+                if (sortMode == SpriteSortModeTexture)
                 {
                     sortMode = SpriteSortModeDeffered;
                     Console.WriteLine("Switching to deffered mode.");
                 }
                 else if (sortMode == SpriteSortModeDeffered)
                 {
-                    sortMode = SpriteSortModeImmediate;
-                    Console.WriteLine("Switching to immediate mode.");
+                    sortMode = SpriteSortModeTexture;
+                    Console.WriteLine("Switching to texture mode.");
                 }
 
             }
@@ -35,9 +38,10 @@
         spriteBatch.BeginWithSortModeBlendState(sortMode, null);
         foreach (Item item in scene)
         {
-            spriteBatch.DrawToFromRectangleTintWithColor(sprites256[0], item.Position, rectangle16[item.RectangleIndex % 12], item.Color);
+            spriteBatch.DrawToFromRectangleTintWithColorRotationOriginScaleUniformEffectsLayerDepth(sprites256[item.RectangleIndex % 16], item.Position, null, item.Color, 0, Vector2.Zero(), 0.1f, SpriteEffectsNone, 0);
         }
         spriteBatch.End();
     }
 
     @end
+}

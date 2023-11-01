@@ -2,34 +2,32 @@ using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using Microsoft.Xna.Framework.Input.Touch;
 
 namespace SpriteBatchDemo.Classes;
 
-public class ImmediateVsDeferred : SpriteBatchDemoComponent
+public class TextureSorting : SpriteBatchDemoComponent
 {
-    private SpriteSortMode _sortMode = SpriteSortMode.Deferred;
-    private MouseState _mouseState = new MouseState();
+    private SpriteSortMode _sortMode;
+    private MouseState _mouseState;
 
-    public ImmediateVsDeferred(Game game) 
+    public TextureSorting(Game game) 
         : base(game)
     {
-        MaxItems = 4000;
     }
 
     public override void Update(GameTime gameTime)
     {
         var prevMouseState = _mouseState;
         _mouseState = Mouse.GetState();
-        if (_mouseState.LeftButton == ButtonState.Pressed && prevMouseState.LeftButton == ButtonState.Released )
+        if (_mouseState.LeftButton == ButtonState.Pressed && prevMouseState.LeftButton == ButtonState.Released)
         {
             switch (_sortMode)
             {
                 case SpriteSortMode.Deferred:
-                    _sortMode = SpriteSortMode.Immediate;
-                    Console.WriteLine("Switching to immediate mode.");
+                    _sortMode = SpriteSortMode.Texture;
+                    Console.WriteLine("Switching to texture mode.");
                     break;
-                case SpriteSortMode.Immediate:
+                case SpriteSortMode.Texture:
                     _sortMode = SpriteSortMode.Deferred;
                     Console.WriteLine("Switching to deferred mode.");
                     break;
@@ -37,17 +35,16 @@ public class ImmediateVsDeferred : SpriteBatchDemoComponent
                     throw new ArgumentOutOfRangeException();
             }
         }
-        
         base.Update(gameTime);
     }
-    
+
     public override void Draw(GameTime gameTime)
     {
         base.Draw(gameTime);
         SpriteBatch.Begin(_sortMode, null);
         foreach (Item item in Scene)
         {
-            SpriteBatch.Draw(Sprites256[0], item.Position, Rectangle16[item.RectangleIndex % 12], item.Color);
+            SpriteBatch.Draw(Sprites256[item.RectangleIndex % 16], item.Position, null, item.Color, 0, Vector2.Zero, 0.1f, SpriteEffects.None, 0);
         }
         SpriteBatch.End();
     }

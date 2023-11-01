@@ -19,6 +19,7 @@ public class Game1 : Game
         Content.RootDirectory = "Content";
         IsMouseVisible = true;
         IsFixedTimeStep = false;
+        _graphics.SynchronizeWithVerticalRetrace = false;
     }
 
     protected override void Initialize()
@@ -34,13 +35,13 @@ public class Game1 : Game
         // this.Components.Add(new ImmediateVsDeferred(this));
 	
         // Test 2: Separate textures vs texture atlas.
-        this.Components.Add(new TextureAtlas(this));
+        // this.Components.Add(new TextureAtlas(this));
 
-        // Test 3: Deffered vs. texture sprite sort mode.
-        // this.Components.Add(new TextureSorting(this));
+        // Test 3: Defered vs. texture sprite sort mode.
+        this.Components.Add(new TextureSorting(this));
 
         // Extra test: Test drawing triangles with one or multiple calls.
-        // this.Components.Add(new DrawPrimitieves(this));
+        this.Components.Add(new DrawPrimitieves(this));
 
         base.Initialize();
     }

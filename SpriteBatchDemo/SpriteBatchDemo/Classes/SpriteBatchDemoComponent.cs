@@ -23,8 +23,6 @@ public class SpriteBatchDemoComponent : DrawableGameComponent
         Scene = new ArrayList();
     }
 
- 
-
     public override void Initialize()
     {
         for (int i = 0; i < MaxItems; i++)
@@ -51,7 +49,7 @@ public class SpriteBatchDemoComponent : DrawableGameComponent
 
     public override void Update(GameTime gameTime)
     {
-        float dt = (float)gameTime.ElapsedGameTime.TotalMilliseconds;
+        float dt = (float)gameTime.ElapsedGameTime.TotalMilliseconds / 10f;
         foreach (Item item in Scene)
         {
             item.Position += Vector2.Multiply(item.Velocity, dt);
