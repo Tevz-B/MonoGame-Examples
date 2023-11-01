@@ -37,23 +37,6 @@ public class ImmediateVsDeferred : SpriteBatchDemoComponent
                     throw new ArgumentOutOfRangeException();
             }
         }
-        // TouchCollection touches = TouchPanel.GetState();
-        // foreach (TouchLocation touch in touches)
-        // {
-        //     switch (touch.State)
-        //     {
-        //         case TouchLocationState.Pressed when _sortMode == SpriteSortMode.Immediate:
-        //             _sortMode = SpriteSortMode.Deferred;
-        //             Console.WriteLine("Switching to deferred mode.");
-        //             break;
-        //         case TouchLocationState.Pressed when _sortMode == SpriteSortMode.Deferred:
-        //             _sortMode = SpriteSortMode.Immediate;
-        //             Console.WriteLine("Switching to immediate mode.");
-        //             break;
-        //         default:
-        //             throw new ArgumentOutOfRangeException();
-        //     }
-        // }
         
         base.Update(gameTime);
     }

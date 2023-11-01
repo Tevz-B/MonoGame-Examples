@@ -31,10 +31,10 @@ public class Game1 : Game
         // Click on screen to toggle the mode being used.
 
         // Test 1: Immediate vs. deferred sprite sort mode.
-        this.Components.Add(new ImmediateVsDeferred(this));
+        // this.Components.Add(new ImmediateVsDeferred(this));
 	
         // Test 2: Separate textures vs texture atlas.
-        // this.Components.Add(new TextureAtlas(this));
+        this.Components.Add(new TextureAtlas(this));
 
         // Test 3: Deffered vs. texture sprite sort mode.
         // this.Components.Add(new TextureSorting(this));
