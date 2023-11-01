@@ -1,0 +1,48 @@
+using System;
+using System.Runtime.CompilerServices;
+using System.Xml.Schema;
+using Microsoft.Xna.Framework;
+
+namespace SpriteBatchDemo.Classes;
+
+public static class SRandom
+{
+    private static Random random = new Random();
+    public static float Float(float min, float max)
+    {
+        double val = (random.NextDouble() * (max - min) + min);
+        return (float)val;
+    }
+    
+    public static float Float(float max)
+    {
+        double val = (random.NextDouble() * max);
+        return (float)val;
+    }
+
+    public static float Float()
+    {
+        double val = random.NextDouble();
+        return (float)val;
+    }
+
+    public static Vector2 Vector2(float minX, float maxX, float minY, float maxY)
+    {
+        return new Vector2(Float(minX, maxX), Float(minY, maxY));
+    }
+    
+    public static Vector2 Vector2(float maxX, float maxY)
+    {
+        return new Vector2(Float(maxX), Float(maxY));
+    }
+
+    public static int Int(int max)
+    {
+        return random.Next(max);
+    }
+
+    public static int Int()
+    {
+        return random.Next();
+    }
+}
