@@ -1,11 +1,35 @@
 namespace Default.Namespace
 {
 
-    @implementation TextureSorting void initialize()
+    @implementation DrawPrimitives void initialize()
     {
-        sortMode = SpriteSortModeDeffered;
-        maxItems = 2000;
         base.initialize();
+    }
+
+    void LoadContent()
+    {
+        base.LoadContent();
+        vertexArray = new VertexPositionColorTextureArray(3000);
+        VertexPositionColorTextureStruct vertex;
+        for (int i = 0; i < 5000; i++)
+        {
+            vertex.Color = Color.ColorWithRedGreenBlue(random() % 255, random() % 255, random() % 255).PackedValue;
+            vertex.Position.X = (float)random() / RAND_MAX * 2 - 1;
+            vertex.Position.Y = (float)random() / RAND_MAX * 2 - 1;
+            vertex.Position.Z = 0;
+            vertex.Texture.X = (float)random() / RAND_MAX;
+            vertex.Texture.Y = (float)random() / RAND_MAX;
+            vertexArray.AddVertex(vertex);
+            vertex.Position.Y += 0.2;
+            vertexArray.AddVertex(vertex);
+            vertex.Position.X += 0.2;
+            vertexArray.AddVertex(vertex);
+        }
+
+        effect = new BasicEffect(this.GraphicsDevice);
+        effect.TextureEnabled = true;
+        effect.Texture = sprites1024[0];
+        effect.VertexColorEnabled = true;
     }
 
     void UpdateWithGameTime(GameTime gameTime)
@@ -15,32 +39,39 @@ namespace Default.Namespace
         {
             if (touch.State == TouchLocationStatePressed)
             {
-                if (sortMode == SpriteSortModeTexture)
+                if (oneCall)
                 {
-                    sortMode = SpriteSortModeDeffered;
-                    Console.WriteLine("Switching to deffered mode.");
+                    oneCall = false;
+                    Console.WriteLine("Switching to multiple calls.");
                 }
-                else if (sortMode == SpriteSortModeDeffered)
+                else
                 {
-                    sortMode = SpriteSortModeTexture;
-                    Console.WriteLine("Switching to texture mode.");
+                    oneCall = true;
+                    Console.WriteLine("Switching to one call.");
                 }
 
             }
 
         }
-        base.UpdateWithGameTime(gameTime);
     }
 
     void DrawWithGameTime(GameTime gameTime)
     {
         base.DrawWithGameTime(gameTime);
-        spriteBatch.BeginWithSortModeBlendState(sortMode, null);
-        foreach (Item item in scene)
+        effect.CurrentTechnique.Passes.ObjectAtIndex(0).Apply();
+        if (oneCall)
         {
-            spriteBatch.DrawToFromRectangleTintWithColorRotationOriginScaleUniformEffectsLayerDepth(sprites256[item.RectangleIndex % 16], item.Position, null, item.Color, 0, Vector2.Zero(), 0.1f, SpriteEffectsNone, 0);
+            this.GraphicsDevice.DrawUserPrimitivesOfTypeVertexDataVertexOffsetPrimitiveCount(PrimitiveTypeTriangleList, vertexArray, 0, 5000);
         }
-        spriteBatch.End();
+        else
+        {
+            for (int i = 0; i < 5000; i++)
+            {
+                this.GraphicsDevice.DrawUserPrimitivesOfTypeVertexDataVertexOffsetPrimitiveCount(PrimitiveTypeTriangleList, vertexArray, 3 * i, 1);
+            }
+
+        }
+
     }
 
     @end

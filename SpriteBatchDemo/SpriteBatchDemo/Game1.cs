@@ -38,10 +38,10 @@ public class Game1 : Game
         // this.Components.Add(new TextureAtlas(this));
 
         // Test 3: Defered vs. texture sprite sort mode.
-        this.Components.Add(new TextureSorting(this));
+        // this.Components.Add(new TextureSorting(this));
 
         // Extra test: Test drawing triangles with one or multiple calls.
-        this.Components.Add(new DrawPrimitieves(this));
+        this.Components.Add(new DrawPrimitives(this));
 
         base.Initialize();
     }
