@@ -11,11 +11,14 @@
             "id": "cdede76d2359f515",
             "type": "leaf",
             "state": {
-              "type": "markdown",
+              "type": "canvas",
               "state": {
-                "file": "Self tips.md",
-                "mode": "source",
-                "source": false
+                "file": "MonoGame visual notes.canvas",
+                "viewState": {
+                  "x": -180,
+                  "y": -403.60419921874995,
+                  "zoom": 0
+                }
               }
             }
           }
@@ -85,7 +88,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Self tips.md",
+                "file": "MonoGame visual notes.canvas",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +105,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Self tips.md",
+                "file": "MonoGame visual notes.canvas",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +128,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Self tips.md"
+                "file": "MonoGame visual notes.canvas"
               }
             }
           }
@@ -146,7 +149,7 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "95c22a0403bb7dc6",
+  "active": "cdede76d2359f515",
   "lastOpenFiles": [
     "Self tips.md",
     "MonoGame visual notes.canvas",

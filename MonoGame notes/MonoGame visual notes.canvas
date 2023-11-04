@@ -1,1 +1,20 @@
-{}
+{
+	"nodes":[
+		{"id":"43b4b306d2df90e5","x":-500,"y":-620,"width":660,"height":520,"type":"group","label":"friHockey v1"},
+		{"id":"261d364e776cee02","x":-470,"y":-450,"width":250,"height":60,"color":"6","type":"text","text":"Renderer\n"},
+		{"id":"b20102a07720b631","x":-320,"y":-600,"width":240,"height":60,"color":"6","type":"text","text":"friHockey v1\n"},
+		{"id":"b955fe5e2ea14ed0","x":-140,"y":-450,"width":250,"height":60,"color":"6","type":"text","text":"Level\n"},
+		{"id":"c52c618f8021900f","x":-470,"y":-340,"width":250,"height":60,"color":"6","type":"text","text":"Sprites: Puck, Mallet"},
+		{"id":"5421de5660420946","x":-140,"y":-220,"width":250,"height":60,"color":"6","type":"text","text":"Objects: Puck, Mallet\n"},
+		{"id":"aeb8a2f50496ac68","x":-140,"y":-340,"width":250,"height":60,"color":"6","type":"text","text":"Scene\n"}
+	],
+	"edges":[
+		{"id":"10c280d3ea21d744","fromNode":"b20102a07720b631","fromSide":"bottom","toNode":"261d364e776cee02","toSide":"top","color":"6"},
+		{"id":"e8d3d258703cb6b6","fromNode":"aeb8a2f50496ac68","fromSide":"bottom","toNode":"5421de5660420946","toSide":"top","color":"6"},
+		{"id":"b72be65383d92c5b","fromNode":"b955fe5e2ea14ed0","fromSide":"bottom","toNode":"aeb8a2f50496ac68","toSide":"top","color":"6"},
+		{"id":"5b6d1ce91f063d7d","fromNode":"261d364e776cee02","fromSide":"bottom","toNode":"c52c618f8021900f","toSide":"top","color":"6"},
+		{"id":"aca1c60add91b66d","fromNode":"b20102a07720b631","fromSide":"bottom","toNode":"b955fe5e2ea14ed0","toSide":"top","color":"6"},
+		{"id":"4a7f421994e43b21","fromNode":"261d364e776cee02","fromSide":"right","toNode":"b955fe5e2ea14ed0","toSide":"left","color":"6"},
+		{"id":"4d15135cf065ef51","fromNode":"261d364e776cee02","fromSide":"right","toNode":"5421de5660420946","toSide":"left"}
+	]
+}

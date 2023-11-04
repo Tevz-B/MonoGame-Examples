@@ -1,2 +1,2 @@
 - this.Game.Content ... -> this.Content (delete Game)
-- 
+- open mgcb editor (dotnet mgcb-editor) in Rider integrated terminal
