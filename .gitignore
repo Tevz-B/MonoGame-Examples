@@ -2,3 +2,7 @@
 **/obj/**
 **/.DS_Store
 **/bin/**
+**/.idea/**
+./.DS_Store
+
+.DS_Store

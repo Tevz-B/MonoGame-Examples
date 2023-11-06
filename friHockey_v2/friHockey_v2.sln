@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "friHockey_v2", "friHockey_v2\friHockey_v2.csproj", "{2AA375AB-7BEA-4D2B-92A7-D1A16E0858C5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Express", "..\Express\Express\Express.csproj", "{7BDDC585-30E8-4908-A820-16B38BC78C5C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Artificial I", "..\Artificial I\Artificial I\Artificial I.csproj", "{2191DDE5-5564-4230-AC36-E7C5F03E7DF1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2AA375AB-7BEA-4D2B-92A7-D1A16E0858C5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2AA375AB-7BEA-4D2B-92A7-D1A16E0858C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2AA375AB-7BEA-4D2B-92A7-D1A16E0858C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2AA375AB-7BEA-4D2B-92A7-D1A16E0858C5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7BDDC585-30E8-4908-A820-16B38BC78C5C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7BDDC585-30E8-4908-A820-16B38BC78C5C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7BDDC585-30E8-4908-A820-16B38BC78C5C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7BDDC585-30E8-4908-A820-16B38BC78C5C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2191DDE5-5564-4230-AC36-E7C5F03E7DF1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2191DDE5-5564-4230-AC36-E7C5F03E7DF1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2191DDE5-5564-4230-AC36-E7C5F03E7DF1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2191DDE5-5564-4230-AC36-E7C5F03E7DF1}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
