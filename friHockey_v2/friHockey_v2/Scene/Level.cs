@@ -7,19 +7,21 @@ public class Level
 {
     
     protected ArrayList _scene;
-    protected Mallet _player1Mallet;
-    protected Mallet _player2Mallet;
+    protected Mallet _topMallet;
+    protected Mallet _bottomMallet;
     protected Puck _puck;
 
     protected Level()
     {
-        _player1Mallet = new Mallet();
-        _player2Mallet = new Mallet();
+        _topMallet = new Mallet();
+        _bottomMallet = new Mallet();
         _puck = new Puck();
-        _scene = new ArrayList();
-        _scene.Add(_player1Mallet);
-        _scene.Add(_player2Mallet);
-        _scene.Add(_puck);
+        _scene = new ArrayList
+        {
+            _topMallet,
+            _bottomMallet,
+            _puck
+        };
     }
 
     public ArrayList Scene

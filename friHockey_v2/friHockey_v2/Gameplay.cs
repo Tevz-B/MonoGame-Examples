@@ -1,3 +1,4 @@
+using System;
 using friHockey_v2.Scene;
 using Microsoft.Xna.Framework;
 
@@ -11,24 +12,24 @@ public class Gameplay : GameComponent
     private GameRenderer _renderer;
     private PhysicsEngine _physics;
 
-    public Gameplay(Game theGame, class levelClass)
+    public Gameplay(Game theGame, Type levelClass)
         : base (theGame)
     {
-        this.initWithGame(theGame, levelClass);
+        this._init(theGame, levelClass);
         this.UpdateOrder = 10;
         _topPlayer = new HumanPlayer(_level.TopMallet, _level.Scene, PlayerPosition.Top, this.Game);
         _bottomPlayer = new HumanPlayer(_level.BottomMallet, _level.Scene, PlayerPosition.Bottom, this.Game);
     }
 
-    public Gameplay(Game theGame, Class levelClass, Class aiClass)
+    public Gameplay(Game theGame, Type levelClass, Type aiClass)
         : base (theGame)
     {
-        this.initWithGame(theGame, levelClass);
-        _topPlayer = new aiClass(_level.TopMallet, _level.Scene, PlayerPosition.Top);
+        this._init(theGame, levelClass);
+        _topPlayer = new typeof(aiClass) (_level.TopMallet, _level.Scene, PlayerPosition.Top);
         _bottomPlayer = new HumanPlayer(_level.BottomMallet, _level.Scene, PlayerPosition.Bottom, this.Game);
     }
 
-    public void FunctionName(Game theGame, Class levelClass)
+    private void _init(Game theGame, Type levelClass)
     {
         _level = new levelClass(this.Game);
         this.Game.Components.AddComponent(_level);
