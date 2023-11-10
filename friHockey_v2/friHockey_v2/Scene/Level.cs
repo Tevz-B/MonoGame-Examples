@@ -1,9 +1,10 @@
 using System.Collections;
 using friHockey_v2.Scene.Objects;
+using Microsoft.Xna.Framework;
 
 namespace friHockey_v2.Scene;
 
-public class Level
+public class Level : GameComponent
 {
     
     protected ArrayList _scene;
@@ -11,7 +12,15 @@ public class Level
     protected Mallet _bottomMallet;
     protected Puck _puck;
 
-    protected Level()
+    public Mallet TopMallet => _topMallet;
+
+    public Mallet BottomMallet => _bottomMallet;
+
+    public Puck Puck => _puck;
+
+    
+    public Level(Game game) 
+        : base(game)
     {
         _topMallet = new Mallet();
         _bottomMallet = new Mallet();
@@ -23,6 +32,8 @@ public class Level
             _puck
         };
     }
+    
+    
 
     public ArrayList Scene
     {

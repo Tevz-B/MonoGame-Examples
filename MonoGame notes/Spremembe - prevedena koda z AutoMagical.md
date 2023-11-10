@@ -1,0 +1,4 @@
+- odstrani `this.` pri nekaterih klicih metod (`this.Game.Method` =>`Game.Method`)
+- spremembe imenovanja - drug standard pri C# kot pri ObjC (večinoma avtomatsko z IDE)
+- Poenotavi klice metod z overloadanimi operatorji (`Vector2.MultiplyBy(normal, impact / mass)` => `collisionNormal * (impact / mass)`
+- 

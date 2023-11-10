@@ -11,14 +11,23 @@
             "id": "cdede76d2359f515",
             "type": "leaf",
             "state": {
-              "type": "canvas",
+              "type": "markdown",
               "state": {
-                "file": "MonoGame visual notes.canvas",
-                "viewState": {
-                  "x": 2301.0401833439114,
-                  "y": -339.3566048507586,
-                  "zoom": -1.035631095568339
-                }
+                "file": "Self tips.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "3cc523120615138f",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Spremembe - prevedena koda z AutoMagical.md",
+                "mode": "source",
+                "source": false
               }
             }
           },
@@ -34,7 +43,8 @@
               }
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -100,7 +110,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "MonoGame visual notes.canvas",
+                "file": "Spremembe - prevedena koda z AutoMagical.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -117,7 +127,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "MonoGame visual notes.canvas",
+                "file": "Spremembe - prevedena koda z AutoMagical.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -140,7 +150,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "MonoGame visual notes.canvas"
+                "file": "Spremembe - prevedena koda z AutoMagical.md"
               }
             }
           }
@@ -161,9 +171,10 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "cdede76d2359f515",
+  "active": "3cc523120615138f",
   "lastOpenFiles": [
     "Self tips.md",
+    "Spremembe - prevedena koda z AutoMagical.md",
     "MonoGame visual notes.canvas",
     "Express knjižnica.md",
     "Untitled.canvas",

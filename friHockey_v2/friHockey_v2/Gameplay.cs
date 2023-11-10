@@ -1,4 +1,8 @@
 using System;
+using friHockey_v2.Components;
+using friHockey_v2.Physics;
+using friHockey_v2.Players;
+using friHockey_v2.Players.Human;
 using friHockey_v2.Scene;
 using Microsoft.Xna.Framework;
 
@@ -15,43 +19,45 @@ public class Gameplay : GameComponent
     public Gameplay(Game theGame, Type levelClass)
         : base (theGame)
     {
-        this._init(theGame, levelClass);
-        this.UpdateOrder = 10;
-        _topPlayer = new HumanPlayer(_level.TopMallet, _level.Scene, PlayerPosition.Top, this.Game);
-        _bottomPlayer = new HumanPlayer(_level.BottomMallet, _level.Scene, PlayerPosition.Bottom, this.Game);
+        _init(theGame, levelClass);
+        UpdateOrder = 10;
+        _topPlayer = new HumanPlayerKB(_level.TopMallet, _level.Scene, PlayerPosition.Top, Game);
+        _bottomPlayer = new HumanPlayer(_level.BottomMallet, _level.Scene, PlayerPosition.Bottom, Game);
     }
 
     public Gameplay(Game theGame, Type levelClass, Type aiClass)
         : base (theGame)
     {
-        this._init(theGame, levelClass);
-        _topPlayer = new typeof(aiClass) (_level.TopMallet, _level.Scene, PlayerPosition.Top);
-        _bottomPlayer = new HumanPlayer(_level.BottomMallet, _level.Scene, PlayerPosition.Bottom, this.Game);
+        _init(theGame, levelClass);
+        var args = new object[] {_level.TopMallet, _level.Scene, PlayerPosition.Top};
+        _topPlayer = Activator.CreateInstance(aiClass, args) as Player; 
+        _bottomPlayer = new HumanPlayer(_level.BottomMallet, _level.Scene, PlayerPosition.Bottom, Game);
     }
 
-    private void _init(Game theGame, Type levelClass)
+    private void _init(Game game, Type levelClass)
     {
-        _level = new levelClass(this.Game);
-        this.Game.Components.AddComponent(_level);
-        _renderer = new GameRenderer(this.Game, _level);
-        this.Game.Components.AddComponent(_renderer);
-        _physics = new PhysicsEngine(this.Game, _level);
+        var args = new object[] { game };
+        _level = Activator.CreateInstance(levelClass, game) as Level;
+        Game.Components.Add(_level);
+        _renderer = new GameRenderer(game, _level);
+        Game.Components.Add(_renderer);
+        _physics = new PhysicsEngine(game, _level);
         _physics.UpdateOrder = 20;
-        this.Game.Components.AddComponent(_physics);
+        Game.Components.Add(_physics);
     }
 
-    void UpdateWithGameTime(GameTime gameTime)
+    public override void Update(GameTime gameTime)
     {
-        _topPlayer.UpdateWithGameTime(gameTime);
-        _bottomPlayer.UpdateWithGameTime(gameTime);
+        _topPlayer.Update(gameTime);
+        _bottomPlayer.Update(gameTime);
     }
-
-    void Dealloc()
-    {
-        this.Game.Components.RemoveComponent(_level);
-        this.Game.Components.RemoveComponent(_renderer);
-        this.Game.Components.RemoveComponent(_physics);
-    }
+    //
+    // void Dealloc()
+    // {
+    //     this.Game.Components.RemoveComponent(_level);
+    //     this.Game.Components.RemoveComponent(_renderer);
+    //     this.Game.Components.RemoveComponent(_physics);
+    // }
 
 
 }
