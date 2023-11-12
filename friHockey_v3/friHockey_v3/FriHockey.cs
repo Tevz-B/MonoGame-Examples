@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using friHockey_v2.Scene.Levels;
+using friHockey_v3.Scene.Levels;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 
-namespace friHockey_v2;
+namespace friHockey_v3;
 
 public class FriHockey : Game
 {

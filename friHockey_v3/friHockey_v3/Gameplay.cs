@@ -1,12 +1,12 @@
 using System;
-using friHockey_v2.Components;
-using friHockey_v2.Physics;
-using friHockey_v2.Players;
-using friHockey_v2.Players.Human;
-using friHockey_v2.Scene;
+using friHockey_v3.Components;
+using friHockey_v3.Physics;
+using friHockey_v3.Players;
+using friHockey_v3.Players.Human;
+using friHockey_v3.Scene;
 using Microsoft.Xna.Framework;
 
-namespace friHockey_v2;
+namespace friHockey_v3;
 
 public class Gameplay : GameComponent
 {

@@ -1,11 +1,11 @@
 using System.Collections;
 using System.Linq;
 using Express.Physics;
-using friHockey_v2.Scene.Objects;
+using friHockey_v3.Scene.Objects;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 
-namespace friHockey_v2.Players.Human;
+namespace friHockey_v3.Players.Human;
 
 public class HumanPlayerKB : Player
 {

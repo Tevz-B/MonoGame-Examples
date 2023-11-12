@@ -1,6 +1,6 @@
 using Microsoft.Xna.Framework;
 
-namespace friHockey_v2.Scene.Levels;
+namespace friHockey_v3.Scene.Levels;
 
 public class HockeyLevel : Level
 {
