@@ -1,12 +1,11 @@
 using Express.Scene.Objects;
-using friHockey_v2.Graphics;
 using friHockey_v2.Scene;
 using friHockey_v2.Scene.Objects;
+using friHockey_v3.Graphics;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace friHockey_v2.Components;
+namespace friHockey_v2.Graphics;
 
 public class GameRenderer : DrawableGameComponent
 {
@@ -89,7 +88,8 @@ public class GameRenderer : DrawableGameComponent
             {
                 if (shadowSprite is not null)
                 {
-                    _spriteBatch.Draw(shadowSprite.Texture, itemWithPosition.Position, shadowSprite.SourceRectangle, Color.White, 0, shadowSprite.Origin, 2, SpriteEffects.None, 0.5f);
+                    Vector2 shadowPosition = ((_lightPosition - itemWithPosition.Position) * -0.04f) + itemWithPosition.Position;
+                    _spriteBatch.Draw(shadowSprite.Texture, shadowPosition, shadowSprite.SourceRectangle, Color.White, 0, shadowSprite.Origin, 2, SpriteEffects.None, 0.5f);
                 }
 
                 if (sprite is not null)

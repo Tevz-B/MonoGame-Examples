@@ -1,5 +1,5 @@
 using System;
-using friHockey_v2.Components;
+using friHockey_v2.Graphics;
 using friHockey_v2.Physics;
 using friHockey_v2.Players;
 using friHockey_v2.Players.Human;

@@ -10,7 +10,4 @@
     <ItemGroup>
       <ProjectReference Include="..\..\Artificial I\Artificial I\Artificial I.csproj" />
     </ItemGroup>
-    <ItemGroup>
-      <Folder Include="Graphics\" />
-    </ItemGroup>
 </Project>
