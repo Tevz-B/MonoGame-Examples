@@ -10,4 +10,9 @@
     <ItemGroup>
       <ProjectReference Include="..\..\Artificial I\Artificial I\Artificial I.csproj" />
     </ItemGroup>
+    <ItemGroup>
+      <Folder Include="Scene\Objects\Movement\" />
+      <Folder Include="Scene\Objects\Physical Properties\" />
+      <Folder Include="Scene\Objects\Rotation\" />
+    </ItemGroup>
 </Project>
