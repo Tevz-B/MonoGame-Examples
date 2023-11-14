@@ -11,8 +11,8 @@ public class HumanPlayer : Player
     private Rectangle _inputArea;
     private bool _grabbed;
 
-    public HumanPlayer(Mallet mallet, ArrayList scene, PlayerPosition position, Game game)
-        : base (mallet, scene, position)
+    public HumanPlayer(Game game, Mallet mallet, PlayerPosition position)
+        : base (game, mallet, position)
     {
         _inputArea = game.GraphicsDevice.Viewport.Bounds;
         _inputArea.Height = 300;

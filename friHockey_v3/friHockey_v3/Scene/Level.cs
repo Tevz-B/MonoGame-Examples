@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using friHockey_v3.Scene.Objects;
 using Microsoft.Xna.Framework;
 
@@ -12,14 +13,32 @@ public class Level : GameComponent
     protected Mallet _bottomMallet;
     protected Puck _puck;
 
+    protected Vector2 _topMalletSpawn;
+    protected Vector2 _bottomMalletSpawn;
+    protected Vector2 _topPuckSpawn;
+    protected Vector2 _bottomPuckSpawn;
+
+    protected List<Vector2> _defenseSpots;
+    protected List<Vector2> _offenseSpots;
+
+    public List<Vector2> DefenseSpots
+    {
+        get => _defenseSpots;
+        set => _defenseSpots = value;
+    }
+
+    public List<Vector2> OffenseSpots
+    {
+        get => _offenseSpots;
+        set => _offenseSpots = value;
+    }
+
     public Mallet TopMallet => _topMallet;
-
     public Mallet BottomMallet => _bottomMallet;
-
     public Puck Puck => _puck;
 
     
-    public Level(Game game) 
+    protected Level(Game game) 
         : base(game)
     {
         _topMallet = new Mallet();
@@ -32,8 +51,6 @@ public class Level : GameComponent
             _puck
         };
     }
-    
-    
 
     public ArrayList Scene
     {

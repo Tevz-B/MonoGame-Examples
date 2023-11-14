@@ -21,8 +21,8 @@ public class Gameplay : GameComponent
     {
         _init(theGame, levelClass);
         UpdateOrder = 10;
-        _topPlayer = new HumanPlayerKB(_level.TopMallet, _level.Scene, PlayerPosition.Top, Game);
-        _bottomPlayer = new HumanPlayer(_level.BottomMallet, _level.Scene, PlayerPosition.Bottom, Game);
+        _topPlayer = new HumanPlayerKB(Game, _level.TopMallet, PlayerPosition.Top);
+        _bottomPlayer = new HumanPlayer(Game, _level.BottomMallet,  PlayerPosition.Bottom);
     }
 
     public Gameplay(Game theGame, Type levelClass, Type aiClass)
@@ -31,7 +31,7 @@ public class Gameplay : GameComponent
         _init(theGame, levelClass);
         var args = new object[] {_level.TopMallet, _level.Scene, PlayerPosition.Top};
         _topPlayer = Activator.CreateInstance(aiClass, args) as Player; 
-        _bottomPlayer = new HumanPlayer(_level.BottomMallet, _level.Scene, PlayerPosition.Bottom, Game);
+        _bottomPlayer = new HumanPlayer(Game, _level.BottomMallet, PlayerPosition.Bottom);
     }
 
     private void _init(Game game, Type levelClass)

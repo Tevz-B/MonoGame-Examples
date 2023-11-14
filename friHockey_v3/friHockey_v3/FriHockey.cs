@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using friHockey_v3.Players.AI;
 using friHockey_v3.Scene.Levels;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
@@ -8,10 +9,10 @@ namespace friHockey_v3;
 
 public class FriHockey : Game
 {
-
     protected GraphicsDeviceManager _graphics;
     protected Gameplay _currentGameplay;
     protected List<Type> _levelClasses;
+    protected List<Type> _opponentClasses;
 
     public FriHockey()
     {
@@ -28,7 +29,9 @@ public class FriHockey : Game
         _graphics.ApplyChanges();
 
         _levelClasses = new List<Type> { typeof(HockeyLevel) };
-        this.LoadMultiplayerLevel(_levelClasses[0]);
+        _opponentClasses = new List<Type>{typeof(AIPlayer)};
+        // this.LoadMultiplayerLevel(_levelClasses[0]);
+        LoadSinglePlayerLevel(_levelClasses[0], _opponentClasses[0]);
         base.Initialize();
     }
 
@@ -40,6 +43,17 @@ public class FriHockey : Game
         }
 
         _currentGameplay = new Gameplay(this, levelClass);
+        this.Components.Add(_currentGameplay);
+    }
+    
+    public void LoadSinglePlayerLevel(Type levelClass, Type opponentClass)
+    {
+        if (_currentGameplay is not null)
+        {
+            this.Components.Remove(_currentGameplay);
+        }
+
+        _currentGameplay = new Gameplay(this, levelClass, opponentClass);
         this.Components.Add(_currentGameplay);
     }
 

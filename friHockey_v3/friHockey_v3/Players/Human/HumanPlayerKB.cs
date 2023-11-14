@@ -14,8 +14,8 @@ public class HumanPlayerKB : Player
     
     private Rectangle _movementArea; // Temporary - until we do level collision
     
-    public HumanPlayerKB(Mallet mallet, ArrayList scene, PlayerPosition position, Game game) 
-        : base(mallet, scene, position)
+    public HumanPlayerKB(Game game, Mallet mallet, PlayerPosition position) 
+        : base(game, mallet, position)
     {
         _movementArea = game.GraphicsDevice.Viewport.Bounds;
         _movementArea.Height = 360;

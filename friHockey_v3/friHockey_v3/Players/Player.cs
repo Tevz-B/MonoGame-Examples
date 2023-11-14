@@ -10,20 +10,20 @@ public enum PlayerPosition
     Bottom
 }
 
-public abstract class Player
+public abstract class Player : GameComponent
 {
     protected Mallet _mallet;
     protected ArrayList _scene;
     protected PlayerPosition _position;
 
-    protected Player(Mallet mallet, ArrayList scene, PlayerPosition position)
+    protected Player(Game theGame, Mallet mallet, PlayerPosition position) 
+        : base(theGame)
     {
         _mallet = mallet;
-        _scene = scene;
         _position = position;
     }
 
-    public virtual void Update(GameTime gameTime)
+    public override void Update(GameTime gameTime)
     {
     }
 }
