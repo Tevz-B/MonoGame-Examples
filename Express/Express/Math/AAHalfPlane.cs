@@ -1,3 +1,4 @@
+using System;
 using Microsoft.Xna.Framework;
 
 namespace Express.Math;
@@ -62,25 +63,25 @@ public class AAHalfPlane : HalfPlane
     {
         if ((value.X == 0 && value.Y == 0) || (value.X != 0 && value.Y != 0))
         {
-            throw new Exception("InvalidArgumentException", "Axis aligned half plane requires an axis aligned normal", null);
+            throw new Exception("Axis aligned half plane requires an axis aligned normal");
         }
 
-        base.SetNormal(value);
+        base.Normal = value;
         if (value.X > 0)
         {
-            _direction = AxisDirectionPositiveX;
+            _direction = AxisDirection.PositiveX;
         }
         else if (value.X < 0)
         {
-            _direction = AxisDirectionNegativeX;
+            _direction = AxisDirection.NegativeX;
         }
         else if (value.Y > 0)
         {
-            _direction = AxisDirectionPositiveY;
+            _direction = AxisDirection.PositiveY;
         }
         else if (value.Y < 0)
         {
-            _direction = AxisDirectionNegativeY;
+            _direction = AxisDirection.NegativeY;
         }
 
     }    

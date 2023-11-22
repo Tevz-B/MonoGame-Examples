@@ -1,11 +1,13 @@
 using Artificial_I.Artificial.Spectrum;
+using Express.Math;
 using Express.Scene;
 using Express.Scene.Objects;
+using Express.Scene.Objects.Colliders;
 using Express.Scene.Objects.Shapes;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace friHockey_v3.Graphics;
+namespace Express.Graphics;
 
 public class DebugRenderer : DrawableGameComponent
 {
@@ -95,45 +97,45 @@ public class DebugRenderer : DrawableGameComponent
             IVelocity itemWithVelocity = item as IVelocity;
             IRadius itemWithRadius = item as IRadius;
             IRectangleSize itemWithRectangleSize = item as IRectangleSize;
-            IAAHalfPlaneCollider aaHalfPlaneCollider = item.ConformsToProtocol(@protocol (IAAHalfPlaneCollider)) ? item : null;
-            if (itemWithPosition)
+            IAAHalfPlaneCollider aaHalfPlaneCollider = item as IAAHalfPlaneCollider;
+            if (itemWithPosition is not null)
             {
                 _primitiveBatch.DrawPointAtColor(itemWithPosition.Position, _itemColor);
-                if (itemWithRadius)
+                if (itemWithRadius is not null)
                 {
-                    _primitiveBatch.DrawCircleAtRadiusDivisionsColor(itemWithPosition.Position, itemWithRadius.Radius, 32, _itemColor);
+                    _primitiveBatch.DrawCircle(itemWithPosition.Position, itemWithRadius.Radius, 32, _itemColor);
                 }
 
-                if (itemWithRectangleSize)
+                if (itemWithRectangleSize is not null)
                 {
-                    _primitiveBatch.DrawRectangleAtWidthHeightColor(itemWithPosition.Position, itemWithRectangleSize.Width, itemWithRectangleSize.Height, _itemColor);
+                    _primitiveBatch.DrawRectangle(itemWithPosition.Position, itemWithRectangleSize.Width, itemWithRectangleSize.Height, _itemColor);
                 }
 
+                if (itemWithVelocity is not null)
+                {
+                    _primitiveBatch.DrawLine(itemWithPosition.Position, (itemWithPosition.Position + itemWithVelocity.Velocity), _movementColor);
+                }
+                
             }
 
-            if (itemWithVelocity)
+            if (aaHalfPlaneCollider is not null)
             {
-                _primitiveBatch.DrawLineFromToColor(itemWithPosition.Position, Vector2.AddTo(itemWithPosition.Position, itemWithVelocity.Velocity), _movementColor);
-            }
-
-            if (aaHalfPlaneCollider)
-            {
-                AAHalfPlane aaHPlane = aaHalfPlaneCollider.AaHalfPlane;
-                if (aaHPlane.Direction == AxisDirectionNegativeX)
+                AAHalfPlane aaHPlane = aaHalfPlaneCollider.AAHalfPlane;
+                if (aaHPlane.Direction == AxisDirection.NegativeX)
                 {
-                    _primitiveBatch.DrawLineFromToColor(Vector2.VectorWithXY(-aaHPlane.Distance, topLeft.Y), Vector2.VectorWithXY(-aaHPlane.Distance, bottomRight.Y), _colliderColor);
+                    _primitiveBatch.DrawLine(new Vector2(-aaHPlane.Distance, topLeft.Y), new Vector2(-aaHPlane.Distance, bottomRight.Y), _colliderColor);
                 }
-                else if (aaHPlane.Direction == AxisDirectionPositiveX)
+                else if (aaHPlane.Direction == AxisDirection.PositiveX)
                 {
-                    _primitiveBatch.DrawLineFromToColor(Vector2.VectorWithXY(aaHPlane.Distance, topLeft.Y), Vector2.VectorWithXY(aaHPlane.Distance, bottomRight.Y), _colliderColor);
+                    _primitiveBatch.DrawLine(new Vector2(aaHPlane.Distance, topLeft.Y), new Vector2(aaHPlane.Distance, bottomRight.Y), _colliderColor);
                 }
-                else if (aaHPlane.Direction == AxisDirectionNegativeY)
+                else if (aaHPlane.Direction == AxisDirection.NegativeY)
                 {
-                    _primitiveBatch.DrawLineFromToColor(Vector2.VectorWithXY(topLeft.X, -aaHPlane.Distance), Vector2.VectorWithXY(bottomRight.X, -aaHPlane.Distance), _colliderColor);
+                    _primitiveBatch.DrawLine(new Vector2(topLeft.X, -aaHPlane.Distance), new Vector2(bottomRight.X, -aaHPlane.Distance), _colliderColor);
                 }
                 else
                 {
-                    _primitiveBatch.DrawLineFromToColor(Vector2.VectorWithXY(topLeft.X, aaHPlane.Distance), Vector2.VectorWithXY(bottomRight.X, aaHPlane.Distance), _colliderColor);
+                    _primitiveBatch.DrawLine(new Vector2(topLeft.X, aaHPlane.Distance), new Vector2(bottomRight.X, aaHPlane.Distance), _colliderColor);
                 }
 
             }

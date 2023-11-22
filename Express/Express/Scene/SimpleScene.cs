@@ -14,11 +14,16 @@ public class SimpleScene : GameComponent, IScene
     private int _count;
     private bool _isReadOnly;
 
-    public bool Enabled => _enabled;
-    public int UpdateOrder => _updateOrder;
+    public int UpdateOrder
+    {
+        set => _updateOrder = value;
+    }
 
-    public event EventHandler<EventArgs> EnabledChanged;
-    public event EventHandler<EventArgs> UpdateOrderChanged;
+    public bool Enabled => _enabled;
+    // public int UpdateOrder => _updateOrder;
+
+    // public event EventHandler<EventArgs> EnabledChanged;
+    // public event EventHandler<EventArgs> UpdateOrderChanged;
 
     IEnumerator<object> IEnumerable<object>.GetEnumerator()
     {
