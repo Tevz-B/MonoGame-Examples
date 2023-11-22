@@ -1,15 +1,17 @@
+using System;
 using Express.Scene.Objects;
 using Microsoft.Xna.Framework;
 
 namespace friHockey_v3.Scene.Objects;
 
-public class Mallet : IParticle
+public class Mallet : IParticle, ICustomUpdate
 {
     private Vector2 _position;
     private Vector2 _velocity;
+    private Vector2 _previousPosition;
     private float _mass = 40;
     private float _radius = 60;
-
+    
     public ref Vector2 Position => ref _position;
     public ref Vector2 Velocity => ref _velocity;
 
@@ -23,5 +25,23 @@ public class Mallet : IParticle
     {
         get => _mass;
         set => _mass = value;
+    }
+
+    public void Update(GameTime gameTime)
+    {
+        var dt = (float)gameTime.ElapsedGameTime.TotalMilliseconds;
+        if (dt > 0) return;
+        
+        Vector2 distance = _position - _previousPosition;
+        Vector2 newVelocity = distance * (1.0f / dt);
+        float s = Constants.VelocitySmoothing();
+        _velocity = (_velocity * s) + (newVelocity * (1 - s));
+        _previousPosition = _position;
+    }
+
+    public void ResetVelocity()
+    {
+        _velocity = Vector2.Zero;
+        _previousPosition = _position;
     }
 }

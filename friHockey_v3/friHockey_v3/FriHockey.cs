@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using friHockey_v3.Players.AI;
+using friHockey_v3.Players.AI.Opponents;
 using friHockey_v3.Scene.Levels;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
@@ -29,7 +29,7 @@ public class FriHockey : Game
         _graphics.ApplyChanges();
 
         _levelClasses = new List<Type> { typeof(HockeyLevel) };
-        _opponentClasses = new List<Type>{typeof(AIPlayer)};
+        _opponentClasses = new List<Type>{ typeof(Iceman) };
         // this.LoadMultiplayerLevel(_levelClasses[0]);
         LoadSinglePlayerLevel(_levelClasses[0], _opponentClasses[0]);
         base.Initialize();
@@ -39,22 +39,22 @@ public class FriHockey : Game
     {
         if (_currentGameplay is not null)
         {
-            this.Components.Remove(_currentGameplay);
+            Components.Remove(_currentGameplay);
         }
 
         _currentGameplay = new Gameplay(this, levelClass);
-        this.Components.Add(_currentGameplay);
+        Components.Add(_currentGameplay);
     }
     
     public void LoadSinglePlayerLevel(Type levelClass, Type opponentClass)
     {
         if (_currentGameplay is not null)
         {
-            this.Components.Remove(_currentGameplay);
+            Components.Remove(_currentGameplay);
         }
 
         _currentGameplay = new Gameplay(this, levelClass, opponentClass);
-        this.Components.Add(_currentGameplay);
+        Components.Add(_currentGameplay);
     }
 
     protected override void Update(GameTime gameTime)

@@ -65,4 +65,9 @@ public class HumanPlayer : Player
 
         Console.WriteLine("{0}", _mallet.Velocity);
     }
+
+    public override void Reset()
+    {
+        _grabbed = false;
+    }
 }

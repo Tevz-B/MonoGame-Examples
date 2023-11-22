@@ -1,14 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Numerics;
+using Express.Scene;
+using Express.Scene.Objects;
 using friHockey_v3.Scene.Objects;
 using Microsoft.Xna.Framework;
+using Vector2 = Microsoft.Xna.Framework.Vector2;
 
 namespace friHockey_v3.Scene;
 
 public class Level : GameComponent
 {
     
-    protected ArrayList _scene;
+    protected IScene _scene;
     protected Mallet _topMallet;
     protected Mallet _bottomMallet;
     protected Puck _puck;
@@ -44,18 +48,47 @@ public class Level : GameComponent
         _topMallet = new Mallet();
         _bottomMallet = new Mallet();
         _puck = new Puck();
-        _scene = new ArrayList
-        {
-            _topMallet,
-            _bottomMallet,
-            _puck
-        };
+        _scene = new SimpleScene(Game);
+        _scene.Add(_topMallet);
+        _scene.Add(_bottomMallet);
+        _scene.Add(_puck);
     }
 
-    public ArrayList Scene
+    public IScene Scene
     {
         get => _scene;
         set => _scene = value;
+    }
+
+    public override void Update(GameTime gameTime)
+    {
+        foreach (var item in _scene)
+        {
+            var updateable = item as ICustomUpdate;
+            updateable?.Update(gameTime);
+        }
+    }
+
+    public void ResetToTop()
+    {
+        Reset();
+        _puck.Position = _topPuckSpawn;
+    }
+    
+    public void ResetToBottom()
+    {
+        Reset();
+        _puck.Position = _bottomPuckSpawn;
+    }
+
+    protected void Reset()
+    {
+        _topMallet.Position  = _topMalletSpawn;
+        _topMallet.ResetVelocity();
+        _bottomMallet.Position  = _bottomMalletSpawn;
+        _bottomMallet.ResetVelocity();
+
+        _puck.Velocity = Vector2.Zero;
     }
 
 }

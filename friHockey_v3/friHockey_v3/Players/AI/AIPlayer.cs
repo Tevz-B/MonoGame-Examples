@@ -13,7 +13,7 @@ public class AIPlayer : Player
     // AI properties
     protected float _speed;
     protected float _attackSpeed;
-    // protected ArrayList _quotes;
+    protected List<string> _quotes;
     private bool _attack;
     private bool _hasTarget;
 
@@ -62,7 +62,8 @@ public class AIPlayer : Player
         }
         return offenseWeaknesses;
     }
-
+    
+    // Actions
     public void MoveTowards(Vector2 theTarget)
     {
         this.MoveTowardsAttack(theTarget, false);

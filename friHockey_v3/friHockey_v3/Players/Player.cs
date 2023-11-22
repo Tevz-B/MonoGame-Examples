@@ -26,4 +26,7 @@ public abstract class Player : GameComponent
     public override void Update(GameTime gameTime)
     {
     }
+    
+    public virtual void Reset()
+    {}
 }
