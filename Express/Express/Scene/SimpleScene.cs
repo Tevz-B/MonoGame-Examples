@@ -16,6 +16,7 @@ public class SimpleScene : GameComponent, IScene
 
     public int UpdateOrder
     {
+        get => _updateOrder;
         set => _updateOrder = value;
     }
 
