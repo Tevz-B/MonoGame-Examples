@@ -12,17 +12,9 @@ public class HumanPlayerKB : Player
     private const float _acceleration = 15f;
     private const float _decelerationFactor = 0.8f;
     
-    private Rectangle _movementArea; // Temporary - until we do level collision
-    
     public HumanPlayerKB(Game game, Mallet mallet, PlayerPosition position) 
         : base(game, mallet, position)
     {
-        _movementArea = game.GraphicsDevice.Viewport.Bounds;
-        _movementArea.Height = 360;
-        if (position == PlayerPosition.Bottom)
-        {
-            _movementArea.Y = game.Window.ClientBounds.Height - _movementArea.Height;
-        }
     }
     
     public override void Update(GameTime gameTime)
@@ -42,10 +34,5 @@ public class HumanPlayerKB : Player
         }
 
         MovementPhysics.SimulateMovement(_mallet, gameTime.ElapsedGameTime);
-        // Remove this after implementing level collision
-        if (!_movementArea.Contains(_mallet.Position))
-        {
-            _mallet.Position = oldPosition;
-        }
     }
 }

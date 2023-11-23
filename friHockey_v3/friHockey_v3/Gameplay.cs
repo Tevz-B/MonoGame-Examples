@@ -1,4 +1,5 @@
 using System;
+using Artificial_I.Utils;
 using Express.Graphics;
 using friHockey_v3.Graphics;
 using friHockey_v3.Physics;
@@ -43,8 +44,8 @@ public class Gameplay : GameComponent
         : base (theGame)
     {
         _startInit(levelClass);
-        var args = new object[] {_level.TopMallet, _level.Scene, PlayerPosition.Top};
-        _topPlayer = Activator.CreateInstance(aiClass, args) as Player; 
+        var args = new object[] {Game, _level.TopMallet, _level, PlayerPosition.Top};
+        _topPlayer = Activator.CreateInstance(aiClass, Game, _level.TopMallet, _level, PlayerPosition.Top) as Player;
         _bottomPlayer = new HumanPlayer(Game, _level.BottomMallet, PlayerPosition.Bottom);
         AIRenderer aiRenderer = new AIRenderer(Game, (AIPlayer)_topPlayer);
         aiRenderer.DrawOrder = 1;
@@ -73,19 +74,40 @@ public class Gameplay : GameComponent
         this.UpdateOrder = 5;
     }
 
+    public override void Initialize()
+    {
+        base.Initialize();
+
+        if (_topPlayer is HumanPlayer playerT)
+        {
+            playerT.SetCamera(_renderer.Camera);
+        }
+        if (_bottomPlayer is HumanPlayer playerB)
+        {
+            playerB.SetCamera(_renderer.Camera);
+        }
+
+        if (SRandom.Float() > 0.5f)
+            _level.ResetToTop();
+        else
+            _level.ResetToBottom();
+
+    }
+
     public override void Update(GameTime gameTime)
     {
-        if (_level.Puck.Position.Y < -50)
+        switch (_level.Puck.Position.Y)
         {
-            _level.ResetToTop();
-            _topPlayer.Reset();
-            _bottomPlayer.Reset();
-        }
-        else if (_level.Puck.Position.Y > 510)
-        {
-            _level.ResetToBottom();
-            _topPlayer.Reset();
-            _bottomPlayer.Reset();
+            case < -50:
+                _level.ResetToTop();
+                _topPlayer.Reset();
+                _bottomPlayer.Reset();
+                break;
+            case > 510:
+                _level.ResetToBottom();
+                _topPlayer.Reset();
+                _bottomPlayer.Reset();
+                break;
         }
     }
     

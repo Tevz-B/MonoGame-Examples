@@ -9,7 +9,7 @@ public class MovementPhysics
     {
         if (item is IMovable movable)
         {
-            movable.Position += movable.Velocity * (float)elapsed.TotalSeconds;
+            movable.Position += movable.Velocity * (float)elapsed.TotalMilliseconds;
         }
     }
 }

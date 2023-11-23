@@ -13,7 +13,7 @@ public class AIPlayer : Player
     // AI properties
     protected float _speed;
     protected float _attackSpeed;
-    protected List<string> _quotes;
+    protected List<string> _quotes = new List<string>();
     private bool _attack;
     private bool _hasTarget;
 

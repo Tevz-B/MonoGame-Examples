@@ -7,7 +7,7 @@ namespace friHockey_v3.Players.AI.Opponents;
 
 public class Iceman : ReflexAgent
 {
-    protected Iceman(Game theGame, Mallet theMallet, Level theLevel, PlayerPosition thePosition)
+    public Iceman(Game theGame, Mallet theMallet, Level theLevel, PlayerPosition thePosition)
         : base(theGame, theMallet, theLevel, thePosition)
     {
         // AI properties

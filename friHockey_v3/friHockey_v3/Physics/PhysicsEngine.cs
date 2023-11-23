@@ -1,3 +1,4 @@
+using System;
 using Express.Physics;
 using Express.Physics.Collision;
 using Express.Scene.Objects;
@@ -18,6 +19,20 @@ public class PhysicsEngine : GameComponent
 
     public override void Update(GameTime gameTime)
     {
+        float puckSpeed = _level.Puck.Velocity.Length();
+        if (puckSpeed != 0)
+        {
+            float newSpeed = puckSpeed * (1 - Constants.PuckFriction());
+            float maxSpeed = Constants.PuckMaximumSpeed();
+            if (newSpeed > maxSpeed)
+            {
+                newSpeed = maxSpeed;
+            }
+
+            _level.Puck.Velocity.Normalize();
+            _level.Puck.Velocity *= newSpeed;
+            Console.WriteLine(newSpeed);
+        }
         MovementPhysics.SimulateMovement(_level.Puck, gameTime.ElapsedGameTime);
         foreach (object item1 in _level.Scene)
         {
@@ -25,10 +40,7 @@ public class PhysicsEngine : GameComponent
             {
                 if (item1 != item2)
                 {
-                    if (item1 is IParticleCollider particleCollider1 && item2 is IParticleCollider particleCollider2)
-                    {
-                        ParticleParticle.CollisionBetweenAnd(particleCollider1, particleCollider2);
-                    }
+                    Collision.CollisionBetween(item1, item2);
                 }
 
             }

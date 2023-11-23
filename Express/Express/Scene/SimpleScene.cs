@@ -10,9 +10,9 @@ public class SimpleScene : GameComponent, IScene
     private List<object> _items;
     
     private bool _enabled = true;
-    private int _updateOrder;
-    private int _count;
-    private bool _isReadOnly;
+    private int _updateOrder = 0;
+    private int _count = 0;
+    private bool _isReadOnly = false;
 
     public int UpdateOrder
     {
@@ -39,6 +39,7 @@ public class SimpleScene : GameComponent, IScene
     public SimpleScene(Game game)
         : base(game)
     {
+        _items = new List<object>();
     }
     
     public override void Update(GameTime gameTime)

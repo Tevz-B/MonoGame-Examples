@@ -3,13 +3,13 @@ using Microsoft.Xna.Framework;
 
 namespace Express.Physics.Collision;
 
-public class ParticleParticle
+public static class ParticleParticleCollision
 {
     public static void CollisionBetweenAnd(IParticleCollider particle1, IParticleCollider particle2)
         {
-            if (ParticleParticle.DetectCollisionBetweenAnd(particle1, particle2))
+            if (ParticleParticleCollision.DetectCollisionBetweenAnd(particle1, particle2))
             {
-                ParticleParticle.ResolveCollisionBetweenAnd(particle1, particle2);
+                ParticleParticleCollision.ResolveCollisionBetweenAnd(particle1, particle2);
             }
 
         }

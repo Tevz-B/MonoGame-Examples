@@ -9,8 +9,8 @@ public class Mallet : IParticle, ICustomUpdate
     private Vector2 _position;
     private Vector2 _velocity;
     private Vector2 _previousPosition;
-    private float _mass = 40;
-    private float _radius = 60;
+    private float _mass = 20;
+    private float _radius = 30;
     
     public ref Vector2 Position => ref _position;
     public ref Vector2 Velocity => ref _velocity;
@@ -30,7 +30,7 @@ public class Mallet : IParticle, ICustomUpdate
     public void Update(GameTime gameTime)
     {
         var dt = (float)gameTime.ElapsedGameTime.TotalMilliseconds;
-        if (dt > 0) return;
+        if (dt == 0) return;
         
         Vector2 distance = _position - _previousPosition;
         Vector2 newVelocity = distance * (1.0f / dt);

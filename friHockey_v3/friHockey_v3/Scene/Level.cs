@@ -22,8 +22,8 @@ public class Level : GameComponent
     protected Vector2 _topPuckSpawn;
     protected Vector2 _bottomPuckSpawn;
 
-    protected List<Vector2> _defenseSpots;
-    protected List<Vector2> _offenseSpots;
+    protected List<Vector2> _defenseSpots = new List<Vector2>();
+    protected List<Vector2> _offenseSpots = new List<Vector2>();
 
     public List<Vector2> DefenseSpots
     {

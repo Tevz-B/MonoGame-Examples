@@ -13,15 +13,25 @@ public class GameRenderer : DrawableGameComponent
     private Sprite _malletSprite, _malletShadow;
     private Sprite _puckSprite, _puckShadow;
     private Texture2D _background;
-    private Vector2 _lightPosition = new Vector2(320, 460);
+    private Vector2 _lightPosition = new Vector2(160, 230);
     private Level _level;
+    private Matrix _camera;
+
 
     public GameRenderer(Game game, Level level)
         : base(game)
     {
         _level = level;
     }
+    
+    public Matrix Camera => _camera;
 
+    public override void Initialize()
+    {
+        _camera = Matrix.CreateScale( new Vector3(Game.Window.ClientBounds.Width / 320f, Game.Window.ClientBounds.Height / 480f, 1 ));
+        base.Initialize();
+    }
+    
     protected override void LoadContent()
     {
         _spriteBatch = new SpriteBatch(GraphicsDevice);
@@ -59,9 +69,9 @@ public class GameRenderer : DrawableGameComponent
     public override void Draw(GameTime gameTime)
     {
         GraphicsDevice.Clear(Color.Yellow);
-        _spriteBatch.Begin( SpriteSortMode.BackToFront );
+        _spriteBatch.Begin( SpriteSortMode.BackToFront, null, null, null, null, null, _camera );
 
-        _spriteBatch.Draw(_background, new Vector2(0, -40), null, Color.White, 0f, Vector2.Zero, 2f, SpriteEffects.None, 0.9f );
+        _spriteBatch.Draw(_background, new Vector2(0, -20), null, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.9f );
         foreach (object item in _level.Scene)
         {
             var itemWithPosition = item as IPosition; 
@@ -88,12 +98,12 @@ public class GameRenderer : DrawableGameComponent
                 if (shadowSprite is not null)
                 {
                     Vector2 shadowPosition = ((_lightPosition - itemWithPosition.Position) * -0.04f) + itemWithPosition.Position;
-                    _spriteBatch.Draw(shadowSprite.Texture, shadowPosition, shadowSprite.SourceRectangle, Color.White, 0, shadowSprite.Origin, 2, SpriteEffects.None, 0.5f);
+                    _spriteBatch.Draw(shadowSprite.Texture, shadowPosition, shadowSprite.SourceRectangle, Color.White, 0, shadowSprite.Origin, 1f, SpriteEffects.None, 0.5f);
                 }
 
                 if (sprite is not null)
                 {
-                    _spriteBatch.Draw(sprite.Texture, itemWithPosition.Position, sprite.SourceRectangle, Color.White, 0, sprite.Origin, 2, effect, 0.1f);
+                    _spriteBatch.Draw(sprite.Texture, itemWithPosition.Position, sprite.SourceRectangle, Color.White, 0, sprite.Origin, 1f, effect, 0.1f);
                 }
             }
         }
