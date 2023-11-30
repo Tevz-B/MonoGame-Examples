@@ -1,9 +1,9 @@
-using friHockey_v3.Players.AI.Agents;
-using friHockey_v3.Scene;
-using friHockey_v3.Scene.Objects;
+using friHockey_v4.Players.AI.Agents;
+using friHockey_v4.Scene;
+using friHockey_v4.Scene.Objects;
 using Microsoft.Xna.Framework;
 
-namespace friHockey_v3.Players.AI.Opponents;
+namespace friHockey_v4.Players.AI.Opponents;
 
 public class Iceman : ReflexAgent
 {

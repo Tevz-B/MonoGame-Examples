@@ -1,9 +1,8 @@
-using System.Collections;
-using friHockey_v3.Scene;
-using friHockey_v3.Scene.Objects;
+using friHockey_v4.Scene;
+using friHockey_v4.Scene.Objects;
 using Microsoft.Xna.Framework;
 
-namespace friHockey_v3.Players.AI.Agents;
+namespace friHockey_v4.Players.AI.Agents;
 
 public class ReflexAgent : AIPlayer
 {

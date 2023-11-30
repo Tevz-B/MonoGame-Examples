@@ -1,8 +1,7 @@
-using System;
 using Express.Scene.Objects;
 using Microsoft.Xna.Framework;
 
-namespace friHockey_v3.Scene.Objects;
+namespace friHockey_v4.Scene.Objects;
 
 public class Mallet : IParticle, ICustomUpdate
 {

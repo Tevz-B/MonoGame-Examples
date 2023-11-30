@@ -1,12 +1,14 @@
 using System;
 using Express.Scene.Objects;
 using Express.Scene.Objects.Colliders;
+using Express.Scene.Objects.Physical_Properties;
 using Microsoft.Xna.Framework;
 
 namespace Express.Physics.Collision;
 
 public static class Collision
 {
+    
     public static void CollisionBetween(object item1, object item2)
     {
         CollisionBetween(item1, item2, true);
@@ -51,15 +53,6 @@ public static class Collision
             Collision.CollisionBetween(item2, item1, false);
         }
     }
-
-    // public static void CollisionBetween(object item1, object item2, CollisionAlgorithm collisionAlgorithm)
-    // {
-    //     if (collisionAlgorithm.DetectCollision(item1, item2) && ShouldResolveCollision(item1, item2))
-    //     {
-    //         collisionAlgorithm.ResolveCollision(item1, item2);
-    //         ReportCollision(item1, item2);
-    //     }
-    // }
     
     public static bool ShouldResolveCollision(object item1, object item2)
     {
@@ -87,7 +80,6 @@ public static class Collision
         
         customCollider1?.CollidedWith(item2);
         customCollider2?.CollidedWith(item1);
-
     }
 
     public static void RelaxCollision(object item1, object item2, Vector2 relaxDistance)

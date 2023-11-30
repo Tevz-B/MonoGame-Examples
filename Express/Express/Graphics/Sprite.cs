@@ -1,7 +1,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace friHockey_v3.Graphics;
+namespace Express.Graphics;
 
 public class Sprite
 {

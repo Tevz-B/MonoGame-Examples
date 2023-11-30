@@ -3,7 +3,7 @@ using Express.Scene.Objects;
 
 namespace Express.Physics;
 
-public class MovementPhysics
+public static class MovementPhysics
 {
     public static void SimulateMovement(object item, TimeSpan elapsed)
     {
@@ -11,5 +11,10 @@ public class MovementPhysics
         {
             movable.Position += movable.Velocity * (float)elapsed.TotalMilliseconds;
         }
+    }
+    
+    public static void SimulateMovement(IMovable item, TimeSpan elapsed)
+    {
+        item.Position += item.Velocity * (float)elapsed.TotalMilliseconds;
     }
 }
