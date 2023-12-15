@@ -1,4 +1,4 @@
-namespace Express.Scene.Objects;
+namespace Express.Scene.Objects.Colliders;
 
 public interface IParticleCollider : IRadius, IPosition
 {

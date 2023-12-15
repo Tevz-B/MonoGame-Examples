@@ -8,10 +8,6 @@ public class HockeyLevel : Level
     public HockeyLevel(Game game)
         : base(game)
     {
-        // Position
-        _topMallet.Position = new Vector2(200, 100);
-        _bottomMallet.Position = new Vector2(300, 700);
-        _puck.Position = new Vector2(400, 400);
         // Spawn
         _topMalletSpawn = new Vector2(160, 60);
         _bottomMalletSpawn = new Vector2(160, 400);

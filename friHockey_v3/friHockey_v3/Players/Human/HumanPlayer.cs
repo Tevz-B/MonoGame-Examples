@@ -10,23 +10,31 @@ public class HumanPlayer : Player
 {
     private Rectangle _inputArea;
     private bool _grabbed;
+    protected Matrix _inverseView;
 
     public HumanPlayer(Game game, Mallet mallet, PlayerPosition position)
         : base (game, mallet, position)
     {
-        _inputArea = game.GraphicsDevice.Viewport.Bounds;
-        _inputArea.Height = 300;
+        _inputArea = new Rectangle( 0, 0, Game.Window.ClientBounds.Width,150);
         if (position == PlayerPosition.Bottom)
         {
-            _inputArea.Y = game.Window.ClientBounds.Height - _inputArea.Height;
+            _inputArea.Y = 460 - _inputArea.Height;
         }
+    }
+
+    public void SetCamera(Matrix camera)
+    {
+        
+        Console.WriteLine($"camera {camera}");
+        _inverseView = Matrix.Invert(camera);
     }
 
     public override void Update(GameTime gameTime)
     {
         Vector2 oldPosition = _mallet.Position;
         
-        var mousePosition = Mouse.GetState().Position.ToVector2();;
+        var mousePositionOnScreen = Mouse.GetState().Position.ToVector2();
+        var mousePosition = Vector2.Transform(mousePositionOnScreen, _inverseView);
         bool mouseInInputArea = false;
         if (Mouse.GetState().LeftButton == ButtonState.Pressed)
         {
@@ -36,7 +44,7 @@ public class HumanPlayer : Player
                 if (!_grabbed)
                 {
                     float distanceToMallet = (mousePosition - _mallet.Position).Length();
-                    if (distanceToMallet < 100)
+                    if (distanceToMallet < 50)
                     {
                         _grabbed = true;
                     }
@@ -62,7 +70,10 @@ public class HumanPlayer : Player
         {
             _mallet.Velocity = distance * (1.0f / (float)gameTime.ElapsedGameTime.TotalMilliseconds);
         }
+    }
 
-        Console.WriteLine("{0}", _mallet.Velocity);
+    public override void Reset()
+    {
+        _grabbed = false;
     }
 }

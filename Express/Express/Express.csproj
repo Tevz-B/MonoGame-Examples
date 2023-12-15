@@ -12,7 +12,6 @@
     </ItemGroup>
     <ItemGroup>
       <Folder Include="Scene\Objects\Movement\" />
-      <Folder Include="Scene\Objects\Physical Properties\" />
       <Folder Include="Scene\Objects\Rotation\" />
     </ItemGroup>
 </Project>
