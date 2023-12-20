@@ -17,6 +17,9 @@ public class FriHockey : Game
     public FriHockey()
     {
         _graphics = new GraphicsDeviceManager(this);
+        
+        Components.
+        
         Content.RootDirectory = "Content";
         IsMouseVisible = true;
     }

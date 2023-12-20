@@ -1,46 +1,51 @@
+using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 
 namespace friHockey_v4.Audio;
 
-public class SoundEngine : GameComponent
+public sealed class SoundEngine : GameComponent
 {
-    protected SoundEffect[] soundEffects = new SoundEffect[(int)SoundEffectType.LastType];
-    SoundEngine instance;
-    
-    public SoundEngine(Game game)
+    private SoundEffect[] _soundEffects = new SoundEffect[(int)SoundEffectType.LastType];
+    private static SoundEngine _instance;
+
+    private SoundEngine(Game game)
         : base(game)
     {
-        instance = new SoundEngine(game);
-        game.Components.AddComponent(instance);
     }
 
-    void initialize()
+    public static void Init(Game game)
     {
-        soundEffects[SoundEffectTypePuckMallet] = this.Game.Content.Load("PuckMallet");
-        soundEffects[SoundEffectTypePuckWall] = this.Game.Content.Load("PuckWall");
-        soundEffects[SoundEffectTypeLose] = this.Game.Content.Load("Lose");
-        soundEffects[SoundEffectTypeWin] = this.Game.Content.Load("Win");
+        _instance = new SoundEngine(game);
+        game.Components.Add(_instance);
+    }
+    
+
+    public static SoundEngine Instance
+    {
+        get
+        {
+            if (_instance == null)
+                throw new Exception("Sound Engine not initialized.");
+            return _instance;
+        }
     }
 
-    public void Play(SoundEffectType type)
+    public override void Initialize()
     {
-        soundEffects[type].Play();
+        _soundEffects[(int)SoundEffectType.PuckMallet] = Game.Content.Load<SoundEffect>("PuckMallet");
+        _soundEffects[(int)SoundEffectType.PuckWall] = Game.Content.Load<SoundEffect>("PuckWall");
+        _soundEffects[(int)SoundEffectType.Lose] = Game.Content.Load<SoundEffect>("Lose");
+        _soundEffects[(int)SoundEffectType.Win] = Game.Content.Load<SoundEffect>("Win");
+    }
+
+    public void PlaySound(SoundEffectType type)
+    {
+        _soundEffects[(int)type].Play();
     }
 
     public static void Play(SoundEffectType type)
     {
-        instance.Play(type);
+        _instance.PlaySound(type);
     }
-
-    void Dealloc()
-    {
-        for (int i = 0; i < SoundEffectTypes; i++)
-        {
-            soundEffects[i];
-        }
-
-    }
-
-
 }
