@@ -5,22 +5,23 @@ namespace Artificial_I.Utils;
 
 public static class SRandom
 {
-    private static Random _random = new Random();
+    private static readonly Random Random = new Random(DateTime.Now.Millisecond);
+    
     public static float Float(float min, float max)
     {
-        double val = (_random.NextDouble() * (max - min) + min);
+        double val = (Random.NextDouble() * (max - min) + min);
         return (float)val;
     }
     
     public static float Float(float max)
     {
-        double val = (_random.NextDouble() * max);
+        double val = (Random.NextDouble() * max);
         return (float)val;
     }
 
     public static float Float()
     {
-        double val = _random.NextDouble();
+        double val = Random.NextDouble();
         return (float)val;
     }
 
@@ -36,11 +37,11 @@ public static class SRandom
 
     public static int Int(int max)
     {
-        return _random.Next(max);
+        return Random.Next(max);
     }
 
     public static int Int()
     {
-        return _random.Next();
+        return Random.Next();
     }
 }
