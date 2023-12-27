@@ -1,6 +1,7 @@
 using System;
 using Artificial_I.Utils;
 using Express.Graphics;
+using friHockey_v4.Audio;
 using friHockey_v4.Graphics;
 using friHockey_v4.Physics;
 using friHockey_v4.Players;
@@ -49,7 +50,7 @@ public class Gameplay : GameComponent
         _bottomPlayer = new HumanPlayer(Game, _level.BottomMallet, PlayerPosition.Bottom);
         AIRenderer aiRenderer = new AIRenderer(Game, (AIPlayer)_topPlayer);
         aiRenderer.DrawOrder = 1;
-        Game.Components.Add(aiRenderer);
+        // Game.Components.Add(aiRenderer);
         _finishInit();
     }
 
@@ -69,6 +70,7 @@ public class Gameplay : GameComponent
         DebugRenderer debugRenderer = new DebugRenderer(this.Game, _level.Scene);
         debugRenderer.ItemColor = Color.Red;
         debugRenderer.MovementColor = Color.Gray;
+        debugRenderer.DrawOrder = 2;
         // Game.Components.Add(debugRenderer);
 
         FPSComponent fpsComponent = new FPSComponent(Game);
@@ -99,7 +101,6 @@ public class Gameplay : GameComponent
             _level.ResetToTop();
         else
             _level.ResetToBottom();
-
     }
 
     public override void Update(GameTime gameTime)
@@ -110,111 +111,14 @@ public class Gameplay : GameComponent
                 _level.ResetToTop();
                 _topPlayer.Reset();
                 _bottomPlayer.Reset();
+                SoundEngine.Play(SoundEffectType.Win);
                 break;
             case > 510:
                 _level.ResetToBottom();
                 _topPlayer.Reset();
                 _bottomPlayer.Reset();
+                SoundEngine.Play(SoundEffectType.Lose);
                 break;
         }
     }
-    
-    
-    
-    
-    ////////////////////////////
-    // public Gameplay(Game theGame, Class levelClass)
-    //         : base (theGame)
-    //     {
-    //         this.StartInitWithLevelClass(levelClass);
-    //         topPlayer = new HumanPlayer(this.Game, _level.TopMallet, PlayerPositionTop);
-    //         bottomPlayer = new HumanPlayer(this.Game, _level.BottomMallet, PlayerPositionBottom);
-    //         this.FinishInit();
-    //     }
-    //
-    //     public Gameplay(Game theGame, Class levelClass, Class aiClass)
-    //         : base (theGame)
-    //     {
-    //         this.StartInitWithLevelClass(levelClass);
-    //         topPlayer = new aiClass(this.Game, _level.TopMallet, _level, PlayerPositionTop);
-    //         bottomPlayer = new HumanPlayer(this.Game, _level.BottomMallet, PlayerPositionBottom);
-    //         AIRenderer aiRenderer = new AIRenderer(this.Game, (AIPlayer)topPlayer);
-    //         aiRenderer.DrawOrder = 1;
-    //         this.Game.Components.Add(aiRenderer);
-    //         this.FinishInit();
-    //     }
-    //
-    //     public void StartInitWithLevelClass(Class levelClass)
-    //     {
-    //         _level = new levelClass(this.Game);
-    //         this.Game.Components.Add(_level);
-    //     }
-    //
-    //     public void FinishInit()
-    //     {
-    //         this.Game.Components.Add(topPlayer);
-    //         this.Game.Components.Add(bottomPlayer);
-    //         _physics = new PhysicsEngine(this.Game, _level);
-    //         _physics.UpdateOrder = 20;
-    //         this.Game.Components.Add(_physics);
-    //         _renderer = new GameRenderer(this.Game, _level);
-    //         this.Game.Components.Add(_renderer);
-    //         DebugRenderer debugRenderer = new DebugRenderer(this.Game, _level.Scene);
-    //         debugRenderer.ItemColor = Color.Red();
-    //         debugRenderer.MovementColor = Color.Gray();
-    //         bottomPlayer.UpdateOrder = 0;
-    //         topPlayer.UpdateOrder = 1;
-    //         _physics.UpdateOrder = 2;
-    //         _level.UpdateOrder = 3;
-    //         _level.Scene.UpdateOrder = 4;
-    //         this.UpdateOrder = 5;
-    //     }
-    //
-    //     void initialize()
-    //     {
-    //         base.initialize();
-    //         if (topPlayer.IsKindOfClass(typeof(HumanPlayer)))
-    //         {
-    //             ((HumanPlayer)topPlayer).SetCamera(_renderer.Camera);
-    //         }
-    //
-    //         if (bottomPlayer.IsKindOfClass(typeof(HumanPlayer)))
-    //         {
-    //             ((HumanPlayer)bottomPlayer).SetCamera(_renderer.Camera);
-    //         }
-    //
-    //         if (Random.FloatM() < 0)
-    //         {
-    //             _level.ResetToTop();
-    //         }
-    //         else
-    //         {
-    //             _level.ResetToBottom();
-    //         }
-    //
-    //     }
-    //
-    //     void UpdateWithGameTime(GameTime gameTime)
-    //     {
-    //         if (_level.Puck.Position.Y < -50)
-    //         {
-    //             _level.ResetToTop();
-    //             topPlayer.Reset();
-    //             bottomPlayer.Reset();
-    //         }
-    //         else if (_level.Puck.Position.Y > 510)
-    //         {
-    //             _level.ResetToBottom();
-    //             topPlayer.Reset();
-    //             bottomPlayer.Reset();
-    //         }
-    //
-    //     }
-    //
-    //     void Dealloc()
-    //     {
-    //         this.Game.Components.RemoveComponent(_level);
-    //         this.Game.Components.RemoveComponent(_renderer);
-    //         this.Game.Components.RemoveComponent(_physics);
-    //     }
 }

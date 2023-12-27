@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using Artificial_I.Utils;
+using friHockey_v4.Audio;
 using friHockey_v4.Players.AI.Opponents;
 using friHockey_v4.Scene.Levels;
 using Microsoft.Xna.Framework;
@@ -18,7 +20,10 @@ public class FriHockey : Game
     {
         _graphics = new GraphicsDeviceManager(this);
         
-        Components.
+        Components.Add(new FPSComponent(this));
+        
+        // Init singletons
+        SoundEngine.Init(this);
         
         Content.RootDirectory = "Content";
         IsMouseVisible = true;

@@ -26,7 +26,7 @@ public class DebugRenderer : DrawableGameComponent
         : base (theGame)
     {
         _scene = theScene;
-        this.ItemColor = Color.White;
+        this.ItemColor = Color.OrangeRed;
         this.MovementColor = Color.SkyBlue;
         this.ColliderColor = Color.Lime;
         _transformMatrix = Matrix.Identity;

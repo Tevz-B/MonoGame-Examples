@@ -1,36 +1,37 @@
 using Express.Scene.Objects;
+using Express.Scene.Objects.Colliders;
 using Express.Scene.Objects.Physical_Properties;
+using friHockey_v4.Audio;
+using friHockey_v4.Scene.Objects.Walls;
 using Microsoft.VisualBasic;
 using Microsoft.Xna.Framework;
 
 namespace friHockey_v4.Scene.Objects;
 
-public class Puck : IParticle, ICoefficientOfRestitution
+public class Puck : IParticle, ICoefficientOfRestitution, ICustomCollider
 {
     private Vector2 _position;
     private Vector2 _velocity = new Vector2(0, 50);
-    private float _mass = 1;
-    private float _radius = 20;
-    private float _coefficientOfRestitution = Constants.PuckCoefficientOfRestitution();
 
     public ref Vector2 Position => ref _position;
     public ref Vector2 Velocity => ref _velocity;
 
-    public float Radius
-    {
-        get => _radius;
-        set => _radius = value;
-    }
-    
-    public float Mass
-    {
-        get => _mass;
-        set => _mass = value;
-    }
+    public float Radius { get; set; } = 20;
 
-    public float CoefficientOfRestitution
+    public float Mass { get; set; } = 1;
+
+    public float CoefficientOfRestitution { get; set; } = Constants.PuckCoefficientOfRestitution();
+    
+    public void CollidedWith(object item)
     {
-        get => _coefficientOfRestitution;
-        set => _coefficientOfRestitution = value;
+        if (item is Mallet)
+        {
+            SoundEngine.Play(SoundEffectType.PuckMallet);
+        }
+        else if (item is RectangleWall)
+        {
+            SoundEngine.Play(SoundEffectType.PuckWall);
+        }
+
     }
 }
