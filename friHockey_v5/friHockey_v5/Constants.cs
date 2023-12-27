@@ -21,4 +21,14 @@ public static class Constants
     {
         return 800f;
     }
+
+    public static int WinScore()
+    {
+        return 3;
+    }
+
+    public static string ProgressFilePath()
+    {
+        return "FriHockeySave";
+    }
 }

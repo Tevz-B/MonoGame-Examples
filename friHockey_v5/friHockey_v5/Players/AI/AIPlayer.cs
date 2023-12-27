@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using friHockey_v5.Players.AI.Opponents;
 using friHockey_v5.Scene;
 using friHockey_v5.Scene.Objects;
 using Microsoft.Xna.Framework;
@@ -9,25 +10,49 @@ public class AIPlayer : Player
 {
     protected Level _level;
     // AI properties
+    protected string _name = "";
     protected float _speed;
     protected float _attackSpeed;
     protected List<string> _quotes = new List<string>();
     private bool _attack;
-    private bool _hasTarget;
-
 
     private Vector2 _target;
+
+    public ref Level Level => ref _level;
+
+    public ref Vector2 Target => ref _target;
+
+    public List<string> Quotes => _quotes;
+    
+    public string Name => _name;
+    
+    public static OpponentType OpponentType() => 0;
+
+    public static LevelType LevelType()
+    {
+        return 0;
+    }
+
+    public static string PortraitPath()
+    {
+        return null;
+    }
+
+    public static string HiddenPortraitPath()
+    {
+        return null;
+    }
+
+    public static string FullPortraitPath()
+    {
+        return null;
+    }
 
     public AIPlayer(Game theGame, Mallet theMallet, Level theLevel, PlayerPosition thePosition)
         : base (theGame, theMallet, thePosition)
     {
         _level = theLevel;
-        // _quotes = new ArrayList();
     }
-
-    public bool HasTarget => _hasTarget;
-    public ref Level Level => ref _level;
-    public ref Vector2 Target => ref _target;
 
     public List<float> GetDefenseDangers()
     {
@@ -60,7 +85,7 @@ public class AIPlayer : Player
         }
         return offenseWeaknesses;
     }
-    
+
     // Actions
     public void MoveTowards(Vector2 theTarget)
     {
@@ -74,43 +99,43 @@ public class AIPlayer : Player
 
     public void MoveTowardsAttack(Vector2 theTarget, bool isAttack)
     {
-        if (theTarget.Y > 250 || theTarget.X < 30 || theTarget.X > 290)
-        {
-            _hasTarget = false;
-            return;
-        }
-
-        _hasTarget = true;
         _target = theTarget;
         _attack = isAttack;
+        // Make sure we don't cross the middle.
+        if (_target.Y > 250)
+            _target.Y = 250;
+        
+        // Don't go into walls.
+        if (_target.X < 30)
+            _target.X = 30;
+        
+        if (_target.X > 290)
+            _target.X = 290;
+        
+        // Don't move too close to the edge.
         if (_target.Y < 60)
-        {
-            _target = new Vector2(_target.X, 60);
-        }
-
+            _target.Y = 60;
+        
+        // Don't block puck in corner.
+        if (_level.Puck.Position.Y < 60 && (_level.Puck.Position.X < 50 || _level.Puck.Position.X > 260))
+            _target.X = 160;
     }
 
     public override void Update(GameTime gameTime)
     {
-        if (_hasTarget)
+        var target = _target;
+        Vector2 difference = target - _mallet.Position;
+        float distance = difference.Length();
+        float maxMove = (_attack ? _attackSpeed : _speed) * (float)gameTime.ElapsedGameTime.TotalMilliseconds;
+        if (distance < maxMove)
         {
-            var target = _target;
-            Vector2 difference = target - _mallet.Position;
-            float distance = difference.Length();
-            float maxMove = (_attack ? _attackSpeed : _speed) * (float)gameTime.ElapsedGameTime.TotalMilliseconds;
-            if (distance < maxMove)
-            {
-                _mallet.Position = target;
-                _hasTarget = false;
-            }
-            else
-            {
-                difference.Normalize();
-                difference *= maxMove;
-                _mallet.Position += difference;
-            }
-
+            _mallet.Position = target;
         }
-
+        else
+        {
+            difference.Normalize();
+            difference *= maxMove;
+            _mallet.Position += difference;
+        }
     }
 }

@@ -32,7 +32,7 @@ public class AIRenderer : DrawableGameComponent
     public override void Draw(GameTime gameTime)
     {
         _primitiveBatch.Begin(null, null, null, null, _camera);
-        // glLineWidth(3.0f); no command in MonoGame
+        // glLineWidth(3.0f); no command in XNA
         var defenseDangers = _aiPlayer.GetDefenseDangers();
         for (int i = 0; i < defenseDangers.Count; i++)
         {
@@ -49,10 +49,7 @@ public class AIRenderer : DrawableGameComponent
             _primitiveBatch.DrawCircle(position, 30, 24, new Color(weakness - 512, weakness - 256, weakness));
         }
 
-        if (_aiPlayer.HasTarget)
-        {
-            _primitiveBatch.DrawLine(_aiPlayer.Level.TopMallet.Position, _aiPlayer.Target, Color.Black);
-        }
+        _primitiveBatch.DrawLine(_aiPlayer.Level.TopMallet.Position, _aiPlayer.Target, Color.Black);
 
         _primitiveBatch.End();
     }

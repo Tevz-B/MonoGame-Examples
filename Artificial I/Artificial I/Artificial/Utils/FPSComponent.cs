@@ -2,7 +2,7 @@ using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace Artificial_I.Utils
+namespace Artificial_I.Artificial.Utils
 {
     public class FPSComponent : DrawableGameComponent
     {

@@ -1,7 +1,7 @@
 using System;
 using Microsoft.Xna.Framework;
 
-namespace Artificial_I.Utils;
+namespace Artificial_I.Artificial.Utils;
 
 public static class SRandom
 {
