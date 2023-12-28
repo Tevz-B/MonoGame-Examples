@@ -2,6 +2,7 @@ namespace friHockey_v5;
 
 public static class Constants
 {
+    // TODO convert to const data
     public static float VelocitySmoothing()
     {
         return 0.5f;
@@ -27,8 +28,5 @@ public static class Constants
         return 3;
     }
 
-    public static string ProgressFilePath()
-    {
-        return "FriHockeySave";
-    }
+    public const string ProgressFilePath = "FriHockeySave";
 }

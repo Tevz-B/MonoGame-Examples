@@ -52,11 +52,7 @@ public class Label
         set => _color = value;
     }
 
-    public Vector2 Position
-    {
-        get => _position;
-        set => _position = value;
-    }
+    public ref Vector2 Position => ref _position;
 
     public Vector2 Origin
     {
@@ -69,11 +65,7 @@ public class Label
         }
     }
 
-    public Vector2 Scale
-    {
-        get => _scale;
-        set => _scale = value;
-    }
+    public ref Vector2 Scale => ref _scale;
 
     public float Rotation
     {

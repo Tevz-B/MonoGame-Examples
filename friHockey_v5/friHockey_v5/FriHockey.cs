@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Artificial_I.Artificial.Utils;
 using friHockey_v5.Audio;
+using friHockey_v5.GameStates.Gameplay;
 using friHockey_v5.Players.AI.Opponents;
 using friHockey_v5.Scene.Levels;
 using Microsoft.Xna.Framework;

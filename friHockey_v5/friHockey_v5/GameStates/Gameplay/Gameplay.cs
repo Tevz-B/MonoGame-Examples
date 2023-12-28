@@ -10,7 +10,7 @@ using friHockey_v5.Players.Human;
 using friHockey_v5.Scene;
 using Microsoft.Xna.Framework;
 
-namespace friHockey_v5;
+namespace friHockey_v5.GameStates.Gameplay;
 
 public class Gameplay : GameComponent
 {

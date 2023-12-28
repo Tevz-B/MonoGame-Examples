@@ -6,7 +6,7 @@ using Microsoft.Xna.Framework;
 
 namespace friHockey_v5.Players.AI;
 
-public class AIPlayer : Player
+public abstract class AIPlayer : Player
 {
     protected Level _level;
     // AI properties
@@ -15,6 +15,13 @@ public class AIPlayer : Player
     protected float _attackSpeed;
     protected List<string> _quotes = new List<string>();
     private bool _attack;
+
+    protected OpponentType _opponentType;
+    protected LevelType _levelType;
+
+    protected string _portraitPath;
+    protected string _hiddenPortraitPath;
+    protected string _fullPortraitPath;
 
     private Vector2 _target;
 
@@ -26,29 +33,14 @@ public class AIPlayer : Player
     
     public string Name => _name;
     
-    public static OpponentType OpponentType() => 0;
+    public OpponentType OpponentType => _opponentType;
+    public LevelType LevelType => _levelType;
 
-    public static LevelType LevelType()
-    {
-        return 0;
-    }
+    public string PortraitPath => _portraitPath;
+    public string HiddenPortraitPath => _hiddenPortraitPath;
+    public string FullPortraitPath => _fullPortraitPath;
 
-    public static string PortraitPath()
-    {
-        return null;
-    }
-
-    public static string HiddenPortraitPath()
-    {
-        return null;
-    }
-
-    public static string FullPortraitPath()
-    {
-        return null;
-    }
-
-    public AIPlayer(Game theGame, Mallet theMallet, Level theLevel, PlayerPosition thePosition)
+    protected AIPlayer(Game theGame, Mallet theMallet, Level theLevel, PlayerPosition thePosition)
         : base (theGame, theMallet, thePosition)
     {
         _level = theLevel;
@@ -87,12 +79,12 @@ public class AIPlayer : Player
     }
 
     // Actions
-    public void MoveTowards(Vector2 theTarget)
+    protected void MoveTowards(Vector2 theTarget)
     {
         this.MoveTowardsAttack(theTarget, false);
     }
 
-    public void AttackTowards(Vector2 theTarget)
+    protected void AttackTowards(Vector2 theTarget)
     {
         this.MoveTowardsAttack(theTarget, true);
     }

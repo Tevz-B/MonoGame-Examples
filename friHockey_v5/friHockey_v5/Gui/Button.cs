@@ -4,7 +4,6 @@ using Express.Scene.Objects;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using Microsoft.Xna.Framework.Input.Touch;
 
 namespace friHockey_v5.Gui;
 
@@ -19,8 +18,7 @@ public class Button : ISceneUser
     protected bool _isDown;
     protected bool _wasPressed;
     protected bool _wasReleased;
-    protected int _pressedId;
-    protected Color _labelColor, _labelHoverColor, _backgroundColor, _backgroundHoverColor;
+    protected Color _labelColor, _labelHoverColor, _labelPressedColor, _backgroundColor, _backgroundHoverColor, _backgroundPressedColor;
 
     public Button(Rectangle theInputArea, Texture2D background, SpriteFont font, string text)
     {
@@ -30,9 +28,11 @@ public class Button : ISceneUser
         _label = new Label(font, text, new Vector2(_inputArea.X + 10, _inputArea.Y + _inputArea.Height / 2f));
         _label.VerticalAlign = VerticalAlign.Middle;
         this.BackgroundColor = Color.White;
-        this.BackgroundHoverColor = Color.DimGray;
+        this.BackgroundHoverColor = Color.White;
+        this.BackgroundPressedColor = Color.DimGray;
         this.LabelColor = Color.Black;
-        this.LabelHoverColor = Color.White;
+        this.LabelHoverColor = Color.Gray;
+        this.LabelPressedColor = Color.White;
     }
 
     public Rectangle InputArea => _inputArea;
@@ -68,6 +68,11 @@ public class Button : ISceneUser
         get => _labelHoverColor;
         set => _labelHoverColor = value;
     }
+    public Color LabelPressedColor
+    {
+        get => _labelPressedColor;
+        set => _labelPressedColor = value;
+    }
 
     public Color BackgroundColor
     {
@@ -83,6 +88,11 @@ public class Button : ISceneUser
     {
         get => _backgroundHoverColor;
         set => _backgroundHoverColor = value;
+    }
+    public Color BackgroundPressedColor
+    {
+        get => _backgroundPressedColor;
+        set => _backgroundPressedColor = value;
     }
 
     public IScene Scene { get; set; }
@@ -106,47 +116,89 @@ public class Button : ISceneUser
         if (!_enabled)
             return;
 
-        if (Mouse.GetState().LeftButton != ButtonState.Pressed)
-            return;
 
         bool wasDown = _isDown;
         _isDown = false;
         _wasPressed = false;
         _wasReleased = false;
-        foreach (TouchLocation touch in touches)
-        {
-            Vector2 touchInScene = Vector2.TransformWith(touch.Position, inverseView);
-            if (_inputArea.ContainsVector(touchInScene) && touch.State != TouchLocationStateInvalid)
-            {
-                if (touch.State == TouchLocationStatePressed)
-                {
-                    _pressedId = touch.Identifier;
-                    _wasPressed = true;
-                }
+        
+        var mousePositionOnScreen = Mouse.GetState().Position.ToVector2();
+        var mousePositionInScene = Vector2.Transform(mousePositionOnScreen, inverseView);
 
-                // Only act to the touch that started the push.
-                if (touch.Identifier == _pressedId)
+        if (_inputArea.Contains(mousePositionInScene))
+        {
+            if (wasDown)
+            {
+                // release pressed button -> trigger action
+                if (Mouse.GetState().LeftButton != ButtonState.Pressed)
                 {
-                    if (touch.State == TouchLocationStateReleased)
-                    {
-                        _wasReleased = true;
-                    }
-                    else
-                    {
-                        _isDown = true;
-                    }
+                    _wasReleased = true;
+                    _backgroundImage.Color = _backgroundColor;
+                    _label.Color = _labelColor;
+                }
+                // holding pressed button
+                else
+                {
+                    _isDown = true;
+                    _wasPressed = true;
+                    _backgroundImage.Color = _backgroundPressedColor;
+                    _label.Color = _labelPressedColor;
+                }
+            }
+            else
+            {
+                // click on button
+                if (Mouse.GetState().LeftButton == ButtonState.Pressed)
+                {
+                    _isDown = true;
+                    _wasPressed = true;
+                    _backgroundImage.Color = _backgroundPressedColor;
+                    _label.Color = _labelPressedColor;
+                }
+                // hover over button
+                else
+                {
+                    _backgroundImage.Color = _backgroundHoverColor;
+                    _label.Color = _labelHoverColor;
                 }
             }
         }
-        if (_isDown && !wasDown)
-        {
-            _backgroundImage.Color = _backgroundHoverColor;
-            _label.Color = _labelHoverColor;
-        }
-        else if (!_isDown && wasDown)
+        // mouse not over button
+        else
         {
             _backgroundImage.Color = _backgroundColor;
             _label.Color = _labelColor;
         }
+
+        // if (touch.State == TouchLocationStatePressed)
+            // {
+            //     _pressedId = touch.Identifier;
+            //     _wasPressed = true;
+            // }
+            //
+            // // Only act to the touch that started the push.
+            // if (touch.Identifier == _pressedId)
+            // {
+            //     if (touch.State == TouchLocationStateReleased)
+            //     {
+            //         _wasReleased = true;
+            //     }
+            //     else
+            //     {
+            //         _isDown = true;
+            //     }
+            // }
+        // }
+        
+        // if (_isDown && !wasDown)
+        // {
+        //     _backgroundImage.Color = _backgroundHoverColor;
+        //     _label.Color = _labelHoverColor;
+        // }
+        // else if (!_isDown && wasDown)
+        // {
+        //     _backgroundImage.Color = _backgroundColor;
+        //     _label.Color = _labelColor;
+        // }
     }
 }
