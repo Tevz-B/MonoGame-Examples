@@ -18,6 +18,7 @@ public class Image
     {
         _texture = theTexture;
         _position = thePosition;
+        _sourceRectangle = theTexture?.Bounds ?? Rectangle.Empty;
         _color = Color.White;
         _origin = Vector2.Zero;
         _scale = Vector2.One;

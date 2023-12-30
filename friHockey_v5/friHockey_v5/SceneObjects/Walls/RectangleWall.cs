@@ -1,7 +1,7 @@
 using Express.Scene.Objects.Colliders;
 using Microsoft.Xna.Framework;
 
-namespace friHockey_v5.Scene.Objects.Walls;
+namespace friHockey_v5.SceneObjects.Walls;
 
 public class RectangleWall : IAARectangleCollider
 {

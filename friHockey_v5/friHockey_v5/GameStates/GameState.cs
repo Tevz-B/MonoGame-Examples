@@ -9,7 +9,7 @@ public abstract class GameState : GameComponent
     protected GameState(Game theGame)
         : base (theGame)
     {
-        _friHockey = (FriHockey)this.Game;
+        _friHockey = (FriHockey)Game;
     }
 
     public virtual void Activate()

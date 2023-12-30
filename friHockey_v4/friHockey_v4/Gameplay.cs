@@ -1,5 +1,5 @@
 using System;
-using Artificial_I.Utils;
+using Artificial_I.Artificial.Utils;
 using Express.Graphics;
 using friHockey_v4.Audio;
 using friHockey_v4.Graphics;

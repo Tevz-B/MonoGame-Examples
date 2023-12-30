@@ -1,10 +1,9 @@
-using System.Net.Mime;
 using Artificial_I.Artificial.Mirage;
 using Express.Scene;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace Express.Graphics;
+namespace friHockey_v5.Graphics;
 
 public class GuiRenderer : DrawableGameComponent
 {

@@ -2,10 +2,10 @@ using Express.Scene.Objects;
 using Express.Scene.Objects.Colliders;
 using Express.Scene.Objects.Physical_Properties;
 using friHockey_v5.Audio;
-using friHockey_v5.Scene.Objects.Walls;
+using friHockey_v5.SceneObjects.Walls;
 using Microsoft.Xna.Framework;
 
-namespace friHockey_v5.Scene.Objects;
+namespace friHockey_v5.SceneObjects;
 
 public class Puck : IParticle, ICoefficientOfRestitution, ICustomCollider
 {
@@ -23,13 +23,14 @@ public class Puck : IParticle, ICoefficientOfRestitution, ICustomCollider
     
     public void CollidedWith(object item)
     {
+        float pan = (_position.X - 160)/160.0f;
         if (item is Mallet)
         {
-            SoundEngine.Play(SoundEffectType.PuckMallet);
+            SoundEngine.Play(SoundEffectType.PuckMallet, pan);
         }
         else if (item is RectangleWall)
         {
-            SoundEngine.Play(SoundEffectType.PuckWall);
+            SoundEngine.Play(SoundEffectType.PuckWall, pan);
         }
 
     }

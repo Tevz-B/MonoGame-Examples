@@ -1,14 +1,14 @@
 using System.Collections.Generic;
+using friHockey_v5.Level;
 using friHockey_v5.Players.AI.Opponents;
-using friHockey_v5.Scene;
-using friHockey_v5.Scene.Objects;
+using friHockey_v5.SceneObjects;
 using Microsoft.Xna.Framework;
 
 namespace friHockey_v5.Players.AI;
 
 public abstract class AIPlayer : Player
 {
-    protected Level _level;
+    protected LevelBase _levelBase;
     // AI properties
     protected string _name = "";
     protected float _speed;
@@ -17,15 +17,15 @@ public abstract class AIPlayer : Player
     private bool _attack;
 
     protected OpponentType _opponentType;
-    protected LevelType _levelType;
+    protected static LevelType _levelType;
 
-    protected string _portraitPath;
-    protected string _hiddenPortraitPath;
-    protected string _fullPortraitPath;
+    protected static string _portraitPath;
+    protected static string _hiddenPortraitPath;
+    protected static string _fullPortraitPath;
 
     private Vector2 _target;
 
-    public ref Level Level => ref _level;
+    public ref LevelBase LevelBase => ref _levelBase;
 
     public ref Vector2 Target => ref _target;
 
@@ -35,26 +35,30 @@ public abstract class AIPlayer : Player
     
     public OpponentType OpponentType => _opponentType;
     public LevelType LevelType => _levelType;
+    public static LevelType LevelTypeS => _levelType;
 
     public string PortraitPath => _portraitPath;
     public string HiddenPortraitPath => _hiddenPortraitPath;
     public string FullPortraitPath => _fullPortraitPath;
+    public static string PortraitPathS => _portraitPath;
+    public static string HiddenPortraitPathS => _hiddenPortraitPath;
+    public static string FullPortraitPathS => _fullPortraitPath;
 
-    protected AIPlayer(Game theGame, Mallet theMallet, Level theLevel, PlayerPosition thePosition)
+    protected AIPlayer(Game theGame, Mallet theMallet, LevelBase theLevelBase, PlayerPosition thePosition)
         : base (theGame, theMallet, thePosition)
     {
-        _level = theLevel;
+        _levelBase = theLevelBase;
     }
 
     public List<float> GetDefenseDangers()
     {
-        var defenseDangers = new List<float>(_level.DefenseSpots.Count);
-        foreach (Vector2 defenseSpot in _level.DefenseSpots)
+        var defenseDangers = new List<float>(_levelBase.DefenseSpots.Count);
+        foreach (Vector2 defenseSpot in _levelBase.DefenseSpots)
         {
-            Vector2 difference = defenseSpot - _level.Puck.Position;
+            Vector2 difference = defenseSpot - _levelBase.Puck.Position;
             float distanceDanger = difference.Length();
             difference.Normalize();
-            float velocityDanger = Vector2.Dot(_level.Puck.Velocity, difference);
+            float velocityDanger = Vector2.Dot(_levelBase.Puck.Velocity, difference);
             float danger = 500 - distanceDanger + (velocityDanger / distanceDanger) * 1000;
             if (danger < 0) danger = 0;
 
@@ -65,12 +69,12 @@ public abstract class AIPlayer : Player
 
     public List<float> GetOffenseWeaknesses()
     {
-        var offenseWeaknesses = new List<float>(_level.OffenseSpots.Count);
-        foreach (Vector2 offenseSpot in _level.OffenseSpots)
+        var offenseWeaknesses = new List<float>(_levelBase.OffenseSpots.Count);
+        foreach (Vector2 offenseSpot in _levelBase.OffenseSpots)
         {
-            Vector2 myDifference = offenseSpot - _level.TopMallet.Position;
+            Vector2 myDifference = offenseSpot - _levelBase.TopMallet.Position;
             float myDistance = myDifference.Length();
-            Vector2 opponentDifference = offenseSpot - _level.BottomMallet.Position;
+            Vector2 opponentDifference = offenseSpot - _levelBase.BottomMallet.Position;
             float opponentDistance = opponentDifference.Length();
             float weakness = opponentDistance / myDistance;
             offenseWeaknesses.Add(weakness);
@@ -81,12 +85,12 @@ public abstract class AIPlayer : Player
     // Actions
     protected void MoveTowards(Vector2 theTarget)
     {
-        this.MoveTowardsAttack(theTarget, false);
+        MoveTowardsAttack(theTarget, false);
     }
 
     protected void AttackTowards(Vector2 theTarget)
     {
-        this.MoveTowardsAttack(theTarget, true);
+        MoveTowardsAttack(theTarget, true);
     }
 
     public void MoveTowardsAttack(Vector2 theTarget, bool isAttack)
@@ -109,7 +113,7 @@ public abstract class AIPlayer : Player
             _target.Y = 60;
         
         // Don't block puck in corner.
-        if (_level.Puck.Position.Y < 60 && (_level.Puck.Position.X < 50 || _level.Puck.Position.X > 260))
+        if (_levelBase.Puck.Position.Y < 60 && (_levelBase.Puck.Position.X < 50 || _levelBase.Puck.Position.X > 260))
             _target.X = 160;
     }
 

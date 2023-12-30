@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using Artificial_I.Utils;
+using Artificial_I.Artificial.Utils;
 using friHockey_v4.Audio;
 using friHockey_v4.Players.AI.Opponents;
 using friHockey_v4.Scene.Levels;

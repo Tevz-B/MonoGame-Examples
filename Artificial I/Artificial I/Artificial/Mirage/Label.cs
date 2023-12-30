@@ -23,7 +23,7 @@ public class Label
         _color = Color.White;
         _origin = Vector2.Zero;
         _scale = Vector2.One;
-        this.UpdateOrigin();
+        UpdateOrigin();
     }
 
     public SpriteFont Font
@@ -32,7 +32,7 @@ public class Label
         set
         {
             _font = value;
-            this.UpdateOrigin();
+            UpdateOrigin();
         }
     }
 
@@ -42,7 +42,7 @@ public class Label
         set
         {
             _text = value;
-            this.UpdateOrigin();
+            UpdateOrigin();
         }
     }
 
@@ -85,7 +85,7 @@ public class Label
         set
         {
             _horizontalAlign = value;
-            this.UpdateOrigin();
+            UpdateOrigin();
         }
     }
 
@@ -95,7 +95,7 @@ public class Label
         set
         {
             _verticalAlign = value;
-            this.UpdateOrigin();
+            UpdateOrigin();
         }
     }
 

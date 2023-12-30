@@ -1,6 +1,7 @@
 using Artificial_I.Artificial.Mirage;
 using Express.Graphics;
 using Express.Scene;
+using friHockey_v5.Graphics;
 using friHockey_v5.Gui;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -36,9 +37,6 @@ public class Menu : GameState
 
     public override void Initialize()
     {
-        // FontTextureProcessor fontProcessor = new FontTextureProcessor();
-        // _retrotype = Game.Content.LoadProcessor("Retrotype", fontProcessor);
-        // _fivexfive = Game.Content.LoadProcessor("5x5", fontProcessor);
         _retrotype = Game.Content.Load<SpriteFont>("Retrotype");
         _fivexfive = Game.Content.Load<SpriteFont>("5x5");
         _fivexfive.LineSpacing = 14;
@@ -64,7 +62,7 @@ public class Menu : GameState
         }
         if (_back.WasReleased)
         {
-            FriHockey.PopState();
+            _friHockey.PopState();
         }
 
     }

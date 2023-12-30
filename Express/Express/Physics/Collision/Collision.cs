@@ -50,7 +50,7 @@ public static class Collision
 
         if (recurse)
         {
-            Collision.CollisionBetween(item2, item1, false);
+            CollisionBetween(item2, item1, false);
         }
     }
     

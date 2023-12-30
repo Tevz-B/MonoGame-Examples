@@ -18,15 +18,15 @@ public class AIRenderer : DrawableGameComponent
 
     public override void Initialize()
     {
-        float scaleX = (float)this.Game.Window.ClientBounds.Width / 320;
-        float scaleY = (float)this.Game.Window.ClientBounds.Height / 480;
+        float scaleX = (float)Game.Window.ClientBounds.Width / 320;
+        float scaleY = (float)Game.Window.ClientBounds.Height / 480;
         _camera = Matrix.CreateScale(new Vector3(scaleX, scaleY, 1));
         base.Initialize();
     }
 
     protected override void LoadContent()
     {
-        _primitiveBatch = new PrimitiveBatch(this.GraphicsDevice);
+        _primitiveBatch = new PrimitiveBatch(GraphicsDevice);
     }
 
     public override void Draw(GameTime gameTime)
@@ -37,7 +37,7 @@ public class AIRenderer : DrawableGameComponent
         for (int i = 0; i < defenseDangers.Count; i++)
         {
             float danger = defenseDangers[i];
-            Vector2 position = _aiPlayer.Level.DefenseSpots[i];
+            Vector2 position = _aiPlayer.LevelBase.DefenseSpots[i];
             _primitiveBatch.DrawCircle(position, 30, 24, new Color(danger, danger - 256, danger - 512));
         }
 
@@ -45,11 +45,11 @@ public class AIRenderer : DrawableGameComponent
         for (int i = 0; i < offenseWeaknesses.Count; i++)
         {
             float weakness = offenseWeaknesses[i] * 1000f;
-            Vector2 position = _aiPlayer.Level.OffenseSpots[i];
+            Vector2 position = _aiPlayer.LevelBase.OffenseSpots[i];
             _primitiveBatch.DrawCircle(position, 30, 24, new Color(weakness - 512, weakness - 256, weakness));
         }
 
-        _primitiveBatch.DrawLine(_aiPlayer.Level.TopMallet.Position, _aiPlayer.Target, Color.Black);
+        _primitiveBatch.DrawLine(_aiPlayer.LevelBase.TopMallet.Position, _aiPlayer.Target, Color.Black);
 
         _primitiveBatch.End();
     }

@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using Artificial_I.Artificial.Utils;
 using friHockey_v5.Audio;
-using friHockey_v5.GameStates.Gameplay;
+using friHockey_v5.GameStates;
+using friHockey_v5.GameStates.Menus;
+using friHockey_v5.Level;
+using friHockey_v5.Level.Levels;
 using friHockey_v5.Players.AI.Opponents;
-using friHockey_v5.Scene.Levels;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 
@@ -12,66 +14,100 @@ namespace friHockey_v5;
 
 public class FriHockey : Game
 {
-    protected GraphicsDeviceManager _graphics;
-    protected Gameplay _currentGameplay;
-    protected List<Type> _levelClasses;
-    protected List<Type> _opponentClasses;
+    private GraphicsDeviceManager _graphics;
+    private Type[] _levelClasses;
+    private Type[] _opponentClasses;
+    private Stack<GameState> _stateStack;
+    private GameProgress _progress;
+
+    public GameProgress Progress => _progress;
 
     public FriHockey()
     {
         _graphics = new GraphicsDeviceManager(this);
         
-        Components.Add(new FPSComponent(this));
-        
-        // Init singletons
-        SoundEngine.Init(this);
-        
         Content.RootDirectory = "Content";
         IsMouseVisible = true;
+
+        Components.Add(new FPSComponent(this));
+
+        // Init singletons
+        SoundEngine.Init(this);
+
+        _stateStack = new Stack<GameState>();
+        _progress = GameProgress.LoadProgress();
     }
+
+    public Type GetLevelType(LevelType type) => _levelClasses[(int)type];
+    public Type GetOpponentType(OpponentType type) => _opponentClasses[(int)type];
 
     protected override void Initialize()
     {
         // Set resolution
         _graphics.PreferredBackBufferWidth = 640;
-        _graphics.PreferredBackBufferHeight = 920;
+        _graphics.PreferredBackBufferHeight = 900;
         _graphics.ApplyChanges();
 
-        _levelClasses = new List<Type> { typeof(HockeyLevel) };
-        _opponentClasses = new List<Type>{ typeof(Iceman) };
-        // this.LoadMultiplayerLevel(_levelClasses[0]);
-        LoadSinglePlayerLevel(_levelClasses[0], _opponentClasses[0]);
+        // Add all level classes
+        _levelClasses = new Type[(int)LevelType.LastType];
+
+        _levelClasses[(int)LevelType.Hockey] = typeof(HockeyLevel);
+        _levelClasses[(int)LevelType.Bullfrog] = typeof(BullfrogLevel);
+        
+        
+        // Add all opponent classes
+        _opponentClasses = new Type[(int)OpponentType.LastType];
+        _opponentClasses[(int)OpponentType.Iceman] = typeof(Iceman);
+        _opponentClasses[(int)OpponentType.Shaman] = typeof(Shaman);
+        
+        // Start in main menu
+        PushState(new MainMenu(this));
+        
+        // Debug start in gameplay
+        // PushState(new Gameplay(this, typeof(HockeyLevel), typeof(Iceman)));
+        
         base.Initialize();
     }
 
-    public void LoadMultiplayerLevel(Type levelClass)
+    public void PushState(GameState gameState)
     {
-        if (_currentGameplay is not null)
+        // Deactivate Current
+        if (_stateStack.Count > 0)
         {
-            Components.Remove(_currentGameplay);
+            GameState currentActiveState = _stateStack.Peek();
+            currentActiveState.Deactivate();
+            Components.Remove(currentActiveState);    
         }
-
-        _currentGameplay = new Gameplay(this, levelClass);
-        Components.Add(_currentGameplay);
+        
+        // Push new
+        _stateStack.Push(gameState);
+        Components.Add(gameState);
+        gameState.Activate();
     }
-    
-    public void LoadSinglePlayerLevel(Type levelClass, Type opponentClass)
-    {
-        if (_currentGameplay is not null)
-        {
-            Components.Remove(_currentGameplay);
-        }
 
-        _currentGameplay = new Gameplay(this, levelClass, opponentClass);
-        Components.Add(_currentGameplay);
+    public void PopState()
+    {
+        // Pop top state
+        GameState currentActiveState = _stateStack.Pop();
+        currentActiveState.Deactivate();
+        Components.Remove(currentActiveState);
+        // Activate previous state
+        currentActiveState = _stateStack.Peek();
+        Components.Add(currentActiveState);
+        currentActiveState.Activate();
     }
 
     protected override void Update(GameTime gameTime)
     {
-        if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed ||
-            Keyboard.GetState().IsKeyDown(Keys.Escape))
+        if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
             Exit();
 
         base.Update(gameTime);
     }
+    
+    // protected override void Draw(GameTime gameTime)
+    // {
+    //     GraphicsDevice.Clear(Color.Black);
+    //     base.Draw(gameTime);
+    // }
 }

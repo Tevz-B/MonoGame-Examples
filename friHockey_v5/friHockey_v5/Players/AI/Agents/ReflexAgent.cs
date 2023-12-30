@@ -1,5 +1,5 @@
-using friHockey_v5.Scene;
-using friHockey_v5.Scene.Objects;
+using friHockey_v5.Level;
+using friHockey_v5.SceneObjects;
 using Microsoft.Xna.Framework;
 
 namespace friHockey_v5.Players.AI.Agents;
@@ -8,8 +8,8 @@ public class ReflexAgent : AIPlayer
 {
         protected float _attackFactor;
 
-        protected ReflexAgent(Game theGame, Mallet theMallet, Level theLevel, PlayerPosition thePosition)
-            : base(theGame, theMallet, theLevel, thePosition)
+        protected ReflexAgent(Game theGame, Mallet theMallet, LevelBase theLevelBase, PlayerPosition thePosition)
+            : base(theGame, theMallet, theLevelBase, thePosition)
         {
         }
         
@@ -35,10 +35,10 @@ public class ReflexAgent : AIPlayer
             // Calculate offense opportunity.
 	
             // The faster the pack, the less offensive you should be.
-            float offense = 800 - _level.Puck.Velocity.Length();
+            float offense = 800 - _levelBase.Puck.Velocity.Length();
             
             // Fade out offense from 150 to 250 y coordinate.
-            float side = (250 - _level.Puck.Position.Y) / 100;
+            float side = (250 - _levelBase.Puck.Position.Y) / 100;
             if (side > 1) side = 1;
 
             if (side < 0) side = 0;
@@ -46,7 +46,7 @@ public class ReflexAgent : AIPlayer
             offense *= side;
 
             // Fade out offense from 0 to 100 vertical puck velocity
-            float sideDirection = 1 - _level.Puck.Velocity.Y / 100;
+            float sideDirection = 1 - _levelBase.Puck.Velocity.Y / 100;
             if (sideDirection > 1) sideDirection = 1;
 
             if (sideDirection < 0) sideDirection = 0;
@@ -54,13 +54,13 @@ public class ReflexAgent : AIPlayer
             offense *= sideDirection;
             
             // Don't go into offense if puck is moving away faster than you.
-            if (_attackSpeed < _level.Puck.Velocity.Y) offense = 0;
+            if (_attackSpeed < _levelBase.Puck.Velocity.Y) offense = 0;
 
             // If we have no offense or if the most dangerous spot is bigger then offense, weighted with opponent's aggressiveness. 
             if (offense <= 0 || defenseSpotDanger > offense * _attackFactor)
             {
-                Vector2 defenseSpot = _level.DefenseSpots[defenseSpotIndex];
-                Vector2 offset = Vector2.Normalize(_level.Puck.Position - defenseSpot) * _mallet.Radius * 2f;
+                Vector2 defenseSpot = _levelBase.DefenseSpots[defenseSpotIndex];
+                Vector2 offset = Vector2.Normalize(_levelBase.Puck.Position - defenseSpot) * _mallet.Radius * 2f;
                 Vector2 defenseTarget = offset + defenseSpot;
                 
                 MoveTowards(defenseTarget);
@@ -82,16 +82,16 @@ public class ReflexAgent : AIPlayer
 
                 }
 
-                Vector2 offenseSpot = _level.OffenseSpots[offenseSpotIndex];
+                Vector2 offenseSpot = _levelBase.OffenseSpots[offenseSpotIndex];
                 
                 // calculate where the puck should go after collision
-                Vector2 desiredPuckDirection = Vector2.Normalize(offenseSpot - _level.Puck.Position);
-                Vector2 puckDifference = _level.Puck.Position - _mallet.Position;
+                Vector2 desiredPuckDirection = Vector2.Normalize(offenseSpot - _levelBase.Puck.Position);
+                Vector2 puckDifference = _levelBase.Puck.Position - _mallet.Position;
                 float distance = puckDifference.Length();
                 
                 // Try to get behind the puck from the desired direction;
                 Vector2 offset = desiredPuckDirection * -distance * 0.9f;
-                Vector2 offenseTarget = offset + _level.Puck.Position;
+                Vector2 offenseTarget = offset + _levelBase.Puck.Position;
                 
                 AttackTowards(offenseTarget);
             }

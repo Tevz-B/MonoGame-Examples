@@ -13,8 +13,8 @@ public class HalfPlane
 
     public HalfPlane(Vector2 theNormal, float theDistance)
     {
-        this.Normal = theNormal;
-        this.Distance = theDistance;
+        Normal = theNormal;
+        Distance = theDistance;
     }
 
     // public static HalfPlane HalfPlaneWithNormalDistance(Vector2 theNormal, float theDistance)

@@ -1,11 +1,15 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 
 namespace Express.Scene;
 
-public interface IScene : IList<object>, IUpdateable
+public interface IScene : IEnumerable<object>, IUpdateable
 {
-    int UpdateOrder { set; }
+    public void Add(object item);
+    public void Remove(object item);
+    public void Clear();
+    
+    public event EventHandler ItemAdded;
+    public event EventHandler ItemRemoved;
 }

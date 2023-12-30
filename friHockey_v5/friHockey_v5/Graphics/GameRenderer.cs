@@ -1,7 +1,7 @@
 using Express.Graphics;
 using Express.Scene.Objects;
-using friHockey_v5.Scene;
-using friHockey_v5.Scene.Objects;
+using friHockey_v5.Level;
+using friHockey_v5.SceneObjects;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -15,24 +15,19 @@ public class GameRenderer : DrawableGameComponent
     private Sprite _puckSprite, _puckShadow;
     private Texture2D _background;
     private Vector2 _lightPosition = new Vector2(160, 230);
-    private Level _level;
+    private LevelBase _levelBase;
     private Matrix _camera;
 
 
-    public GameRenderer(Game game, Level level)
+    public GameRenderer(Game game, LevelBase levelBase)
         : base(game)
     {
-        _level = level;
+        _levelBase = levelBase;
+        _camera = Matrix.CreateScale( new Vector3(Game.Window.ClientBounds.Width / 320f, Game.Window.ClientBounds.Height / 480f, 1 ));
     }
     
     public Matrix Camera => _camera;
 
-    public override void Initialize()
-    {
-        _camera = Matrix.CreateScale( new Vector3(Game.Window.ClientBounds.Width / 320f, Game.Window.ClientBounds.Height / 480f, 1 ));
-        base.Initialize();
-    }
-    
     protected override void LoadContent()
     {
         _spriteBatch = new SpriteBatch(GraphicsDevice);
@@ -73,7 +68,7 @@ public class GameRenderer : DrawableGameComponent
         _spriteBatch.Begin( SpriteSortMode.BackToFront, null, null, null, null, null, _camera );
 
         _spriteBatch.Draw(_background, new Vector2(0, -20), null, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.9f );
-        foreach (object item in _level.Scene)
+        foreach (object item in _levelBase.Scene)
         {
             var itemWithPosition = item as IPosition; 
             Sprite sprite = null;

@@ -27,12 +27,12 @@ public class Button : ISceneUser
         _backgroundImage = new Image(background, new Vector2(_inputArea.X, _inputArea.Y));
         _label = new Label(font, text, new Vector2(_inputArea.X + 10, _inputArea.Y + _inputArea.Height / 2f));
         _label.VerticalAlign = VerticalAlign.Middle;
-        this.BackgroundColor = Color.White;
-        this.BackgroundHoverColor = Color.White;
-        this.BackgroundPressedColor = Color.DimGray;
-        this.LabelColor = Color.Black;
-        this.LabelHoverColor = Color.Gray;
-        this.LabelPressedColor = Color.White;
+        BackgroundColor = Color.White;
+        BackgroundHoverColor = Color.White;
+        BackgroundPressedColor = Color.DimGray;
+        LabelColor = Color.Black;
+        LabelHoverColor = Color.Gray;
+        LabelPressedColor = Color.White;
     }
 
     public Rectangle InputArea => _inputArea;
@@ -115,7 +115,6 @@ public class Button : ISceneUser
     {
         if (!_enabled)
             return;
-
 
         bool wasDown = _isDown;
         _isDown = false;

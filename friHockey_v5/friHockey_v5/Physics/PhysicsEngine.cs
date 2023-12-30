@@ -1,23 +1,23 @@
 using Express.Physics;
 using Express.Physics.Collision;
-using friHockey_v5.Scene;
+using friHockey_v5.Level;
 using Microsoft.Xna.Framework;
 
 namespace friHockey_v5.Physics;
 
 public class PhysicsEngine : GameComponent
 {
-    protected Level _level;
+    protected LevelBase _levelBase;
 
-    public PhysicsEngine(Game game, Level level) 
+    public PhysicsEngine(Game game, LevelBase levelBase) 
         : base(game)
     {
-        _level = level;
+        _levelBase = levelBase;
     }
 
     public override void Update(GameTime gameTime)
     {
-        float puckSpeed = _level.Puck.Velocity.Length();
+        float puckSpeed = _levelBase.Puck.Velocity.Length();
         if (puckSpeed != 0)
         {
             float newSpeed = puckSpeed * (1 - Constants.PuckFriction());
@@ -27,13 +27,13 @@ public class PhysicsEngine : GameComponent
                 newSpeed = maxSpeed;
             }
 
-            _level.Puck.Velocity.Normalize();
-            _level.Puck.Velocity *= newSpeed;
+            _levelBase.Puck.Velocity.Normalize();
+            _levelBase.Puck.Velocity *= newSpeed;
         }
-        MovementPhysics.SimulateMovement(_level.Puck, gameTime.ElapsedGameTime);
-        foreach (object item1 in _level.Scene)
+        MovementPhysics.SimulateMovement(_levelBase.Puck, gameTime.ElapsedGameTime);
+        foreach (object item1 in _levelBase.Scene)
         {
-            foreach (object item2 in _level.Scene)
+            foreach (object item2 in _levelBase.Scene)
             {
                 if (item1 != item2)
                 {

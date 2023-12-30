@@ -1,6 +1,8 @@
 using System;
+using System.Reflection;
 using Artificial_I.Artificial.Mirage;
 using friHockey_v5.Gui;
+using friHockey_v5.Level;
 using friHockey_v5.Players.AI.Opponents;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -34,29 +36,29 @@ public class OpponentSelection : Menu
         _scene.Add(_back);
     }
 
-    void Activate()
+    public override void Activate()
     {
         base.Activate();
         for (int i = 0; i < (int)OpponentType.LastType; i++)
         {
-            Type opponentClass = FriHockey.GetOpponentClass(i);
+            Type opponentClass = _friHockey.GetOpponentType((OpponentType)i);
             string portraitPath;
-            if (FriHockey.Progress.IsOpponentUnlocked(i))
+            if (_friHockey.Progress.IsOpponentUnlocked((OpponentType)i))
             {
-                portraitPath = opponentClass.PortraitPath;
+                portraitPath = (string)opponentClass.GetProperty("PortraitPathS").GetValue(null, null);
                 _opponentButton[i].Label.Text = opponentClass.Name;
                 _opponentButton[i].LabelColor = Color.White;
                 _opponentButton[i].Enabled = true;
             }
             else
             {
-                portraitPath = opponentClass.HiddenPortraitPath;
+                portraitPath = (string)opponentClass.GetProperty("HiddenPortraitPathS").GetValue(null, null);
                 _opponentButton[i].Label.Text = "???";
                 _opponentButton[i].LabelColor = Color.DimGray;
                 _opponentButton[i].Enabled = false;
             }
 
-            Texture2D portrait = this.Game.Content.Load<Texture2D>(portraitPath);
+            Texture2D portrait = Game.Content.Load<Texture2D>(portraitPath);
             _opponentButton[i].BackgroundImage.Texture = portrait;
         }
 
@@ -69,10 +71,11 @@ public class OpponentSelection : Menu
         {
             if (_opponentButton[i].WasReleased)
             {
-                Type opponentClass = FriHockey.GetOpponentClass(i);
-                Type levelClass = FriHockey.GetLevelClass(opponentClass.LevelType);
-                Gameplay.Gameplay gameplay = new Gameplay.Gameplay(this.Game, levelClass, opponentClass);
-                FriHockey.PushState(gameplay);
+                
+                Type opponentClass = _friHockey.GetOpponentType((OpponentType)i);
+                Type levelClass = _friHockey.GetLevelType((LevelType)opponentClass.GetProperty("LevelTypeS").GetValue(null, null));
+                Gameplay.Gameplay gameplay = new Gameplay.Gameplay(Game, levelClass, opponentClass);
+                _friHockey.PushState(gameplay);
             }
 
         }

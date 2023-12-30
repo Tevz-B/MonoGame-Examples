@@ -17,59 +17,71 @@ public class MainMenu : Menu
     }
 
 
-public override void Initialize()
+    public override void Initialize()
     {
         base.Initialize();
-        Texture2D tableTexture = this.Game.Content.Load<Texture2D>("TablePlain");
+        
+        // Background
+        Texture2D tableTexture = Game.Content.Load<Texture2D>("TablePlain");
         _table = new Image(tableTexture, new Vector2(-60, 0));
         _table.SetScaleUniform(2);
         _scene.Add(_table);
-        Texture2D dukeTexture = this.Game.Content.Load<Texture2D>("TheDuke");
+        
+        Texture2D dukeTexture = Game.Content.Load<Texture2D>("TheDuke");
         _duke = new Image(dukeTexture, new Vector2(0, 0));
         _duke.SetScaleUniform(2);
         _scene.Add(_duke);
+        
+        
+        // Title
         _title = new Label(_retrotype, "friHockey", new Vector2(160, 10));
         _title.HorizontalAlign = HorizontalAlign.Center;
         _scene.Add(_title);
+        
         _subtitle = new Label(_fivexfive, "by Matej Jan", new Vector2(320, 50));
         _subtitle.HorizontalAlign = HorizontalAlign.Right;
         _scene.Add(_subtitle);
+        
         _copyright = new Label(_fivexfive,  "3D modeling by\nMatjaz Lamut\nPublished by GameTeam, Fri\nCopyright 2011 Razum d.o.o.\nAll Rights Reserved v0.4", new Vector2(4, 462));
         _copyright.VerticalAlign = VerticalAlign.Bottom;
         _scene.Add(_copyright);
+        
+        
+        // Singleplayer
         _singleplayer = new Button(new Rectangle(180, 150, 140, 32), _buttonBackground, _retrotype, "Faculty");
         _singleplayer.BackgroundImage.SetScaleUniform(2);
         _scene.Add(_singleplayer);
+        // Multiplayer
         _multiplayer = new Button(new Rectangle(180, 200, 140, 32), _buttonBackground, _retrotype, "Versus");
         _multiplayer.BackgroundImage.SetScaleUniform(2);
         _scene.Add(_multiplayer);
+        // Options
         _options = new Button(new Rectangle(180, 250, 140, 32), _buttonBackground, _retrotype, "Restroom");
         _options.BackgroundImage.SetScaleUniform(2);
         _scene.Add(_options);
     }
 
-    void UpdateWithGameTime(GameTime gameTime)
+    public override void Update(GameTime gameTime)
     {
         base.Update(gameTime);
         GameState newState = null;
         if (_singleplayer.WasReleased)
         {
-            newState = new OpponentSelection(this.Game);
+            newState = new OpponentSelection(Game);
         }
         else if (_multiplayer.WasReleased)
         {
-            newState = new LevelSelection(this.Game);
+            newState = new LevelSelection(Game);
         }
         else if (_options.WasReleased)
         {
-            newState = new Options(this.Game);
+            newState = new Options(Game);
         }
 
         if (newState is not null)
         {
-            FriHockey.PushState(newState);
+            _friHockey.PushState(newState);
         }
-
     }
 
 }

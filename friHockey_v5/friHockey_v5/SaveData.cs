@@ -1,6 +1,6 @@
 
+using friHockey_v5.Level;
 using friHockey_v5.Players.AI.Opponents;
-using friHockey_v5.Scene;
 
 namespace friHockey_v5;
 
@@ -11,4 +11,10 @@ public class SaveData
     
     public bool[] LevelUnlocked { get; set; }
     public bool[] OpponentUnlocked { get; set; }
+
+    public SaveData()
+    {
+        _levelUnlocked[(int)LevelType.Hockey] = true;
+        _opponentUnlocked[(int)OpponentType.Iceman] = true;
+    }
 }

@@ -1,9 +1,9 @@
-using friHockey_v5.Scene.Objects.Walls;
+using friHockey_v5.SceneObjects.Walls;
 using Microsoft.Xna.Framework;
 
-namespace friHockey_v5.Scene.Levels;
+namespace friHockey_v5.Level.Levels;
 
-public class HockeyLevel : Level
+public class HockeyLevel : LevelBase
 {
     public HockeyLevel(Game game)
         : base(game)

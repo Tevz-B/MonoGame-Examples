@@ -1,4 +1,3 @@
-using System;
 using Artificial_I.Artificial.Mirage;
 using Express.Scene;
 using friHockey_v5.Players;
@@ -21,7 +20,7 @@ public class GameHud : GameComponent
     public GameHud(Game theGame)
         : base (theGame)
     {
-        _scene = new SimpleScene(this.Game);
+        _scene = new SimpleScene(Game);
         Game.Components.Add(_scene);
     }
 

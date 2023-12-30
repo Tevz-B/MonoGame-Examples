@@ -38,14 +38,15 @@ public sealed class SoundEngine : GameComponent
         _soundEffects[(int)SoundEffectType.Lose] = Game.Content.Load<SoundEffect>("Lose");
         _soundEffects[(int)SoundEffectType.Win] = Game.Content.Load<SoundEffect>("Win");
     }
-
-    public void PlaySound(SoundEffectType type)
+    
+    public static void Play(SoundEffectType type, float pan = 0f)
     {
-        _soundEffects[(int)type].Play();
+        _instance.PlaySound(type, pan);
     }
 
-    public static void Play(SoundEffectType type)
+    public void PlaySound(SoundEffectType type, float pan = 0f)
     {
-        _instance.PlaySound(type);
+        _soundEffects[(int)type].Play(1, 0, pan);
     }
+
 }

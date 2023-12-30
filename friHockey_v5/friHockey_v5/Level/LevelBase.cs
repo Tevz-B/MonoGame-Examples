@@ -1,16 +1,16 @@
 using System.Collections.Generic;
 using Express.Scene;
 using Express.Scene.Objects;
-using friHockey_v5.Scene.Objects;
+using friHockey_v5.SceneObjects;
 using Microsoft.Xna.Framework;
 using Vector2 = Microsoft.Xna.Framework.Vector2;
 
-namespace friHockey_v5.Scene;
+namespace friHockey_v5.Level;
 
-public class Level : GameComponent
+public class LevelBase : GameComponent
 {
     
-    protected IScene _scene;
+    protected SimpleScene _scene;
     protected Mallet _topMallet;
     protected Mallet _bottomMallet;
     protected Puck _puck;
@@ -40,7 +40,7 @@ public class Level : GameComponent
     public Puck Puck => _puck;
 
     
-    protected Level(Game game) 
+    protected LevelBase(Game game) 
         : base(game)
     {
         _topMallet = new Mallet();
@@ -52,10 +52,16 @@ public class Level : GameComponent
         _scene.Add(_puck);
     }
 
-    public IScene Scene
+    public SimpleScene Scene
     {
         get => _scene;
         set => _scene = value;
+    }
+
+    public override void Initialize()
+    {
+        base.Initialize();
+        Game.Components.Add(_scene);
     }
 
     public override void Update(GameTime gameTime)

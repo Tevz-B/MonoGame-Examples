@@ -66,7 +66,7 @@ public class AAHalfPlane : HalfPlane
             throw new Exception("Axis aligned half plane requires an axis aligned normal");
         }
 
-        base.Normal = value;
+        Normal = value;
         if (value.X > 0)
         {
             _direction = AxisDirection.PositiveX;

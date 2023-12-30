@@ -1,31 +1,15 @@
 using System;
 using System.IO;
-using System.Net;
 using System.Text.Json;
+using friHockey_v5.Level;
 using friHockey_v5.Players.AI.Opponents;
-using friHockey_v5.Scene;
 
 namespace friHockey_v5;
 
 public class GameProgress
 {
 
-    private SaveData _saveData;
-
-    public GameProgress()
-    {
-        _saveData = new SaveData
-        {
-            LevelUnlocked =
-            {
-                [(int)OpponentType.Iceman] = true
-            },
-            OpponentUnlocked =
-            {
-                [(int)LevelType.Hockey] = true
-            }
-        };
-    }
+    private SaveData _saveData = new();
 
     // private static SaveData NewGameSaveData()
     // {
@@ -72,12 +56,28 @@ public class GameProgress
 
     public static GameProgress LoadProgress()
     {
-        string serializedData = File.ReadAllText(Constants.ProgressFilePath);
-        var saveData = JsonSerializer.Deserialize<SaveData>(serializedData);
+        SaveData saveData = null;
+        if (File.Exists(Constants.ProgressFilePath))
+        {
+            string serializedData = File.ReadAllText(Constants.ProgressFilePath);
+            try
+            {
+                saveData = JsonSerializer.Deserialize<SaveData>(serializedData);
+            }
+            catch (JsonException)
+            {
+                Console.WriteLine("Game progress parse failed. Create new game.");
+            }
+            
+        }
+        else
+        {
+            File.Create(Constants.ProgressFilePath);
+        }
 
         if (saveData is null)
             return new GameProgress();
-
+            
         return new GameProgress
         {
             _saveData = saveData
@@ -129,12 +129,12 @@ public class GameProgress
     public void UnlockLevel(LevelType type)
     {
         _saveData.LevelUnlocked[(int)type] = true;
-        this.SaveProgress();
+        SaveProgress();
     }
 
     public void UnlockOpponent(OpponentType type)
     {
         _saveData.OpponentUnlocked[(int)type] = true;
-        this.SaveProgress();
+        SaveProgress();
     }
 }

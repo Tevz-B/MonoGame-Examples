@@ -1,4 +1,4 @@
-namespace friHockey_v5.Scene;
+namespace friHockey_v5.Level;
 
 public enum LevelType
 {

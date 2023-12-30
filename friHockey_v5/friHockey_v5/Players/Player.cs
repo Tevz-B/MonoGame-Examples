@@ -1,5 +1,5 @@
 using System.Collections;
-using friHockey_v5.Scene.Objects;
+using friHockey_v5.SceneObjects;
 using Microsoft.Xna.Framework;
 
 namespace friHockey_v5.Players;

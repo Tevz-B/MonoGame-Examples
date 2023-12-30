@@ -1,6 +1,6 @@
 using System.Linq;
 using Express.Physics;
-using friHockey_v5.Scene.Objects;
+using friHockey_v5.SceneObjects;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 

@@ -40,22 +40,22 @@ public class PrimitiveBatch
 
     public void Begin()
     {
-        this.Begin(null, null, null, null, Matrix.Identity);
+        Begin(null, null, null, null, Matrix.Identity);
     }
 
     public void Begine(BlendState theBlendState)
     {
-        this.Begin(theBlendState, null, null, null, Matrix.Identity);
+        Begin(theBlendState, null, null, null, Matrix.Identity);
     }
 
     public void Begin(BlendState theBlendState, DepthStencilState theDepthStencilState, RasterizerState theRasterizerState)
     {
-        this.Begin(theBlendState, theDepthStencilState, theRasterizerState, null, Matrix.Identity);
+        Begin(theBlendState, theDepthStencilState, theRasterizerState, null, Matrix.Identity);
     }
 
     public void Begin(BlendState theBlendState, DepthStencilState theDepthStencilState, RasterizerState theRasterizerState, Effect theEffect)
     {
-        this.Begin(theBlendState, theDepthStencilState, theRasterizerState, theEffect, Matrix.Identity);
+        Begin(theBlendState, theDepthStencilState, theRasterizerState, theEffect, Matrix.Identity);
     }
 
     public void Begin(BlendState theBlendState, DepthStencilState theDepthStencilState, RasterizerState theRasterizerState, Effect theEffect, Matrix theTransformMatrix)
@@ -106,7 +106,7 @@ public class PrimitiveBatch
             float angle = (float)i / (float)divisions * (float)Math.PI * 2;
             end.X = center.X + radius * (float)Math.Cos(angle);
             end.Y = center.Y + radius * (float)Math.Sin(angle);
-            this.DrawLine(start, end, color, layerDepth);
+            DrawLine(start, end, color, layerDepth);
             start = end;
         }
 

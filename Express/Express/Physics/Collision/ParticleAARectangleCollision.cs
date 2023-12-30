@@ -1,4 +1,3 @@
-using Express.Scene.Objects;
 using Express.Scene.Objects.Colliders;
 using Microsoft.Xna.Framework;
 
@@ -17,13 +16,13 @@ public static  class ParticleAARectangleCollision /*: CollisionAlgorithm*/
     
     public static bool DetectCollision(IParticleCollider particle, IAARectangleCollider aaRectangle)
     {
-        Vector2 relaxDistance = ParticleAARectangleCollision.CalculateRelaxDistance(particle, aaRectangle);
+        Vector2 relaxDistance = CalculateRelaxDistance(particle, aaRectangle);
         return relaxDistance.LengthSquared() > 0;
     }
 
     public static void ResolveCollision(IParticleCollider particle, IAARectangleCollider aaRectangle)
     {
-        Vector2 relaxDistance = ParticleAARectangleCollision.CalculateRelaxDistance(particle, aaRectangle);
+        Vector2 relaxDistance = CalculateRelaxDistance(particle, aaRectangle);
         Collision.RelaxCollision(particle, aaRectangle, relaxDistance);
         Vector2 collisionNormal = Vector2.Normalize(relaxDistance);
         Collision.ExchangeEnergy(particle, aaRectangle, collisionNormal);

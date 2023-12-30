@@ -26,9 +26,9 @@ public class DebugRenderer : DrawableGameComponent
         : base (theGame)
     {
         _scene = theScene;
-        this.ItemColor = Color.OrangeRed;
-        this.MovementColor = Color.SkyBlue;
-        this.ColliderColor = Color.Lime;
+        ItemColor = Color.OrangeRed;
+        MovementColor = Color.SkyBlue;
+        ColliderColor = Color.Lime;
         _transformMatrix = Matrix.Identity;
     }
 
@@ -82,14 +82,14 @@ public class DebugRenderer : DrawableGameComponent
 
     protected override void LoadContent()
     {
-        _primitiveBatch = new PrimitiveBatch(this.GraphicsDevice);
+        _primitiveBatch = new PrimitiveBatch(GraphicsDevice);
     }
 
     public override void Draw(GameTime gameTime)
     {
         Matrix transformInverse = Matrix.Invert(_transformMatrix);
         Vector2 topLeft = Vector2.Transform(Vector2.Zero, transformInverse);
-        Vector2 bottomRight = Vector2.Transform(new Vector2( GraphicsDevice.Viewport.Width, this.GraphicsDevice.Viewport.Height), transformInverse);
+        Vector2 bottomRight = Vector2.Transform(new Vector2( GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height), transformInverse);
         _primitiveBatch.Begin(_blendState, _depthStencilState, _rasterizerState, _effect, transformInverse);
         foreach (object item in _scene)
         {

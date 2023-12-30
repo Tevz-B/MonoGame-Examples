@@ -1,4 +1,3 @@
-using Express.Scene.Objects;
 using Express.Scene.Objects.Colliders;
 using Microsoft.Xna.Framework;
 
