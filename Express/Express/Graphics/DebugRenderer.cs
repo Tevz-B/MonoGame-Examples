@@ -97,7 +97,7 @@ public class DebugRenderer : DrawableGameComponent
             IVelocity itemWithVelocity = item as IVelocity;
             IRadius itemWithRadius = item as IRadius;
             IRectangleSize itemWithRectangleSize = item as IRectangleSize;
-            IAAHalfPlaneCollider aaHalfPlaneCollider = item as IAAHalfPlaneCollider;
+            IAaHalfPlaneCollider aaHalfPlaneCollider = item as IAaHalfPlaneCollider;
             if (itemWithPosition is not null)
             {
                 _primitiveBatch.DrawPointAtColor(itemWithPosition.Position, _itemColor);
@@ -120,7 +120,7 @@ public class DebugRenderer : DrawableGameComponent
 
             if (aaHalfPlaneCollider is not null)
             {
-                AAHalfPlane aaHPlane = aaHalfPlaneCollider.AAHalfPlane;
+                AaHalfPlane aaHPlane = aaHalfPlaneCollider.AaHalfPlane;
                 if (aaHPlane.Direction == AxisDirection.NegativeX)
                 {
                     _primitiveBatch.DrawLine(new Vector2(-aaHPlane.Distance, topLeft.Y), new Vector2(-aaHPlane.Distance, bottomRight.Y), _colliderColor);

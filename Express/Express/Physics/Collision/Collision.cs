@@ -17,34 +17,30 @@ public static class Collision
     private static void CollisionBetween(object item1, object item2, bool recurse)
     {
         IParticleCollider item1Particle = item1 as IParticleCollider;
-        IAARectangleCollider item1AARectangle = item1 as IAARectangleCollider;
-        IAAHalfPlaneCollider item2AAHalfPlane = item2 as IAAHalfPlaneCollider;
-        IAARectangleCollider item2AARectangle = item2 as IAARectangleCollider;
+        IAaRectangleCollider item1AaRectangle = item1 as IAaRectangleCollider;
+        IAaHalfPlaneCollider item2AaHalfPlane = item2 as IAaHalfPlaneCollider;
+        IAaRectangleCollider item2AaRectangle = item2 as IAaRectangleCollider;
         if (item1Particle is not null && item2 is IParticleCollider item2Particle)
         {
             ParticleParticleCollision.CollisionBetween(item1Particle, item2Particle);
             return;
         }
-        else if (item1Particle is not null && item2AAHalfPlane is not null)
+        else if (item1Particle is not null && item2AaHalfPlane is not null)
         {
             throw new NotImplementedException();
-            // ParticleAAHalfPlaneCollision.CollisionBetweenAnd(item1Particle, item2AAHalfPlane);
-            // return;
         }
-        else if (item1Particle is not null && item2AARectangle is not null)
+        else if (item1Particle is not null && item2AaRectangle is not null)
         {
-            ParticleAARectangleCollision.CollisionBetween(item1Particle, item2AARectangle);
+            ParticleAaRectangleCollision.CollisionBetween(item1Particle, item2AaRectangle);
             return;
         }
-        else if (item1AARectangle is not null && item2AAHalfPlane is not null)
+        else if (item1AaRectangle is not null && item2AaHalfPlane is not null)
         {
             throw new NotImplementedException();
-            // AARectangleAAHalfPlaneCollision.CollisionBetweenAnd(item1AARectangle, item2AAHalfPlane);
-            // return;
         }
-        else if (item1AARectangle is not null && item2AARectangle is not null)
+        else if (item1AaRectangle is not null && item2AaRectangle is not null)
         {
-            AARectangleAARectangleCollision.CollisionBetween(item1AARectangle, item2AARectangle);
+            AaRectangleAaRectangleCollision.CollisionBetween(item1AaRectangle, item2AaRectangle);
             return;
         }
 
@@ -150,17 +146,17 @@ public static class Collision
         float cor1 = item1 is ICoefficientOfRestitution restitution1 ? restitution1.CoefficientOfRestitution : 1;
         float cor2 = item2 is ICoefficientOfRestitution restitution2 ? restitution2.CoefficientOfRestitution : 1;
         float cor = cor1 * cor2;
-        float mass1inverse = item1 is IMass ? 1.0f / ((IMass)item1).Mass : 0;
-        float mass2inverse = item2 is IMass ? 1.0f / ((IMass)item2).Mass : 0;
-        float impact = -(cor+1) * speedDifference / (mass1inverse + mass2inverse);
-        if (mass1inverse > 0 && itemWithVelocity1 is not null)
+        float mass1Inverse = item1 is IMass ? 1.0f / ((IMass)item1).Mass : 0;
+        float mass2Inverse = item2 is IMass ? 1.0f / ((IMass)item2).Mass : 0;
+        float impact = -(cor+1) * speedDifference / (mass1Inverse + mass2Inverse);
+        if (mass1Inverse > 0 && itemWithVelocity1 is not null)
         {
-            itemWithVelocity1.Velocity += collisionNormal * (impact * mass1inverse);
+            itemWithVelocity1.Velocity += collisionNormal * (impact * mass1Inverse);
         }
 
-        if (mass2inverse > 0 && itemWithVelocity2 is not null)
+        if (mass2Inverse > 0 && itemWithVelocity2 is not null)
         {
-            itemWithVelocity2.Velocity -= collisionNormal * (impact * mass2inverse);
+            itemWithVelocity2.Velocity -= collisionNormal * (impact * mass2Inverse);
         }
 
 

@@ -8,7 +8,7 @@ public class Mallet : IParticle, ICustomUpdate
     private Vector2 _position;
     private Vector2 _velocity;
     private Vector2 _previousPosition;
-    private float _mass = 20;
+    private float _mass = Constants.MalletMass;
     private float _radius = 30;
     
     public ref Vector2 Position => ref _position;
@@ -34,7 +34,7 @@ public class Mallet : IParticle, ICustomUpdate
         Vector2 distance = _position - _previousPosition;
         Vector2 newVelocity = distance * (1.0f / dt);
         
-        float s = Constants.VelocitySmoothing();
+        float s = Constants.VelocitySmoothing;
         _velocity = (_velocity * s) + (newVelocity * (1 - s));
         
         _previousPosition = _position;

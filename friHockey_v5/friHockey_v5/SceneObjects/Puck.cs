@@ -19,7 +19,7 @@ public class Puck : IParticle, ICoefficientOfRestitution, ICustomCollider
 
     public float Mass { get; set; } = 1;
 
-    public float CoefficientOfRestitution { get; set; } = Constants.PuckCoefficientOfRestitution();
+    public float CoefficientOfRestitution { get; set; } = Constants.PuckCoefficientOfRestitution;
     
     public void CollidedWith(object item)
     {

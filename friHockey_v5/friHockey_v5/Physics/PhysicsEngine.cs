@@ -20,8 +20,8 @@ public class PhysicsEngine : GameComponent
         float puckSpeed = _levelBase.Puck.Velocity.Length();
         if (puckSpeed != 0)
         {
-            float newSpeed = puckSpeed * (1 - Constants.PuckFriction());
-            float maxSpeed = Constants.PuckMaximumSpeed();
+            float newSpeed = puckSpeed * (1 - Constants.PuckFriction);
+            float maxSpeed = Constants.PuckMaximumSpeed;
             if (newSpeed > maxSpeed)
             {
                 newSpeed = maxSpeed;

@@ -29,7 +29,7 @@ public class FriHockey : Game
         Content.RootDirectory = "Content";
         IsMouseVisible = true;
 
-        Components.Add(new FPSComponent(this));
+        Components.Add(new FpsComponent(this));
 
         // Init singletons
         SoundEngine.Init(this);

@@ -1,6 +1,5 @@
 using System;
 using Artificial_I.Artificial.Utils;
-using Express.Graphics;
 using friHockey_v5.Audio;
 using friHockey_v5.Graphics;
 using friHockey_v5.Gui;
@@ -27,7 +26,7 @@ public class Gameplay : GameState
     public int[] Score => _score;
     
     // debug 
-    private FPSComponent _fpsComponent;
+    private FpsComponent _fpsComponent;
         
     
     private void _startInit(Type levelClass)
@@ -41,7 +40,7 @@ public class Gameplay : GameState
         _startInit(levelClass);
         
         // Create two human players
-        _players[(int)PlayerPosition.Top] = new HumanPlayerKB(Game, _level.TopMallet, PlayerPosition.Top);
+        _players[(int)PlayerPosition.Top] = new HumanPlayerKb(Game, _level.TopMallet, PlayerPosition.Top);
         _players[(int)PlayerPosition.Bottom] = new HumanPlayer(Game, _level.BottomMallet,  PlayerPosition.Bottom);
         
         _finishInit();
@@ -76,7 +75,7 @@ public class Gameplay : GameState
         // debugRenderer.DrawOrder = 2;
         // // Game.Components.Add(debugRenderer);
 
-        _fpsComponent = new FPSComponent(Game);
+        _fpsComponent = new FpsComponent(Game);
         
         _hud = new GameHud(Game);
         _hudRenderer = new GuiRenderer(Game, _hud.Scene);
@@ -101,9 +100,8 @@ public class Gameplay : GameState
         Game.Components.Add(_players[(int)PlayerPosition.Top]);
         Game.Components.Add(_players[(int)PlayerPosition.Bottom]);
         
-        // debug 
+        // Debug 
         Game.Components.Add(_fpsComponent);
-
     }
     
     public override void Deactivate()
@@ -116,7 +114,7 @@ public class Gameplay : GameState
         Game.Components.Remove(_players[(int)PlayerPosition.Top]);
         Game.Components.Remove(_players[(int)PlayerPosition.Bottom]);
         
-        // debug 
+        // Debug 
         Game.Components.Remove(_fpsComponent);
     }
 
@@ -168,7 +166,7 @@ public class Gameplay : GameState
         _players[(int)PlayerPosition.Bottom].Reset();
         _score[(int)position]++;
         _hud.ChangePlayerScoreForTo(position, _score[(int)position]);
-        if (_score[(int)position] >= Constants.WinScore())
+        if (_score[(int)position] >= Constants.WinScore)
         {
             if (position == PlayerPosition.Bottom && _players[(int)PlayerPosition.Top] is AIPlayer opponent)
             {

@@ -2,31 +2,17 @@ namespace friHockey_v5;
 
 public static class Constants
 {
-    // TODO convert to const data
-    public static float VelocitySmoothing()
-    {
-        return 0.5f;
-    }
+    // Puck
+    public const float PuckCoefficientOfRestitution = 0.9f;
+    public const float PuckFriction =  0.005f;
+    public const float PuckMaximumSpeed = 80f;
 
-    public static float PuckCoefficientOfRestitution()
-    {
-        return 0.9f;
-    }
 
-    public static float PuckFriction()
-    {
-        return 0.005f;
-    }
+    // Mallet
+    public const float MalletMass = 10f;
 
-    public static float PuckMaximumSpeed()
-    {
-        return 80f;
-    }
-
-    public static int WinScore()
-    {
-        return 1;
-    }
-
+    // Game
+    public const int WinScore = 3;
+    public const float VelocitySmoothing = 0.5f;
     public const string ProgressFilePath = "FriHockeySave";
 }

@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework;
 
 namespace Express.Physics.Collision;
 
-public static class ParticleParticleCollision /*: CollisionAlgorithm*/
+public static class ParticleParticleCollision
 {
         public static void CollisionBetween(IParticleCollider particle1, IParticleCollider particle2)
         {

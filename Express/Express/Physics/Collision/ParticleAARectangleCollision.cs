@@ -3,9 +3,9 @@ using Microsoft.Xna.Framework;
 
 namespace Express.Physics.Collision;
 
-public static  class ParticleAARectangleCollision /*: CollisionAlgorithm*/
+public static  class ParticleAaRectangleCollision
 {
-    public static void CollisionBetween(IParticleCollider particle, IAARectangleCollider aaRectangle)
+    public static void CollisionBetween(IParticleCollider particle, IAaRectangleCollider aaRectangle)
     {
         if (DetectCollision(particle, aaRectangle) && Collision.ShouldResolveCollision(particle, aaRectangle))
         {
@@ -14,13 +14,13 @@ public static  class ParticleAARectangleCollision /*: CollisionAlgorithm*/
         }
     }
     
-    public static bool DetectCollision(IParticleCollider particle, IAARectangleCollider aaRectangle)
+    public static bool DetectCollision(IParticleCollider particle, IAaRectangleCollider aaRectangle)
     {
         Vector2 relaxDistance = CalculateRelaxDistance(particle, aaRectangle);
         return relaxDistance.LengthSquared() > 0;
     }
 
-    public static void ResolveCollision(IParticleCollider particle, IAARectangleCollider aaRectangle)
+    public static void ResolveCollision(IParticleCollider particle, IAaRectangleCollider aaRectangle)
     {
         Vector2 relaxDistance = CalculateRelaxDistance(particle, aaRectangle);
         Collision.RelaxCollision(particle, aaRectangle, relaxDistance);
@@ -28,7 +28,7 @@ public static  class ParticleAARectangleCollision /*: CollisionAlgorithm*/
         Collision.ExchangeEnergy(particle, aaRectangle, collisionNormal);
     }
 
-    public static Vector2 CalculateRelaxDistance(IParticleCollider particle, IAARectangleCollider aaRectangle)
+    public static Vector2 CalculateRelaxDistance(IParticleCollider particle, IAaRectangleCollider aaRectangle)
     {
         Vector2 relaxDistance = Vector2.Zero;
         Vector2 nearestVertex = aaRectangle.Position;

@@ -12,7 +12,6 @@ public class PrimitiveBatch
     private DepthStencilState _depthStencilState;
     private RasterizerState _rasterizerState;
     private Effect _effect;
-    // private Matrix _transformMatrix;
     private BasicEffect _basicEffect;
     private bool _beginCalled;
     private List<VertexPositionColor> _vertexArray = new List<VertexPositionColor>(256);
@@ -27,11 +26,6 @@ public class PrimitiveBatch
         _basicEffect.VertexColorEnabled = true;
         graphicsDevice.DeviceReset += SetProjection;
     }
-
-    // public static PrimitiveBatch CreateInstance(GraphicsDevice graphicsDevice)
-    // {
-    //     return new PrimitiveBatch(graphicsDevice);
-    // }
 
     public void SetProjection(object o = null, EventArgs args = null)
     {
@@ -155,6 +149,5 @@ public class PrimitiveBatch
     {
         int lineCount = _vertexArray.Count() / 2;
         _graphicsDevice.DrawUserPrimitives(PrimitiveType.LineList, _vertexArray.ToArray(), 0, lineCount);
-        // vertexArray.Clear();
     }
 }

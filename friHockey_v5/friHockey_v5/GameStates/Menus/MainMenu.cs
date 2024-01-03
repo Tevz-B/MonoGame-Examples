@@ -46,7 +46,6 @@ public class MainMenu : Menu
         _copyright.VerticalAlign = VerticalAlign.Bottom;
         _scene.Add(_copyright);
         
-        
         // Singleplayer
         _singleplayer = new Button(new Rectangle(180, 150, 140, 32), _buttonBackground, _retrotype, "Faculty");
         _singleplayer.BackgroundImage.SetScaleUniform(2);
@@ -83,5 +82,4 @@ public class MainMenu : Menu
             _friHockey.PushState(newState);
         }
     }
-
 }

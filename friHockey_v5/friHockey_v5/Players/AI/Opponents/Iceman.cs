@@ -7,7 +7,6 @@ namespace friHockey_v5.Players.AI.Opponents;
 
 public class Iceman : ReflexAgent
 {
-    
     public const string Name = "Iceman";
     public const string PortraitPath = "iceman-small";
     public const string HiddenPortraitPath = "iceman-hidden";
@@ -19,15 +18,8 @@ public class Iceman : ReflexAgent
         : base(theGame, theMallet, theLevelBase, thePosition)
     {
         // Gameplay
-        // _name = "Iceman";
         _quotes.Add("So here you're just hardcore, or what? No softies around?");
-
         _opponentType = OpponentType.Iceman;
-        // _levelType = LevelType.Hockey;
-
-        // _portraitPath = "iceman-small";
-        // _hiddenPortraitPath = "iceman-hidden";
-        // _fullPortraitPath = "iceman";
     }
     
     public override LevelType GetLevelType()
@@ -40,8 +32,8 @@ public class Iceman : ReflexAgent
         base.Initialize();
         
         // AI properties
-        _speed = 0.1f; // 70
-        _attackSpeed = 0.1f; // 150
-        _attackFactor = 6; // 600
+        _speed = 0.1f; 
+        _attackSpeed = 0.1f; 
+        _attackFactor = 6; 
     }
 }

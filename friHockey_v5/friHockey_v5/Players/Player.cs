@@ -22,10 +22,6 @@ public abstract class Player : GameComponent
         _mallet = mallet;
         _position = position;
     }
-
-    public override void Update(GameTime gameTime)
-    {
-    }
     
     public virtual void Reset()
     {}

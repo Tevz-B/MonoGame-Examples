@@ -17,11 +17,6 @@ public class HalfPlane
         Distance = theDistance;
     }
 
-    // public static HalfPlane HalfPlaneWithNormalDistance(Vector2 theNormal, float theDistance)
-    // {
-    //     return new HalfPlane(theNormal, theDistance);
-    // }
-
     public float Distance
     {
         get => _distance;

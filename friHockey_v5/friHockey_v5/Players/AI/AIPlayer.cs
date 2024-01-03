@@ -23,7 +23,6 @@ public abstract class AIPlayer : Player
     private bool _attack;
 
     protected OpponentType _opponentType;
-    // protected static LevelType _levelType;
 
     private Vector2 _target;
 
@@ -34,15 +33,11 @@ public abstract class AIPlayer : Player
     public List<string> Quotes => _quotes;
     
     public OpponentType OpponentType => _opponentType;
-    // public LevelType LevelType => _levelType;
-    // public static LevelType LevelTypeS => _levelType;
 
     public virtual LevelType GetLevelType()
     {
         return LevelType;
     }
-    
-
 
     protected AIPlayer(Game theGame, Mallet theMallet, LevelBase theLevelBase, PlayerPosition thePosition)
         : base (theGame, theMallet, thePosition)

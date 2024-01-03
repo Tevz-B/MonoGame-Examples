@@ -18,26 +18,14 @@ public class Shaman : ReflexAgent
         : base(theGame, theMallet, theLevelBase, thePosition)
     {
         // Gameplay
-        // _name = "Shaman";
         _quotes.Add("Monkeys can communicate over distances of a few kilometers and even across continents.");
-
         _opponentType = OpponentType.Shaman;
-        // _levelType = LevelType.Hockey;
-
-        // _portraitPath = "shaman-small";
-        // _hiddenPortraitPath = "shaman-hidden";
-        // _fullPortraitPath = "shaman";
     }
     
     public override LevelType GetLevelType()
     {
         return LevelType;
     }
-
-    // public static LevelType LevelClassType()
-    // {
-    //     return _levelType;
-    // }
 
     public override void Initialize()
     {
