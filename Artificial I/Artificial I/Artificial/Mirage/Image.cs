@@ -27,7 +27,11 @@ public class Image
     public Texture2D Texture
     {
         get => _texture;
-        set => _texture = value;
+        set
+        {
+            _texture = value;
+            _sourceRectangle = value.Bounds;
+        }
     }
 
     public Rectangle SourceRectangle

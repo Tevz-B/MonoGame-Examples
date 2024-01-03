@@ -46,6 +46,7 @@ public sealed class SoundEngine : GameComponent
 
     public void PlaySound(SoundEffectType type, float pan = 0f)
     {
+        pan = Math.Clamp(pan, -1f, 1f);
         _soundEffects[(int)type].Play(1, 0, pan);
     }
 

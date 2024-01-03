@@ -8,20 +8,22 @@ namespace friHockey_v5.Players.AI;
 
 public abstract class AIPlayer : Player
 {
+    // Define in derived class!
+    // public const string Name = "Iceman";
+    // public const string PortraitPath = "iceman-small";
+    // public const string HiddenPortraitPath = "iceman-hidden";
+    // public const string FullPortraitPath = "iceman";
+    public const LevelType LevelType = friHockey_v5.Level.LevelType.Hockey;
+    
     protected LevelBase _levelBase;
     // AI properties
-    protected string _name = "";
     protected float _speed;
     protected float _attackSpeed;
     protected List<string> _quotes = new List<string>();
     private bool _attack;
 
     protected OpponentType _opponentType;
-    protected static LevelType _levelType;
-
-    protected static string _portraitPath;
-    protected static string _hiddenPortraitPath;
-    protected static string _fullPortraitPath;
+    // protected static LevelType _levelType;
 
     private Vector2 _target;
 
@@ -31,18 +33,16 @@ public abstract class AIPlayer : Player
 
     public List<string> Quotes => _quotes;
     
-    public string Name => _name;
-    
     public OpponentType OpponentType => _opponentType;
-    public LevelType LevelType => _levelType;
-    public static LevelType LevelTypeS => _levelType;
+    // public LevelType LevelType => _levelType;
+    // public static LevelType LevelTypeS => _levelType;
 
-    public string PortraitPath => _portraitPath;
-    public string HiddenPortraitPath => _hiddenPortraitPath;
-    public string FullPortraitPath => _fullPortraitPath;
-    public static string PortraitPathS => _portraitPath;
-    public static string HiddenPortraitPathS => _hiddenPortraitPath;
-    public static string FullPortraitPathS => _fullPortraitPath;
+    public virtual LevelType GetLevelType()
+    {
+        return LevelType;
+    }
+    
+
 
     protected AIPlayer(Game theGame, Mallet theMallet, LevelBase theLevelBase, PlayerPosition thePosition)
         : base (theGame, theMallet, thePosition)

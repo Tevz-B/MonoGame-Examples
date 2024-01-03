@@ -21,6 +21,16 @@ public class Menu : GameState
     {
         _scene = new SimpleScene(Game);
         _renderer = new GuiRenderer(Game, _scene);
+        
+        _retrotype = Game.Content.Load<SpriteFont>("Retrotype");
+        _fivexfive = Game.Content.Load<SpriteFont>("5x5");
+        _fivexfive.LineSpacing = 14;
+        _buttonBackground = Game.Content.Load<Texture2D>("Button");
+        _back = new Button(new Rectangle(0, 428, 320, 32), null, _retrotype, "Back");
+        _back.LabelColor = Color.White;
+        _back.LabelHoverColor = Color.Gray;
+        _back.Label.Position.X = 160;
+        _back.Label.HorizontalAlign = HorizontalAlign.Center;
     }
 
     public override void Activate()
@@ -33,20 +43,6 @@ public class Menu : GameState
     {
         Game.Components.Remove(_scene);
         Game.Components.Remove(_renderer);
-    }
-
-    public override void Initialize()
-    {
-        _retrotype = Game.Content.Load<SpriteFont>("Retrotype");
-        _fivexfive = Game.Content.Load<SpriteFont>("5x5");
-        _fivexfive.LineSpacing = 14;
-        _buttonBackground = Game.Content.Load<Texture2D>("Button");
-        _back = new Button(new Rectangle(0, 428, 320, 32), null, _retrotype, "Back");
-        _back.LabelColor = Color.White;
-        _back.LabelHoverColor = Color.Gray;
-        _back.Label.Position.X = 160;
-        _back.Label.HorizontalAlign = HorizontalAlign.Center;
-        base.Initialize();
     }
 
     public override void Update(GameTime gameTime)

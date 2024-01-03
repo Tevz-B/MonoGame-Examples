@@ -25,17 +25,14 @@ public class Gameplay : GameState
     private PhysicsEngine _physics;
 
     public int[] Score => _score;
+    
+    // debug 
+    private FPSComponent _fpsComponent;
         
     
     private void _startInit(Type levelClass)
     {
         _level = Activator.CreateInstance(levelClass, Game) as LevelBase;
-        Game.Components.Add(_level);
-        _renderer = new GameRenderer(Game, _level);
-        Game.Components.Add(_renderer);
-        _physics = new PhysicsEngine(Game, _level);
-        _physics.UpdateOrder = 20;
-        Game.Components.Add(_physics);
     }
 
     public Gameplay(Game theGame, Type levelClass)
@@ -62,7 +59,6 @@ public class Gameplay : GameState
         
         AIRenderer aiRenderer = new AIRenderer(Game, (AIPlayer)_players[(int)PlayerPosition.Top]);
         aiRenderer.DrawOrder = 1;
-        // Game.Components.Add(aiRenderer);
         _finishInit();
     }
 
@@ -71,19 +67,16 @@ public class Gameplay : GameState
     {
         _physics = new PhysicsEngine(Game, _level);
         _physics.UpdateOrder = 20;
-        Game.Components.Add(_physics);
         
         _renderer = new GameRenderer(Game, _level);
-        Game.Components.Add(_renderer);
         
-        DebugRenderer debugRenderer = new DebugRenderer(Game, _level.Scene);
-        debugRenderer.ItemColor = Color.Red;
-        debugRenderer.MovementColor = Color.Gray;
-        debugRenderer.DrawOrder = 2;
-        // Game.Components.Add(debugRenderer);
+        // DebugRenderer debugRenderer = new DebugRenderer(Game, _level.Scene);
+        // debugRenderer.ItemColor = Color.Red;
+        // debugRenderer.MovementColor = Color.Gray;
+        // debugRenderer.DrawOrder = 2;
+        // // Game.Components.Add(debugRenderer);
 
-        FPSComponent fpsComponent = new FPSComponent(Game);
-        Game.Components.Add(fpsComponent);
+        _fpsComponent = new FPSComponent(Game);
         
         _hud = new GameHud(Game);
         _hudRenderer = new GuiRenderer(Game, _hud.Scene);
@@ -107,6 +100,10 @@ public class Gameplay : GameState
         Game.Components.Add(_physics);
         Game.Components.Add(_players[(int)PlayerPosition.Top]);
         Game.Components.Add(_players[(int)PlayerPosition.Bottom]);
+        
+        // debug 
+        Game.Components.Add(_fpsComponent);
+
     }
     
     public override void Deactivate()
@@ -118,6 +115,9 @@ public class Gameplay : GameState
         Game.Components.Remove(_physics);
         Game.Components.Remove(_players[(int)PlayerPosition.Top]);
         Game.Components.Remove(_players[(int)PlayerPosition.Bottom]);
+        
+        // debug 
+        Game.Components.Remove(_fpsComponent);
     }
 
     public override void Initialize()
@@ -172,14 +172,13 @@ public class Gameplay : GameState
         {
             if (position == PlayerPosition.Bottom && _players[(int)PlayerPosition.Top] is AIPlayer opponent)
             {
-                LevelType levelType = opponent.LevelType;
+                LevelType levelType = opponent.GetLevelType();
                 _friHockey.Progress.UnlockLevel(levelType);
                 OpponentType opponentType = opponent.OpponentType + 1;
                 if (opponentType < OpponentType.LastType)
                 {
                     _friHockey.Progress.UnlockOpponent(opponentType);
                 }
-
             }
             _friHockey.PopState();
         }

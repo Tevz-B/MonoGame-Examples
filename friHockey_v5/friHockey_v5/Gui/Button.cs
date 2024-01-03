@@ -49,9 +49,9 @@ public class Button : ISceneUser
 
     public bool WasReleased => _wasReleased;
 
-    public Image BackgroundImage => _backgroundImage;
+    public ref Image BackgroundImage => ref _backgroundImage;
 
-    public Label Label => _label;
+    public ref Label Label => ref _label;
 
     public Color LabelColor
     {
@@ -168,36 +168,5 @@ public class Button : ISceneUser
             _backgroundImage.Color = _backgroundColor;
             _label.Color = _labelColor;
         }
-
-        // if (touch.State == TouchLocationStatePressed)
-            // {
-            //     _pressedId = touch.Identifier;
-            //     _wasPressed = true;
-            // }
-            //
-            // // Only act to the touch that started the push.
-            // if (touch.Identifier == _pressedId)
-            // {
-            //     if (touch.State == TouchLocationStateReleased)
-            //     {
-            //         _wasReleased = true;
-            //     }
-            //     else
-            //     {
-            //         _isDown = true;
-            //     }
-            // }
-        // }
-        
-        // if (_isDown && !wasDown)
-        // {
-        //     _backgroundImage.Color = _backgroundHoverColor;
-        //     _label.Color = _labelHoverColor;
-        // }
-        // else if (!_isDown && wasDown)
-        // {
-        //     _backgroundImage.Color = _backgroundColor;
-        //     _label.Color = _labelColor;
-        // }
     }
 }

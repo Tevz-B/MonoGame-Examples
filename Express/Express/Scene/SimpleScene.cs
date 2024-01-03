@@ -56,7 +56,6 @@ public class SimpleScene : GameComponent, IScene
     
     public override void Update(GameTime gameTime)
     {
-        // TODO events
         for (int i = 0; i < _actions.Count; i++)
         {
             SceneAction action = _actions[i];

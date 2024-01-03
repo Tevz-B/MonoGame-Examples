@@ -41,7 +41,7 @@ public class GuiRenderer : DrawableGameComponent
                     _spriteBatch.DrawString(label.Font, label.Text, label.Position, label.Color, label.Rotation, label.Origin, label.Scale, SpriteEffects.None, label.LayerDepth);
                 }
 
-                if (item is Image image)
+                if (item is Image image && image.Texture is not null)
                 {
                     _spriteBatch.Draw(image.Texture, image.Position, image.SourceRectangle, image.Color, image.Rotation, image.Origin, image.Scale, SpriteEffects.None, image.LayerDepth);
                 }

@@ -42,7 +42,7 @@ public class MainMenu : Menu
         _subtitle.HorizontalAlign = HorizontalAlign.Right;
         _scene.Add(_subtitle);
         
-        _copyright = new Label(_fivexfive,  "3D modeling by\nMatjaz Lamut\nPublished by GameTeam, Fri\nCopyright 2011 Razum d.o.o.\nAll Rights Reserved v0.4", new Vector2(4, 462));
+        _copyright = new Label(_fivexfive,  "3D modeling by\nMatjaz Lamut\nPublished by GameTeam, Fri\nCopyright 2011 Razum d.o.o.\nAll Rights Reserved v0.5", new Vector2(4, 462));
         _copyright.VerticalAlign = VerticalAlign.Bottom;
         _scene.Add(_copyright);
         

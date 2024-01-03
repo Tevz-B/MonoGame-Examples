@@ -45,7 +45,7 @@ public class FriHockey : Game
     {
         // Set resolution
         _graphics.PreferredBackBufferWidth = 640;
-        _graphics.PreferredBackBufferHeight = 900;
+        _graphics.PreferredBackBufferHeight = 960;
         _graphics.ApplyChanges();
 
         // Add all level classes
@@ -105,9 +105,9 @@ public class FriHockey : Game
         base.Update(gameTime);
     }
     
-    // protected override void Draw(GameTime gameTime)
-    // {
-    //     GraphicsDevice.Clear(Color.Black);
-    //     base.Draw(gameTime);
-    // }
+    protected override void Draw(GameTime gameTime)
+    {
+        GraphicsDevice.Clear(Color.Black);
+        base.Draw(gameTime);
+    }
 }

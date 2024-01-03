@@ -15,17 +15,17 @@ public static class Constants
 
     public static float PuckFriction()
     {
-        return 0.001f;
+        return 0.005f;
     }
 
     public static float PuckMaximumSpeed()
     {
-        return 800f;
+        return 80f;
     }
 
     public static int WinScore()
     {
-        return 3;
+        return 1;
     }
 
     public const string ProgressFilePath = "FriHockeySave";
