@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework;
 
 namespace friHockey_v6.SceneObjects.Walls;
 
-public class RectangleWall : IAaRectangleCollider
+public class RectangleWall : IAARectangleCollider
 {
     private float _width;
     private float _height;

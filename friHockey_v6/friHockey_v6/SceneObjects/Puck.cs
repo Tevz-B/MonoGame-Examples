@@ -14,10 +14,21 @@ public class Puck : IParticle, ICoefficientOfRestitution, ICustomCollider
 
     public ref Vector2 Position => ref _position;
     public ref Vector2 Velocity => ref _velocity;
+    
+    private float _mass = Constants.PuckMass;
+    private float _radius = 18;
 
-    public float Radius { get; set; } = 20;
-
-    public float Mass { get; set; } = 1;
+    public float Radius
+    {
+        get => _radius;
+        set => _radius = value;
+    }
+    
+    public float Mass
+    {
+        get => _mass;
+        set => _mass = value;
+    }
 
     public float CoefficientOfRestitution { get; set; } = Constants.PuckCoefficientOfRestitution;
     

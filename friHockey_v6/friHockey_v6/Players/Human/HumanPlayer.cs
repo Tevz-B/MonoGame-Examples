@@ -1,4 +1,5 @@
 using System;
+using friHockey_v6.Graphics;
 using friHockey_v6.SceneObjects;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
@@ -9,7 +10,7 @@ public class HumanPlayer : Player
 {
     private Rectangle _inputArea;
     private bool _grabbed;
-    protected Matrix _inverseView;
+    private IProjector _projector;
 
     public HumanPlayer(Game game, Mallet mallet, PlayerPosition position)
         : base (game, mallet, position)
@@ -21,11 +22,9 @@ public class HumanPlayer : Player
         }
     }
 
-    public void SetCamera(Matrix camera)
+    public override void Initialize()
     {
-        
-        Console.WriteLine($"camera {camera}");
-        _inverseView = Matrix.Invert(camera);
+        _projector = Game.Services.GetService<IProjector>();
     }
 
     public override void Update(GameTime gameTime)
@@ -33,7 +32,7 @@ public class HumanPlayer : Player
         Vector2 oldPosition = _mallet.Position;
         
         var mousePositionOnScreen = Mouse.GetState().Position.ToVector2();
-        var mousePosition = Vector2.Transform(mousePositionOnScreen, _inverseView);
+        var mousePosition = _projector.ProjectToWorld(mousePositionOnScreen);
         bool mouseInInputArea = false;
         if (Mouse.GetState().LeftButton == ButtonState.Pressed)
         {

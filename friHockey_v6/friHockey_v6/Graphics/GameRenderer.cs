@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace friHockey_v6.Graphics;
 
-public class GameRenderer : DrawableGameComponent
+public class GameRenderer : DrawableGameComponent, IProjector
 {
 
     private SpriteBatch _spriteBatch;
@@ -17,16 +17,26 @@ public class GameRenderer : DrawableGameComponent
     private Vector2 _lightPosition = new Vector2(160, 230);
     private LevelBase _levelBase;
     private Matrix _camera;
-
+    
+    
+    public Matrix Camera => _camera;
 
     public GameRenderer(Game game, LevelBase levelBase)
         : base(game)
     {
         _levelBase = levelBase;
-        _camera = Matrix.CreateScale( new Vector3(Game.Window.ClientBounds.Width / 320f, Game.Window.ClientBounds.Height / 480f, 1 ));
     }
-    
-    public Matrix Camera => _camera;
+
+    public override void Initialize()
+    {
+        float scaleX = (float)this.Game.Window.ClientBounds.Width / 320f;
+        float scaleY = (float)this.Game.Window.ClientBounds.Height / 480f;
+        
+        _camera = Matrix.CreateScale(new Vector3(scaleX, scaleY, 1f));
+        this.Game.Services.AddService<IProjector>(this);
+        
+        base.Initialize();
+    }
 
     protected override void LoadContent()
     {
@@ -94,16 +104,21 @@ public class GameRenderer : DrawableGameComponent
                 if (shadowSprite is not null)
                 {
                     Vector2 shadowPosition = ((_lightPosition - itemWithPosition.Position) * -0.04f) + itemWithPosition.Position;
-                    _spriteBatch.Draw(shadowSprite.Texture, shadowPosition, shadowSprite.SourceRectangle, Color.White, 0, shadowSprite.Origin, 1f, SpriteEffects.None, 0.5f);
+                    _spriteBatch.Draw(shadowSprite.Texture, shadowPosition, shadowSprite.SourceRectangle, Color.White, 0, shadowSprite.Origin, 0.85f, SpriteEffects.None, 0.5f);
                 }
 
                 if (sprite is not null)
                 {
-                    _spriteBatch.Draw(sprite.Texture, itemWithPosition.Position, sprite.SourceRectangle, Color.White, 0, sprite.Origin, 1f, effect, 0.1f);
+                    _spriteBatch.Draw(sprite.Texture, itemWithPosition.Position, sprite.SourceRectangle, Color.White, 0, sprite.Origin, 0.85f, effect, 0.1f);
                 }
             }
         }
         
         _spriteBatch.End();
+    }
+
+    public Vector2 ProjectToWorld(Vector2 screenCoordinate)
+    {
+        return Vector2.Transform(screenCoordinate, Matrix.Invert(_camera));
     }
 }

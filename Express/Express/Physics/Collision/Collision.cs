@@ -17,9 +17,9 @@ public static class Collision
     private static void CollisionBetween(object item1, object item2, bool recurse)
     {
         IParticleCollider item1Particle = item1 as IParticleCollider;
-        IAaRectangleCollider item1AaRectangle = item1 as IAaRectangleCollider;
+        IAARectangleCollider item1IaaRectangle = item1 as IAARectangleCollider;
         IAaHalfPlaneCollider item2AaHalfPlane = item2 as IAaHalfPlaneCollider;
-        IAaRectangleCollider item2AaRectangle = item2 as IAaRectangleCollider;
+        IAARectangleCollider item2IaaRectangle = item2 as IAARectangleCollider;
         if (item1Particle is not null && item2 is IParticleCollider item2Particle)
         {
             ParticleParticleCollision.CollisionBetween(item1Particle, item2Particle);
@@ -29,18 +29,18 @@ public static class Collision
         {
             throw new NotImplementedException();
         }
-        else if (item1Particle is not null && item2AaRectangle is not null)
+        else if (item1Particle is not null && item2IaaRectangle is not null)
         {
-            ParticleAaRectangleCollision.CollisionBetween(item1Particle, item2AaRectangle);
+            ParticleAaRectangleCollision.CollisionBetween(item1Particle, item2IaaRectangle);
             return;
         }
-        else if (item1AaRectangle is not null && item2AaHalfPlane is not null)
+        else if (item1IaaRectangle is not null && item2AaHalfPlane is not null)
         {
             throw new NotImplementedException();
         }
-        else if (item1AaRectangle is not null && item2AaRectangle is not null)
+        else if (item1IaaRectangle is not null && item2IaaRectangle is not null)
         {
-            AaRectangleAaRectangleCollision.CollisionBetween(item1AaRectangle, item2AaRectangle);
+            AaRectangleAaRectangleCollision.CollisionBetween(item1IaaRectangle, item2IaaRectangle);
             return;
         }
 

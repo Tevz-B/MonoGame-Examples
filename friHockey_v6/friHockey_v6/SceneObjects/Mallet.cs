@@ -9,7 +9,7 @@ public class Mallet : IParticle, ICustomUpdate
     private Vector2 _velocity;
     private Vector2 _previousPosition;
     private float _mass = Constants.MalletMass;
-    private float _radius = 30;
+    private float _radius = 23;
     
     public ref Vector2 Position => ref _position;
     public ref Vector2 Velocity => ref _velocity;

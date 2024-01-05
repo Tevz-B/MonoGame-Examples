@@ -19,7 +19,8 @@ public class Gameplay : GameState
     private Player[] _players = new Player[2];
     private int[] _score = new int[2]; 
     private GameHud _hud;
-    private GameRenderer _renderer;
+    // private GameRenderer _renderer;
+    private GameRenderer3D _renderer;
     private GuiRenderer _hudRenderer;
     private PhysicsEngine _physics;
 
@@ -67,7 +68,7 @@ public class Gameplay : GameState
         _physics = new PhysicsEngine(Game, _level);
         _physics.UpdateOrder = 20;
         
-        _renderer = new GameRenderer(Game, _level);
+        _renderer = new GameRenderer3D(Game, _level);
         
         // DebugRenderer debugRenderer = new DebugRenderer(Game, _level.Scene);
         // debugRenderer.ItemColor = Color.Red;
@@ -121,14 +122,6 @@ public class Gameplay : GameState
     public override void Initialize()
     {
         base.Initialize();
-
-        foreach (var player in _players)
-        {
-            if (player is HumanPlayer humanPlayer)
-            {
-                humanPlayer.SetCamera(_renderer.Camera);
-            }
-        }
 
         if (SRandom.Float() > 0.5f)
             _level.ResetToTop();

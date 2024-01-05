@@ -6,7 +6,7 @@ public static class Constants
     public const float PuckCoefficientOfRestitution = 0.9f;
     public const float PuckFriction =  0.005f;
     public const float PuckMaximumSpeed = 80f;
-
+    public const float PuckMass = 1f;
 
     // Mallet
     public const float MalletMass = 10f;

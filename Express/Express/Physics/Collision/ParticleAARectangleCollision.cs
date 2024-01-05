@@ -5,54 +5,54 @@ namespace Express.Physics.Collision;
 
 public static  class ParticleAaRectangleCollision
 {
-    public static void CollisionBetween(IParticleCollider particle, IAaRectangleCollider aaRectangle)
+    public static void CollisionBetween(IParticleCollider particle, IAARectangleCollider iaaRectangle)
     {
-        if (DetectCollision(particle, aaRectangle) && Collision.ShouldResolveCollision(particle, aaRectangle))
+        if (DetectCollision(particle, iaaRectangle) && Collision.ShouldResolveCollision(particle, iaaRectangle))
         {
-            ResolveCollision(particle, aaRectangle);
-            Collision.ReportCollision(particle, aaRectangle);
+            ResolveCollision(particle, iaaRectangle);
+            Collision.ReportCollision(particle, iaaRectangle);
         }
     }
     
-    public static bool DetectCollision(IParticleCollider particle, IAaRectangleCollider aaRectangle)
+    public static bool DetectCollision(IParticleCollider particle, IAARectangleCollider iaaRectangle)
     {
-        Vector2 relaxDistance = CalculateRelaxDistance(particle, aaRectangle);
+        Vector2 relaxDistance = CalculateRelaxDistance(particle, iaaRectangle);
         return relaxDistance.LengthSquared() > 0;
     }
 
-    public static void ResolveCollision(IParticleCollider particle, IAaRectangleCollider aaRectangle)
+    public static void ResolveCollision(IParticleCollider particle, IAARectangleCollider iaaRectangle)
     {
-        Vector2 relaxDistance = CalculateRelaxDistance(particle, aaRectangle);
-        Collision.RelaxCollision(particle, aaRectangle, relaxDistance);
+        Vector2 relaxDistance = CalculateRelaxDistance(particle, iaaRectangle);
+        Collision.RelaxCollision(particle, iaaRectangle, relaxDistance);
         Vector2 collisionNormal = Vector2.Normalize(relaxDistance);
-        Collision.ExchangeEnergy(particle, aaRectangle, collisionNormal);
+        Collision.ExchangeEnergy(particle, iaaRectangle, collisionNormal);
     }
 
-    public static Vector2 CalculateRelaxDistance(IParticleCollider particle, IAaRectangleCollider aaRectangle)
+    public static Vector2 CalculateRelaxDistance(IParticleCollider particle, IAARectangleCollider iaaRectangle)
     {
         Vector2 relaxDistance = Vector2.Zero;
-        Vector2 nearestVertex = aaRectangle.Position;
-        float halfWidth = aaRectangle.Width / 2;
-        float halfHeight = aaRectangle.Height / 2;
-        float leftDifference = (aaRectangle.Position.X - halfWidth) - (particle.Position.X + particle.Radius);
+        Vector2 nearestVertex = iaaRectangle.Position;
+        float halfWidth = iaaRectangle.Width / 2;
+        float halfHeight = iaaRectangle.Height / 2;
+        float leftDifference = (iaaRectangle.Position.X - halfWidth) - (particle.Position.X + particle.Radius);
         if (leftDifference > 0) return relaxDistance;
 
-        float rightDifference = (particle.Position.X - particle.Radius) - (aaRectangle.Position.X + halfWidth);
+        float rightDifference = (particle.Position.X - particle.Radius) - (iaaRectangle.Position.X + halfWidth);
         if (rightDifference > 0) return relaxDistance;
 
-        float topDifference = (aaRectangle.Position.Y - halfHeight) - (particle.Position.Y + particle.Radius);
+        float topDifference = (iaaRectangle.Position.Y - halfHeight) - (particle.Position.Y + particle.Radius);
         if (topDifference > 0) return relaxDistance;
 
-        float bottomDifference = (particle.Position.Y - particle.Radius) - (aaRectangle.Position.Y + halfHeight);
+        float bottomDifference = (particle.Position.Y - particle.Radius) - (iaaRectangle.Position.Y + halfHeight);
         if (bottomDifference > 0) return relaxDistance;
 
         bool horizontallyInside = false;
         bool verticallyInside = false;
-        if (particle.Position.X < aaRectangle.Position.X - halfWidth)
+        if (particle.Position.X < iaaRectangle.Position.X - halfWidth)
         {
             nearestVertex.X -= halfWidth;
         }
-        else if (particle.Position.X > aaRectangle.Position.X + halfWidth)
+        else if (particle.Position.X > iaaRectangle.Position.X + halfWidth)
         {
             nearestVertex.X += halfWidth;
         }
@@ -61,11 +61,11 @@ public static  class ParticleAaRectangleCollision
             horizontallyInside = true;
         }
 
-        if (particle.Position.Y < aaRectangle.Position.Y - halfHeight)
+        if (particle.Position.Y < iaaRectangle.Position.Y - halfHeight)
         {
             nearestVertex.Y -= halfHeight;
         }
-        else if (particle.Position.Y > aaRectangle.Position.Y + halfHeight)
+        else if (particle.Position.Y > iaaRectangle.Position.Y + halfHeight)
         {
             nearestVertex.Y += halfHeight;
         }
