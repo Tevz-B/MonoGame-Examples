@@ -21,10 +21,12 @@ public class FriHockey : Game
     private GameProgress _progress;
 
     public GameProgress Progress => _progress;
+    public GraphicsDeviceManager Graphics => _graphics;
 
     public FriHockey()
     {
         _graphics = new GraphicsDeviceManager(this);
+        
         
         Content.RootDirectory = "Content";
         IsMouseVisible = true;

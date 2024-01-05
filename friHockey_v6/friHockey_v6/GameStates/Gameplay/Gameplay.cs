@@ -103,6 +103,11 @@ public class Gameplay : GameState
         
         // Debug 
         Game.Components.Add(_fpsComponent);
+        
+        // Change resolution to landscape
+        _friHockey.Graphics.PreferredBackBufferWidth = 960;
+        _friHockey.Graphics.PreferredBackBufferHeight = 640;
+        _friHockey.Graphics.ApplyChanges();
     }
     
     public override void Deactivate()
@@ -117,6 +122,11 @@ public class Gameplay : GameState
         
         // Debug 
         Game.Components.Remove(_fpsComponent);
+        
+        // Change resolution back to portrait
+        _friHockey.Graphics.PreferredBackBufferWidth = 640;
+        _friHockey.Graphics.PreferredBackBufferHeight = 960;
+        _friHockey.Graphics.ApplyChanges();
     }
 
     public override void Initialize()

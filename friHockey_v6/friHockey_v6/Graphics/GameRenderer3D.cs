@@ -28,13 +28,13 @@ public class GameRenderer3D : DrawableGameComponent, IProjector
         // _content = new ContentManager(Game.Services);
         _content = Game.Content;
         _lightPosition = new Vector3(4.6f, -5f, -3.2f);
-    }
-
-    public override void Initialize()
-    {
-        Game.Services.AddService<IProjector>(this);
+        
+        if (Game.Services.GetService<IProjector>() is null)
+        {
+            Game.Services.AddService<IProjector>(this);    
+        }
+        
         GraphicsDevice.DeviceReset += CalculateCamera;
-        base.Initialize();
     }
 
     public Vector2 ProjectToWorld(Vector2 screenCoordinate)
