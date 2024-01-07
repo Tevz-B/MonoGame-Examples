@@ -24,7 +24,6 @@ public class HumanPlayer : Player
     public void SetCamera(Matrix camera)
     {
         
-        Console.WriteLine($"camera {camera}");
         _inverseView = Matrix.Invert(camera);
     }
 

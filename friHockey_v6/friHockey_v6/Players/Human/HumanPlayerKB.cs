@@ -8,7 +8,7 @@ namespace friHockey_v6.Players.Human;
 
 public class HumanPlayerKb : Player
 {
-    private const float Acceleration = 15f;
+    private const float Acceleration = 15000f;
     private const float DecelerationFactor = 0.8f;
     
     public HumanPlayerKb(Game game, Mallet mallet, PlayerPosition position) 

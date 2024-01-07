@@ -31,9 +31,10 @@ public class Shaman : ReflexAgent
     {
         base.Initialize();
         
-        _speed = 0.2f;
-        _attackSpeed = 0.2f;
-        _attackFactor = 1.5f;
+        // AI properties
+        _speed = 60; 
+        _attackSpeed = 300; 
+        _attackFactor = 1.5f; 
     }
 
 }

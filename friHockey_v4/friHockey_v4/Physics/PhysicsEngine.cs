@@ -23,17 +23,14 @@ public class PhysicsEngine : GameComponent
         if (puckSpeed != 0)
         {
             float newSpeed = puckSpeed * (1 - Constants.PuckFriction());
-            Console.WriteLine($"Puck Speed = {newSpeed}");
             float maxSpeed = Constants.PuckMaximumSpeed();
             if (newSpeed > maxSpeed)
             {
                 newSpeed = maxSpeed;
             }
 
-            Console.WriteLine($"Puck Speed (after max clamp) = {newSpeed}");
             _level.Puck.Velocity.Normalize();
             _level.Puck.Velocity *= newSpeed;
-            Console.WriteLine($"Puck Velocity (after max clamp) = {_level.Puck.Velocity}");
         }
         MovementPhysics.SimulateMovement(_level.Puck, gameTime.ElapsedGameTime);
         foreach (object item1 in _level.Scene)

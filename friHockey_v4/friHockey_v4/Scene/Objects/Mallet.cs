@@ -34,10 +34,8 @@ public class Mallet : IParticle, ICustomUpdate
         
         Vector2 distance = _position - _previousPosition;
         Vector2 newVelocity = distance * (1.0f / dt);
-        Console.WriteLine($"Velocity bf = {newVelocity}");
         float s = Constants.VelocitySmoothing();
         _velocity = (_velocity * s) + (newVelocity * (1 - s));
-        Console.WriteLine($"Velocity af = {_velocity}");
 
         _previousPosition = _position;
     }

@@ -32,8 +32,8 @@ public class Iceman : ReflexAgent
         base.Initialize();
         
         // AI properties
-        _speed = 0.1f; 
-        _attackSpeed = 0.1f; 
-        _attackFactor = 6; 
+        _speed = 100; 
+        _attackSpeed = 150; 
+        _attackFactor = 500; 
     }
 }

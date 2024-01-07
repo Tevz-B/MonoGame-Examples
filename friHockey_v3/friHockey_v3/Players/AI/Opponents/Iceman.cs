@@ -11,9 +11,9 @@ public class Iceman : ReflexAgent
         : base(theGame, theMallet, theLevel, thePosition)
     {
         // AI properties
-        _speed = 0.2f; // 100
-        _attackSpeed = 0.5f; // 150
-        _attackFactor = 100; // 500
+        _speed = 100; 
+        _attackSpeed = 150; 
+        _attackFactor = 500; 
         
         // Gameplay
         _quotes.Add("So here you're just hardcore, or what? No softies around?");
