@@ -51,7 +51,6 @@ public class Gameplay : GameState
         : base (theGame)
     {
         _startInit(levelClass);
-        var args = new object[] {Game, _level.TopMallet, _level, PlayerPosition.Top};
         
         // Crate human and AI
         _players[(int)PlayerPosition.Top] = Activator.CreateInstance(aiClass, Game, _level.TopMallet, _level, PlayerPosition.Top) as Player;

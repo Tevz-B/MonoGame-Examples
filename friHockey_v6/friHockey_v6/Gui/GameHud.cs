@@ -26,11 +26,9 @@ public class GameHud : GameComponent
 
     public override void Initialize()
     {
-        // FontTextureProcessor fontProcessor = new FontTextureProcessor();
-        // SpriteFont font = Game.Content.Load<SpriteFont>("Retrotype"/*, fontProcessor*/);
         SpriteFont font = Game.Content.Load<SpriteFont>("Retrotype");
         _playerScore[(int)PlayerPosition.Top] = new Label(font, "0", new Vector2(50, 80));
-        _playerScore[(int)PlayerPosition.Bottom] = new Label(font, "0", new Vector2(50, 380));
+        _playerScore[(int)PlayerPosition.Bottom] = new Label(font, "0", new Vector2(50, 180));
         for (int i = 0; i < 2; i++)
         {
             _playerColor[i] = Color.Transparent;
@@ -43,8 +41,8 @@ public class GameHud : GameComponent
 
     public override void Update(GameTime gameTime)
     {
-        float change = gameTime.ElapsedGameTime.Milliseconds / 5f;
-        float sizeChange = gameTime.ElapsedGameTime.Milliseconds * 2f;
+        float change = (float)gameTime.ElapsedGameTime.TotalSeconds / 2f;
+        float sizeChange = (float)gameTime.ElapsedGameTime.TotalSeconds * 2f;
         for (int i = 0; i < 2; i++)
         {
             if (_playerOpacity[i] > 0)
@@ -52,7 +50,6 @@ public class GameHud : GameComponent
                 _playerOpacity[i] -= change;
                 _playerScore[i].Color = Color.Multiply(_playerColor[i], _playerOpacity[i]);
             }
-
         }
 
         if (_playerScore[(int)_lastScore].Scale.X > 0)
