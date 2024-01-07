@@ -68,7 +68,7 @@ public class Gameplay : GameComponent
         DebugRenderer debugRenderer = new DebugRenderer(this.Game, _level.Scene);
         debugRenderer.ItemColor = Color.Red;
         debugRenderer.MovementColor = Color.Gray;
-        // Game.Components.Add(debugRenderer);
+        Game.Components.Add(debugRenderer);
 
         FpsComponent fpsComponent = new FpsComponent(Game);
         Game.Components.Add(fpsComponent);

@@ -37,7 +37,7 @@ public class PrimitiveBatch
         Begin(null, null, null, null, Matrix.Identity);
     }
 
-    public void Begine(BlendState theBlendState)
+    public void Begin(BlendState theBlendState)
     {
         Begin(theBlendState, null, null, null, Matrix.Identity);
     }
@@ -149,5 +149,6 @@ public class PrimitiveBatch
     {
         int lineCount = _vertexArray.Count() / 2;
         _graphicsDevice.DrawUserPrimitives(PrimitiveType.LineList, _vertexArray.ToArray(), 0, lineCount);
+        _vertexArray.Clear();
     }
 }
