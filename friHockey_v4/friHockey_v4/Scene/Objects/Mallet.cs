@@ -1,3 +1,4 @@
+using System;
 using Express.Scene.Objects;
 using Microsoft.Xna.Framework;
 
@@ -28,15 +29,16 @@ public class Mallet : IParticle, ICustomUpdate
 
     public void Update(GameTime gameTime)
     {
-        var dt = (float)gameTime.ElapsedGameTime.TotalMilliseconds;
+        var dt = (float)gameTime.ElapsedGameTime.TotalSeconds;
         if (dt == 0) return;
         
         Vector2 distance = _position - _previousPosition;
         Vector2 newVelocity = distance * (1.0f / dt);
-        
+        Console.WriteLine($"Velocity bf = {newVelocity}");
         float s = Constants.VelocitySmoothing();
         _velocity = (_velocity * s) + (newVelocity * (1 - s));
-        
+        Console.WriteLine($"Velocity af = {_velocity}");
+
         _previousPosition = _position;
     }
 

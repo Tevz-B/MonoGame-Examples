@@ -22,10 +22,10 @@ public class HumanPlayerKb : Player
         
         var kbState = Keyboard.GetState();
         var pressedKeys = kbState.GetPressedKeys();
-        if (pressedKeys.Contains(Keys.W)){_mallet.Velocity.Y -= Acceleration * (float)gameTime.ElapsedGameTime.TotalMilliseconds;}
-        if (pressedKeys.Contains(Keys.S)){_mallet.Velocity.Y += Acceleration * (float)gameTime.ElapsedGameTime.TotalMilliseconds;}
-        if (pressedKeys.Contains(Keys.A)){_mallet.Velocity.X -= Acceleration * (float)gameTime.ElapsedGameTime.TotalMilliseconds;}
-        if (pressedKeys.Contains(Keys.D)){_mallet.Velocity.X += Acceleration * (float)gameTime.ElapsedGameTime.TotalMilliseconds;}
+        if (pressedKeys.Contains(Keys.W)){_mallet.Velocity.Y -= Acceleration * (float)gameTime.ElapsedGameTime.TotalSeconds;}
+        if (pressedKeys.Contains(Keys.S)){_mallet.Velocity.Y += Acceleration * (float)gameTime.ElapsedGameTime.TotalSeconds;}
+        if (pressedKeys.Contains(Keys.A)){_mallet.Velocity.X -= Acceleration * (float)gameTime.ElapsedGameTime.TotalSeconds;}
+        if (pressedKeys.Contains(Keys.D)){_mallet.Velocity.X += Acceleration * (float)gameTime.ElapsedGameTime.TotalSeconds;}
 
         if (_mallet.Velocity.Length() > 0f)
         {

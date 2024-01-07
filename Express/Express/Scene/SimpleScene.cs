@@ -16,27 +16,8 @@ public class SimpleScene : GameComponent, IScene
     private List<object> _items;
     private List<SceneAction> _actions = new List<SceneAction>();
 
-    // protected virtual EventHandler _onItemAdded;
-    // protected EventHandler _onItemRemoved;
-
     public event EventHandler ItemAdded;
     public event EventHandler ItemRemoved;
-    
-    // private bool _enabled = true;
-    // private int _updateOrder = 0;
-
-    // public int UpdateOrder
-    // {
-    //     get => _updateOrder;
-    //     set => _updateOrder = value;
-    // }
-
-    // public bool Enabled => _enabled;
-    
-    // public int UpdateOrder => _updateOrder;
-
-    // public event EventHandler<EventArgs> EnabledChanged;
-    // public event EventHandler<EventArgs> UpdateOrderChanged;
 
     IEnumerator<object> IEnumerable<object>.GetEnumerator()
     {
@@ -70,7 +51,7 @@ public class SimpleScene : GameComponent, IScene
                     sceneUser.AddedToScene(this);
                 }
 
-                ItemAdded?.Invoke(this, new SimpleSceneEventArgs{Item = item});// GridScene uses this
+                ItemAdded?.Invoke(this, new SimpleSceneEventArgs{Item = item});
             }
             else
             {
@@ -103,10 +84,4 @@ public class SimpleScene : GameComponent, IScene
     {
         _items.Clear();
     }
-
-    // public object this[int index]
-    // {
-    //     get => _items[index];
-    //     set => _items[index] = value;
-    // }
 }

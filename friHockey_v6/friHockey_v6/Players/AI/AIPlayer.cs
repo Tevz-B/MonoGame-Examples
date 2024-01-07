@@ -117,7 +117,7 @@ public abstract class AIPlayer : Player
         var target = _target;
         Vector2 difference = target - _mallet.Position;
         float distance = difference.Length();
-        float maxMove = (_attack ? _attackSpeed : _speed) * (float)gameTime.ElapsedGameTime.TotalMilliseconds;
+        float maxMove = (_attack ? _attackSpeed : _speed) * (float)gameTime.ElapsedGameTime.TotalSeconds;
         if (distance < maxMove)
         {
             _mallet.Position = target;

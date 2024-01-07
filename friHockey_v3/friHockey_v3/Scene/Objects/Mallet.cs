@@ -29,7 +29,7 @@ public class Mallet : IParticle, ICustomUpdate
 
     public void Update(GameTime gameTime)
     {
-        var dt = (float)gameTime.ElapsedGameTime.TotalMilliseconds;
+        var dt = (float)gameTime.ElapsedGameTime.TotalSeconds;
         if (dt == 0) return;
         
         Vector2 distance = _position - _previousPosition;

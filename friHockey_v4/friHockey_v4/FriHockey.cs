@@ -20,7 +20,7 @@ public class FriHockey : Game
     {
         _graphics = new GraphicsDeviceManager(this);
         
-        Components.Add(new FPSComponent(this));
+        Components.Add(new FpsComponent(this));
         
         // Init singletons
         SoundEngine.Init(this);
@@ -33,7 +33,7 @@ public class FriHockey : Game
     {
         // Set resolution
         _graphics.PreferredBackBufferWidth = 640;
-        _graphics.PreferredBackBufferHeight = 920;
+        _graphics.PreferredBackBufferHeight = 960;
         _graphics.ApplyChanges();
 
         _levelClasses = new List<Type> { typeof(HockeyLevel) };

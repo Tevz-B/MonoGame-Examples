@@ -1,6 +1,7 @@
 using Express.Physics;
 using Express.Physics.Collision;
 using Express.Scene.Objects;
+using Express.Scene.Objects.Colliders;
 using friHockey_v2.Scene;
 using Microsoft.Xna.Framework;
 
@@ -27,7 +28,7 @@ public class PhysicsEngine : GameComponent
                 {
                     if (item1 is IParticleCollider particleCollider1 && item2 is IParticleCollider particleCollider2)
                     {
-                        ParticleParticle.CollisionBetweenAnd(particleCollider1, particleCollider2);
+                        ParticleParticleCollision.CollisionBetween(particleCollider1, particleCollider2);
                     }
                 }
 

@@ -9,12 +9,12 @@ public static class MovementPhysics
     {
         if (item is IMovable movable)
         {
-            movable.Position += movable.Velocity * (float)elapsed.TotalMilliseconds;
+            movable.Position += movable.Velocity * (float)elapsed.TotalSeconds;
         }
     }
     
     public static void SimulateMovement(IMovable item, TimeSpan elapsed)
     {
-        item.Position += item.Velocity * (float)elapsed.TotalMilliseconds;
+        item.Position += item.Velocity * (float)elapsed.TotalSeconds;
     }
 }

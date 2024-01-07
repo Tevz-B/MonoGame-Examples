@@ -10,7 +10,7 @@ namespace friHockey_v4.Scene;
 public class Level : GameComponent
 {
     
-    protected IScene _scene;
+    protected SimpleScene _scene;
     protected Mallet _topMallet;
     protected Mallet _bottomMallet;
     protected Puck _puck;
@@ -50,9 +50,10 @@ public class Level : GameComponent
         _scene.Add(_topMallet);
         _scene.Add(_bottomMallet);
         _scene.Add(_puck);
+        Game.Components.Add(_scene);
     }
 
-    public IScene Scene
+    public SimpleScene Scene
     {
         get => _scene;
         set => _scene = value;

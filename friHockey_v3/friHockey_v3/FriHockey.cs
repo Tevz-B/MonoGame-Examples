@@ -25,7 +25,7 @@ public class FriHockey : Game
     {
         // Set resolution
         _graphics.PreferredBackBufferWidth = 640;
-        _graphics.PreferredBackBufferHeight = 920;
+        _graphics.PreferredBackBufferHeight = 960;
         _graphics.ApplyChanges();
 
         _levelClasses = new List<Type> { typeof(HockeyLevel) };

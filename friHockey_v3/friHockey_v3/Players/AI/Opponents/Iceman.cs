@@ -11,8 +11,8 @@ public class Iceman : ReflexAgent
         : base(theGame, theMallet, theLevel, thePosition)
     {
         // AI properties
-        _speed = 1; // 100
-        _attackSpeed = 1; // 150
+        _speed = 0.2f; // 100
+        _attackSpeed = 0.5f; // 150
         _attackFactor = 100; // 500
         
         // Gameplay

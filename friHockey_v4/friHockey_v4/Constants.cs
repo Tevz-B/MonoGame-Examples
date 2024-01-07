@@ -19,6 +19,6 @@ public static class Constants
 
     public static float PuckMaximumSpeed()
     {
-        return 800f;
+        return 400f;
     }
 }

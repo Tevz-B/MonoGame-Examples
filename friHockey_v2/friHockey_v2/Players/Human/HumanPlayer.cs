@@ -58,9 +58,9 @@ public class HumanPlayer : Player
             _grabbed = false;
         }
         Vector2 distance = _mallet.Position - oldPosition;
-        if (gameTime.ElapsedGameTime.TotalMilliseconds > 0f)
+        if (gameTime.ElapsedGameTime.TotalSeconds > 0f)
         {
-            _mallet.Velocity = distance * (1.0f / (float)gameTime.ElapsedGameTime.TotalMilliseconds);
+            _mallet.Velocity = distance * (1.0f / (float)gameTime.ElapsedGameTime.TotalSeconds);
         }
 
         Console.WriteLine("{0}", _mallet.Velocity);

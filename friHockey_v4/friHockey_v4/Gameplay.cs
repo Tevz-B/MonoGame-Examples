@@ -73,7 +73,7 @@ public class Gameplay : GameComponent
         debugRenderer.DrawOrder = 2;
         // Game.Components.Add(debugRenderer);
 
-        FPSComponent fpsComponent = new FPSComponent(Game);
+        FpsComponent fpsComponent = new FpsComponent(Game);
         Game.Components.Add(fpsComponent);
         
         _bottomPlayer.UpdateOrder = 0;

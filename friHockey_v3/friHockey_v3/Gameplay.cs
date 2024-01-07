@@ -1,5 +1,5 @@
 using System;
-using Artificial_I.Utils;
+using Artificial_I.Artificial.Utils;
 using Express.Graphics;
 using friHockey_v3.Graphics;
 using friHockey_v3.Physics;
@@ -44,7 +44,6 @@ public class Gameplay : GameComponent
         : base (theGame)
     {
         _startInit(levelClass);
-        var args = new object[] {Game, _level.TopMallet, _level, PlayerPosition.Top};
         _topPlayer = Activator.CreateInstance(aiClass, Game, _level.TopMallet, _level, PlayerPosition.Top) as Player;
         _bottomPlayer = new HumanPlayer(Game, _level.BottomMallet, PlayerPosition.Bottom);
         AIRenderer aiRenderer = new AIRenderer(Game, (AIPlayer)_topPlayer);
@@ -71,7 +70,7 @@ public class Gameplay : GameComponent
         debugRenderer.MovementColor = Color.Gray;
         // Game.Components.Add(debugRenderer);
 
-        FPSComponent fpsComponent = new FPSComponent(Game);
+        FpsComponent fpsComponent = new FpsComponent(Game);
         Game.Components.Add(fpsComponent);
         
         _bottomPlayer.UpdateOrder = 0;
@@ -118,103 +117,4 @@ public class Gameplay : GameComponent
                 break;
         }
     }
-    
-    
-    
-    
-    ////////////////////////////
-    // public Gameplay(Game theGame, Class levelClass)
-    //         : base (theGame)
-    //     {
-    //         this.StartInitWithLevelClass(levelClass);
-    //         topPlayer = new HumanPlayer(this.Game, _level.TopMallet, PlayerPositionTop);
-    //         bottomPlayer = new HumanPlayer(this.Game, _level.BottomMallet, PlayerPositionBottom);
-    //         this.FinishInit();
-    //     }
-    //
-    //     public Gameplay(Game theGame, Class levelClass, Class aiClass)
-    //         : base (theGame)
-    //     {
-    //         this.StartInitWithLevelClass(levelClass);
-    //         topPlayer = new aiClass(this.Game, _level.TopMallet, _level, PlayerPositionTop);
-    //         bottomPlayer = new HumanPlayer(this.Game, _level.BottomMallet, PlayerPositionBottom);
-    //         AIRenderer aiRenderer = new AIRenderer(this.Game, (AIPlayer)topPlayer);
-    //         aiRenderer.DrawOrder = 1;
-    //         this.Game.Components.Add(aiRenderer);
-    //         this.FinishInit();
-    //     }
-    //
-    //     public void StartInitWithLevelClass(Class levelClass)
-    //     {
-    //         _level = new levelClass(this.Game);
-    //         this.Game.Components.Add(_level);
-    //     }
-    //
-    //     public void FinishInit()
-    //     {
-    //         this.Game.Components.Add(topPlayer);
-    //         this.Game.Components.Add(bottomPlayer);
-    //         _physics = new PhysicsEngine(this.Game, _level);
-    //         _physics.UpdateOrder = 20;
-    //         this.Game.Components.Add(_physics);
-    //         _renderer = new GameRenderer(this.Game, _level);
-    //         this.Game.Components.Add(_renderer);
-    //         DebugRenderer debugRenderer = new DebugRenderer(this.Game, _level.Scene);
-    //         debugRenderer.ItemColor = Color.Red();
-    //         debugRenderer.MovementColor = Color.Gray();
-    //         bottomPlayer.UpdateOrder = 0;
-    //         topPlayer.UpdateOrder = 1;
-    //         _physics.UpdateOrder = 2;
-    //         _level.UpdateOrder = 3;
-    //         _level.Scene.UpdateOrder = 4;
-    //         this.UpdateOrder = 5;
-    //     }
-    //
-    //     void initialize()
-    //     {
-    //         base.initialize();
-    //         if (topPlayer.IsKindOfClass(typeof(HumanPlayer)))
-    //         {
-    //             ((HumanPlayer)topPlayer).SetCamera(_renderer.Camera);
-    //         }
-    //
-    //         if (bottomPlayer.IsKindOfClass(typeof(HumanPlayer)))
-    //         {
-    //             ((HumanPlayer)bottomPlayer).SetCamera(_renderer.Camera);
-    //         }
-    //
-    //         if (Random.FloatM() < 0)
-    //         {
-    //             _level.ResetToTop();
-    //         }
-    //         else
-    //         {
-    //             _level.ResetToBottom();
-    //         }
-    //
-    //     }
-    //
-    //     void UpdateWithGameTime(GameTime gameTime)
-    //     {
-    //         if (_level.Puck.Position.Y < -50)
-    //         {
-    //             _level.ResetToTop();
-    //             topPlayer.Reset();
-    //             bottomPlayer.Reset();
-    //         }
-    //         else if (_level.Puck.Position.Y > 510)
-    //         {
-    //             _level.ResetToBottom();
-    //             topPlayer.Reset();
-    //             bottomPlayer.Reset();
-    //         }
-    //
-    //     }
-    //
-    //     void Dealloc()
-    //     {
-    //         this.Game.Components.RemoveComponent(_level);
-    //         this.Game.Components.RemoveComponent(_renderer);
-    //         this.Game.Components.RemoveComponent(_physics);
-    //     }
 }
