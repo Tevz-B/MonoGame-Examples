@@ -11,21 +11,21 @@ public class ThreeDee : Game
     // private SpriteBatch _spriteBatch;
     
     // Camera
-    protected Matrix view;
-    protected Matrix projection;
+    protected Matrix _view;
+    protected Matrix _projection;
     // Model
-    protected Model model;
+    protected Model _model;
     // Basic effects
-    protected BasicEffect colorEffect;
-    protected BasicEffect effect;
+    protected BasicEffect _colorEffect;
+    protected BasicEffect _effect;
     // User primitives
-    protected VertexPositionColor[] vertexArray;
+    protected VertexPositionColor[] _vertexArray;
     // Indexed user primitives
-    protected VertexPositionNormalTexture[] texturedVertexArray;
-    protected short[] indexArray;
+    protected VertexPositionNormalTexture[] _texturedVertexArray;
+    protected short[] _indexArray;
     // Buffers
-    protected VertexBuffer vertexBuffer;
-    protected IndexBuffer indexBuffer;
+    protected VertexBuffer _vertexBuffer;
+    protected IndexBuffer _indexBuffer;
 
     public ThreeDee()
     {
@@ -38,7 +38,7 @@ public class ThreeDee : Game
     {
         this.GraphicsDevice.DeviceReset += ScreenChanged;
         this.ScreenChanged();
-        view = Matrix.CreateLookAt(new Vector3(0, 13, 13), Vector3.Zero, Vector3.Up);
+        _view = Matrix.CreateLookAt(new Vector3(0, 13, 13), Vector3.Zero, Vector3.Up);
 
         base.Initialize();
     }
@@ -48,43 +48,43 @@ public class ThreeDee : Game
         // _spriteBatch = new SpriteBatch(GraphicsDevice);
 
         // 1. Model
-            model = this.Content.Load<Model>("square");
+            _model = this.Content.Load<Model>("square");
             // 2. User primitives
-            vertexArray = new VertexPositionColor[5];
+            _vertexArray = new VertexPositionColor[5];
             VertexPositionColor colorVertex = new();
             colorVertex.Position.X = -1;
             colorVertex.Position.Y = 0;
             colorVertex.Position.Z = -1;
             colorVertex.Color = Color.Blue;
-            vertexArray[0] = colorVertex;
+            _vertexArray[0] = colorVertex;
             colorVertex.Position.X = -1;
             colorVertex.Position.Y = 0;
             colorVertex.Position.Z = 1;
             colorVertex.Color = Color.Yellow;
-            vertexArray[1] = colorVertex;
+            _vertexArray[1] = colorVertex;
             colorVertex.Position.X = 1;
             colorVertex.Position.Y = 0;
             colorVertex.Position.Z = 1;
             colorVertex.Color = Color.Red;
-            vertexArray[2] = colorVertex;
+            _vertexArray[2] = colorVertex;
             colorVertex.Position.X = 1;
             colorVertex.Position.Y = 0;
             colorVertex.Position.Z = -1;
             colorVertex.Color = Color.Lime;
-            vertexArray[3] = colorVertex;
+            _vertexArray[3] = colorVertex;
             colorVertex.Position.X = -1;
             colorVertex.Position.Y = 0;
             colorVertex.Position.Z = -1;
             colorVertex.Color = Color.Blue;
-            vertexArray[4] = colorVertex;
-            colorEffect = new BasicEffect(this.GraphicsDevice);
-            colorEffect.World = Matrix.CreateTranslation(-3, 0, 0);
-            colorEffect.View = view;
-            colorEffect.Projection = projection;
-            colorEffect.VertexColorEnabled = true;
+            _vertexArray[4] = colorVertex;
+            _colorEffect = new BasicEffect(this.GraphicsDevice);
+            _colorEffect.World = Matrix.CreateTranslation(-3, 0, 0);
+            _colorEffect.View = _view;
+            _colorEffect.Projection = _projection;
+            _colorEffect.VertexColorEnabled = true;
             // 3. Textured indexed user primitives
             // Vertex array
-            texturedVertexArray = new VertexPositionNormalTexture[4];
+            _texturedVertexArray = new VertexPositionNormalTexture[4];
             VertexPositionNormalTexture vertex = new();
             vertex.Position.X = -1;
             vertex.Position.Y = 0;
@@ -93,7 +93,7 @@ public class ThreeDee : Game
             vertex.Normal.Y = 1;
             vertex.Normal.Z = 0;
             vertex.TextureCoordinate = new Vector2(0, 0);
-            texturedVertexArray[0] = vertex;
+            _texturedVertexArray[0] = vertex;
             
             vertex.Position.X = -1;
             vertex.Position.Y = 0;
@@ -102,7 +102,7 @@ public class ThreeDee : Game
             vertex.Normal.Y = 1;
             vertex.Normal.Z = 0;
             vertex.TextureCoordinate = new Vector2(0, 1);
-            texturedVertexArray[1] = vertex;
+            _texturedVertexArray[1] = vertex;
             
             vertex.Position.X = 1;
             vertex.Position.Y = 0;
@@ -111,7 +111,7 @@ public class ThreeDee : Game
             vertex.Normal.Y = 1;
             vertex.Normal.Z = 0;
             vertex.TextureCoordinate = new Vector2(1, 1);
-            texturedVertexArray[2] = vertex;
+            _texturedVertexArray[2] = vertex;
             
             vertex.Position.X = 1;
             vertex.Position.Y = 0;
@@ -120,33 +120,33 @@ public class ThreeDee : Game
             vertex.Normal.Y = 1;
             vertex.Normal.Z = 0;
             vertex.TextureCoordinate = new Vector2(1, 0);
-            texturedVertexArray[3] = vertex;
+            _texturedVertexArray[3] = vertex;
             
             // Index array
-            indexArray = new short[] {0,2,1,2,0,3};
+            _indexArray = new short[] {0,2,1,2,0,3};
             // Effect
-            effect = new BasicEffect(this.GraphicsDevice);
-            effect.World = Matrix.CreateTranslation(3, 0, 0);
-            effect.View = view;
-            effect.Projection = projection;
-            effect.TextureEnabled = true;
-            effect.VertexColorEnabled = false;
-            effect.LightingEnabled = true;
+            _effect = new BasicEffect(this.GraphicsDevice);
+            _effect.World = Matrix.CreateTranslation(3, 0, 0);
+            _effect.View = _view;
+            _effect.Projection = _projection;
+            _effect.TextureEnabled = true;
+            _effect.VertexColorEnabled = false;
+            _effect.LightingEnabled = true;
             // Material
-            effect.Texture = this.Content.Load<Texture2D>("road");
-            effect.DiffuseColor = Vector3.One;
+            _effect.Texture = this.Content.Load<Texture2D>("road");
+            _effect.DiffuseColor = Vector3.One;
             // Lighting
-            effect.AmbientLightColor = new Vector3(0.7f, 0.6f, 0.8f);
-            effect.DirectionalLight0.Enabled = true;
-            effect.DirectionalLight0.Direction = Vector3.Down;
-            effect.DirectionalLight0.DiffuseColor = Vector3.One;
+            _effect.AmbientLightColor = new Vector3(0.7f, 0.6f, 0.8f);
+            _effect.DirectionalLight0.Enabled = true;
+            _effect.DirectionalLight0.Direction = Vector3.Down;
+            _effect.DirectionalLight0.DiffuseColor = Vector3.One;
             // 4. Buffers
             // Vertex buffer                                           // texturedVertexArray
-            vertexBuffer = new VertexBuffer(this.GraphicsDevice, typeof(VertexPositionNormalTexture), 4, BufferUsage.WriteOnly);
-            vertexBuffer.SetData(texturedVertexArray);
+            _vertexBuffer = new VertexBuffer(this.GraphicsDevice, typeof(VertexPositionNormalTexture), 4, BufferUsage.WriteOnly);
+            _vertexBuffer.SetData(_texturedVertexArray);
             // Index buffer
-            indexBuffer = new IndexBuffer(this.GraphicsDevice, IndexElementSize.SixteenBits, 6, BufferUsage.WriteOnly);
-            indexBuffer.SetData(indexArray);
+            _indexBuffer = new IndexBuffer(this.GraphicsDevice, IndexElementSize.SixteenBits, 6, BufferUsage.WriteOnly);
+            _indexBuffer.SetData(_indexArray);
     }
 
     protected override void Update(GameTime gameTime)
@@ -168,34 +168,19 @@ public class ThreeDee : Game
         Matrix rotation = Matrix.CreateRotationY((float)gameTime.TotalGameTime.TotalSeconds);
         Matrix translation = Matrix.CreateTranslation(-8, 0, 0);
         Matrix world = Matrix.Multiply(rotation, translation);
-        model.Draw(world, view, projection);
+        _model.Draw(world, _view, _projection);
         // 2. User primitives
-        colorEffect.World = Matrix.Multiply(Matrix.CreateRotationY((float)gameTime.TotalGameTime.TotalSeconds), Matrix.CreateTranslation(-3, 0, 0));
-        colorEffect.CurrentTechnique.Passes[0].Apply();
-        this.GraphicsDevice.DrawUserPrimitives(PrimitiveType.LineStrip, vertexArray, 0, 4);
+        _colorEffect.World = Matrix.Multiply(Matrix.CreateRotationY((float)gameTime.TotalGameTime.TotalSeconds), Matrix.CreateTranslation(-3, 0, 0));
+        _colorEffect.CurrentTechnique.Passes[0].Apply();
+        this.GraphicsDevice.DrawUserPrimitives(PrimitiveType.LineStrip, _vertexArray, 0, 4);
         // 3. Textured indexed user primitives
-        effect.DirectionalLight0.Direction = new Vector3( 0, (float)Math.Sin((float)gameTime.TotalGameTime.TotalSeconds), (float)Math.Cos((float)gameTime.TotalGameTime.TotalSeconds));
-        effect.CurrentTechnique.Passes[0].Apply();
-        /*
-
-           [self.graphicsDevice drawUserIndexedPrimitivesOfType:PrimitiveTypeTriangleList
-
-           vertexData:texturedVertexArray
-
-           vertexOffset:0
-
-           numVertices:4
-
-           indexData:indexArray
-
-           indexOffset:0
-
-           primitiveCount:2];
-
-           */
+        _effect.DirectionalLight0.Direction = new Vector3( 0, (float)Math.Sin((float)gameTime.TotalGameTime.TotalSeconds), (float)Math.Cos((float)gameTime.TotalGameTime.TotalSeconds));
+        _effect.CurrentTechnique.Passes[0].Apply();
+        // this.GraphicsDevice.DrawUserIndexedPrimitives(PrimitiveType.TriangleList, texturedVertexArray, 0, 4, indexArray, 0, 2);
+        
         // 4. Buffers
-        this.GraphicsDevice.SetVertexBuffer(vertexBuffer);
-        this.GraphicsDevice.Indices = indexBuffer;
+        this.GraphicsDevice.SetVertexBuffer(_vertexBuffer);
+        this.GraphicsDevice.Indices = _indexBuffer;
         this.GraphicsDevice.DrawIndexedPrimitives(PrimitiveType.TriangleList, 0, 0, 2);
 
         base.Draw(gameTime);
@@ -203,15 +188,15 @@ public class ThreeDee : Game
     
     public void ScreenChanged(object caller = null, EventArgs e = null)
     {
-        projection = Matrix.CreatePerspective(MathF.PI / 20f, this.GraphicsDevice.Viewport.AspectRatio / 10f, 0.1f, 100);
-        if (effect is not null)
+        _projection = Matrix.CreatePerspectiveFieldOfView(MathF.PI / 4f, this.GraphicsDevice.Viewport.AspectRatio, 0.1f, 100);
+        if (_effect is not null)
         {
-            effect.Projection = projection;
+            _effect.Projection = _projection;
         }
 
-        if (colorEffect is not null)
+        if (_colorEffect is not null)
         {
-            colorEffect.Projection = projection;
+            _colorEffect.Projection = _projection;
         }
     }
 }
