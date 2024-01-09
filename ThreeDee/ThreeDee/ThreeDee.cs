@@ -176,7 +176,7 @@ public class ThreeDee : Game
         // 3. Textured indexed user primitives
         _effect.DirectionalLight0.Direction = new Vector3( 0, (float)Math.Sin((float)gameTime.TotalGameTime.TotalSeconds), (float)Math.Cos((float)gameTime.TotalGameTime.TotalSeconds));
         _effect.CurrentTechnique.Passes[0].Apply();
-        // this.GraphicsDevice.DrawUserIndexedPrimitives(PrimitiveType.TriangleList, texturedVertexArray, 0, 4, indexArray, 0, 2);
+        // this.GraphicsDevice.DrawUserIndexedPrimitives(PrimitiveType.TriangleList, _texturedVertexArray, 0, 4, _indexArray, 0, 2);
         
         // 4. Buffers
         this.GraphicsDevice.SetVertexBuffer(_vertexBuffer);
