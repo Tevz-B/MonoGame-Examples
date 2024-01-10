@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Physics_World_1", "Physics_World_1\Physics_World_1.csproj", "{86449ABC-C914-40FA-9864-9E348A4277EB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Express", "..\Express\Express\Express.csproj", "{070ADB15-CAE9-4117-A43D-D86B2ECF9FBD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Artificial I", "..\Artificial I\Artificial I\Artificial I.csproj", "{EFCC626C-B7AA-4F9B-801E-A27249F2008D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{86449ABC-C914-40FA-9864-9E348A4277EB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{86449ABC-C914-40FA-9864-9E348A4277EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{86449ABC-C914-40FA-9864-9E348A4277EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{86449ABC-C914-40FA-9864-9E348A4277EB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{070ADB15-CAE9-4117-A43D-D86B2ECF9FBD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{070ADB15-CAE9-4117-A43D-D86B2ECF9FBD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{070ADB15-CAE9-4117-A43D-D86B2ECF9FBD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{070ADB15-CAE9-4117-A43D-D86B2ECF9FBD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EFCC626C-B7AA-4F9B-801E-A27249F2008D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EFCC626C-B7AA-4F9B-801E-A27249F2008D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EFCC626C-B7AA-4F9B-801E-A27249F2008D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EFCC626C-B7AA-4F9B-801E-A27249F2008D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
