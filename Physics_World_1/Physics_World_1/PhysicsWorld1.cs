@@ -22,6 +22,11 @@ public class PhysicsWorld1 : Game
         IsMouseVisible = true;
         
         _graphics = new GraphicsDeviceManager(this);
+        // Set resolution
+        _graphics.PreferredBackBufferWidth = 1920;
+        _graphics.PreferredBackBufferHeight = 1080;
+        _graphics.ApplyChanges();
+        
         // _graphics.IsFullScreen = true;
         // this.IsFixedTimeStep = false;
         _scene = new SimpleScene(this);

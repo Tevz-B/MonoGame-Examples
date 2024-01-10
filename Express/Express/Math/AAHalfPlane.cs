@@ -25,7 +25,6 @@ public class AaHalfPlane : HalfPlane
             _normal = -Vector2.UnitY;
             break;
         }
-
         _direction = theDirection;
     }
 
