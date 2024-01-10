@@ -26,9 +26,10 @@ public class PhysicsWorld1 : Game
         _graphics.PreferredBackBufferWidth = 1920;
         _graphics.PreferredBackBufferHeight = 1080;
         _graphics.ApplyChanges();
-        
+        _graphics.SynchronizeWithVerticalRetrace = false; // Uncap framerate from refresh rate
+
         // _graphics.IsFullScreen = true;
-        // this.IsFixedTimeStep = false;
+        this.IsFixedTimeStep = false; // Unlock framerate
         _scene = new SimpleScene(this);
         
         this.Components.Add(_scene);
@@ -44,13 +45,12 @@ public class PhysicsWorld1 : Game
     {
         AaLimit floor = new AaLimit(new AaHalfPlane(AxisDirection.NegativeY, -1000));
         _scene.Add(floor);
-        AaLimit leftWall = new AaLimit(new AaHalfPlane(AxisDirection.PositiveX, 20));
+        AaLimit leftWall = new AaLimit(new AaHalfPlane(AxisDirection.PositiveX, 50));
         _scene.Add(leftWall);
-        AaLimit rightWall = new AaLimit(new AaHalfPlane(AxisDirection.NegativeX, -740));
+        AaLimit rightWall = new AaLimit(new AaHalfPlane(AxisDirection.NegativeX, -1500));
         _scene.Add(rightWall);
         AaLimit ceiling = new AaLimit(new AaHalfPlane(AxisDirection.PositiveY, 100));
         _scene.Add(ceiling);
-
         base.Initialize();
     }
 
@@ -59,7 +59,6 @@ public class PhysicsWorld1 : Game
         if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed ||
             Keyboard.GetState().IsKeyDown(Keys.Escape))
             Exit();
-
         
         //    Vector3 *leak = [[Vector3 vectorWithX:0 y:0 z:0] retain];
         // Input

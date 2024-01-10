@@ -9,6 +9,9 @@ public class AaHalfPlane : HalfPlane
 
     public AaHalfPlane(AxisDirection theDirection, float theDistance)
     {
+        _distance = theDistance;
+        _direction = theDirection;
+        
         switch (theDirection)
         {
         default :
@@ -25,7 +28,6 @@ public class AaHalfPlane : HalfPlane
             _normal = -Vector2.UnitY;
             break;
         }
-        _direction = theDirection;
     }
 
     public AxisDirection Direction
