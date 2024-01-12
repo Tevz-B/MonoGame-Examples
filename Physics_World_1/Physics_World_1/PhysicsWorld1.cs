@@ -60,7 +60,6 @@ public class PhysicsWorld1 : Game
             Keyboard.GetState().IsKeyDown(Keys.Escape))
             Exit();
         
-        //    Vector3 *leak = [[Vector3 vectorWithX:0 y:0 z:0] retain];
         // Input
         var mousePositionOnScreen = Mouse.GetState().Position.ToVector2();
         if (Mouse.GetState().LeftButton == ButtonState.Pressed)

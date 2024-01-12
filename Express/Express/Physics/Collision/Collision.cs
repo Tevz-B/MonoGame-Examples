@@ -20,6 +20,7 @@ public static class Collision
         IAARectangleCollider item1IaaRectangle = item1 as IAARectangleCollider;
         IAaHalfPlaneCollider item2AaHalfPlane = item2 as IAaHalfPlaneCollider;
         IAARectangleCollider item2IaaRectangle = item2 as IAARectangleCollider;
+        IConvexCollider item2IConvex = item2 as IConvexCollider;
         if (item1Particle is not null && item2 is IParticleCollider item2Particle)
         {
             ParticleParticleCollision.CollisionBetween(item1Particle, item2Particle);
@@ -37,11 +38,16 @@ public static class Collision
         }
         else if (item1IaaRectangle is not null && item2AaHalfPlane is not null)
         {
-            throw new NotImplementedException();
+            AARectangleAAHalfPlaneCollision.CollisionBetween(item1IaaRectangle, item2AaHalfPlane);
         }
         else if (item1IaaRectangle is not null && item2IaaRectangle is not null)
         {
             AaRectangleAaRectangleCollision.CollisionBetween(item1IaaRectangle, item2IaaRectangle);
+            return;
+        }
+        else if (item1Particle is not null && item2IConvex is not null)
+        {
+            ParticleConvexCollision.CollisionBetween(item1Particle, item2IConvex);
             return;
         }
 
@@ -175,8 +181,7 @@ public static class Collision
             Vector2 lever2 = new();
             Vector2 tangentialDirection1 = new();
             Vector2 tangentialDirection2 = new();
-            // if (pointOfImpact is not null)
-            // {
+    
             if (item1WithPosition is not null && rotatableItem1 is not null)
             {
                 lever1 = pointOfImpact - item1WithPosition.Position;
@@ -192,8 +197,6 @@ public static class Collision
                 Vector2 rotationalVelocity = tangentialDirection2 * (lever2.Length() * rotatableItem2.AngularVelocity);
                 velocity2 += rotationalVelocity;
             }
-
-            // }
 
             float speed1 = Vector2.Dot(velocity1, collisionNormal);
             float speed2 = Vector2.Dot(velocity2, collisionNormal);

@@ -60,5 +60,7 @@ namespace Artificial_I.Artificial.Utils
                 Console.WriteLine(fps);
             }
         }
+
+        public int FrameRate => _frameRate;
     }
 }
