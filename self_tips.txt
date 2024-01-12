@@ -1,1 +1,4 @@
 this.Game.Content ... -> this.Content (delete Game)
+
+TODO: auto property -> debug
+update debug renderer for half plane and convex poly
