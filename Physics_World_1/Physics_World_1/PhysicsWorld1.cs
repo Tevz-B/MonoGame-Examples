@@ -15,6 +15,12 @@ public class PhysicsWorld1 : Game
 {
     private GraphicsDeviceManager _graphics;
     private SimpleScene _scene;
+    
+    private const int SpawnsPerSecond = 10;
+    private const double TimePerSpawn = 1.0 / SpawnsPerSecond;
+    
+    private ButtonState _prevState = ButtonState.Released;
+    private double _timeSinceLastSpawn = 0;
 
     public PhysicsWorld1()
     {
@@ -64,13 +70,40 @@ public class PhysicsWorld1 : Game
         var mousePositionOnScreen = Mouse.GetState().Position.ToVector2();
         if (Mouse.GetState().LeftButton == ButtonState.Pressed)
         {
-            Ball ball = new Ball();
-            ball.Radius = 10 + SRandom.Float() * 50;
-            ball.Mass = ball.Radius * ball.Radius * MathF.PI;
-            ball.CoefficientOfRestitution = 0.85f;
-            ball.Position =mousePositionOnScreen;
-            _scene.Add(ball);
+            if (_prevState == ButtonState.Released)
+            {
+                // Spawn ball
+                Ball ball = new Ball();
+                ball.Radius = 10 + SRandom.Float() * 50;
+                ball.Mass = ball.Radius * ball.Radius * MathF.PI;
+                ball.CoefficientOfRestitution = 0.85f;
+                ball.Position = mousePositionOnScreen;
+                _scene.Add(ball);
+                
+                _timeSinceLastSpawn = 0f;
+            }
+            else
+            {
+                if (_timeSinceLastSpawn > TimePerSpawn)
+                {
+                    // Spawn ball
+                    Ball ball = new Ball();
+                    ball.Radius = 10 + SRandom.Float() * 50;
+                    ball.Mass = ball.Radius * ball.Radius * MathF.PI;
+                    ball.CoefficientOfRestitution = 0.85f;
+                    ball.Position = mousePositionOnScreen;
+                    _scene.Add(ball);
+
+                    _timeSinceLastSpawn = 0f;
+                }
+                
+                // Increment spawn timer
+                _timeSinceLastSpawn += gameTime.ElapsedGameTime.TotalSeconds;
+                
+            }
         }
+
+        _prevState = Mouse.GetState().LeftButton;
 
         // Physics
         Vector2 gravity = new Vector2(0, 200 * (float)gameTime.ElapsedGameTime.TotalSeconds);

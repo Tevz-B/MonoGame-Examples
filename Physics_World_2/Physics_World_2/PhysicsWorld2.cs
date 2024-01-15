@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Artificial_I.Artificial.Utils;
@@ -23,6 +22,12 @@ public class PhysicsWorld2 : Game
     private SimpleScene _scene;
     private SpriteFont _font;
     private FpsComponent _fps;
+    
+    private const int SpawnsPerSecond = 10;
+    private const double TimePerSpawn = 1.0 / SpawnsPerSecond;
+    
+    private MouseState _prevState = new MouseState();
+    private double _timeSinceLastSpawn = 0;
 
     public PhysicsWorld2()
     {
@@ -102,34 +107,34 @@ public class PhysicsWorld2 : Game
         
         // Input
         var mousePositionOnScreen = Mouse.GetState().Position.ToVector2();
-        if (Mouse.GetState().LeftButton == ButtonState.Pressed)
+        var mouseState = Mouse.GetState();
+        if (mouseState.LeftButton == ButtonState.Pressed)
         {
-            Ball ball = new Ball();
-            ball.Radius = 10 + SRandom.Float() * 50;
-            ball.Mass = ball.Radius * ball.Radius * MathF.PI;
-            ball.CoefficientOfRestitution = 0.85f;
-            ball.Position = mousePositionOnScreen;
-            _scene.Add(ball);
+            if (_prevState.LeftButton != ButtonState.Pressed || _timeSinceLastSpawn > TimePerSpawn)
+            {
+                SpawnBall(mousePositionOnScreen);
+            }
+            _timeSinceLastSpawn += gameTime.ElapsedGameTime.TotalSeconds;
         }
-        else if (Mouse.GetState().MiddleButton == ButtonState.Pressed)
+        else if (mouseState.MiddleButton == ButtonState.Pressed)
         {
-            Particle particle = new Particle();
-            particle.Radius = 10 + SRandom.Float() * 50;
-            particle.Mass = MathF.PI * MathF.Pow(particle.Radius, 2);
-            particle.CoefficientOfRestitution = 0.8f;
-            particle.Position = mousePositionOnScreen;
-            _scene.Add(particle);
+            if(_prevState.MiddleButton != ButtonState.Pressed || _timeSinceLastSpawn > TimePerSpawn)
+            {
+                SpawnParticle(mousePositionOnScreen);
+            }
+            _timeSinceLastSpawn += gameTime.ElapsedGameTime.TotalSeconds;
         }
-        else if (Mouse.GetState().RightButton == ButtonState.Pressed)
+        else if (mouseState.RightButton == ButtonState.Pressed)
         {
-            AABox box = new AABox();
-            box.Width = 10 + SRandom.Float() * 50;
-            box.Height = 10 + SRandom.Float() * 50;
-            box.Mass = box.Width * box.Height;
-            box.CoefficientOfRestitution = 0.2f;
-            box.Position = mousePositionOnScreen;
-            _scene.Add(box);
+            if(_prevState.RightButton != ButtonState.Pressed || _timeSinceLastSpawn > TimePerSpawn)
+            {
+                SpawnAABox(mousePositionOnScreen);
+            }
+            _timeSinceLastSpawn += gameTime.ElapsedGameTime.TotalSeconds;
         }
+        
+
+        _prevState = mouseState;
 
         // Physics
         Vector2 gravity = new Vector2(0, 200 * (float)gameTime.ElapsedGameTime.TotalSeconds);
@@ -155,6 +160,43 @@ public class PhysicsWorld2 : Game
         }
 
         base.Update(gameTime);
+    }
+
+    private void SpawnBall(Vector2 mousePositionOnScreen)
+    {
+        Ball ball = new Ball();
+        ball.Radius = 10 + SRandom.Float() * 50;
+        ball.Mass = ball.Radius * ball.Radius * MathF.PI;
+        ball.CoefficientOfRestitution = 0.85f;
+        ball.Position = mousePositionOnScreen;
+        _scene.Add(ball);
+
+        _timeSinceLastSpawn = 0;
+    }
+
+    private void SpawnParticle(Vector2 mousePositionOnScreen)
+    {
+        Particle particle = new Particle();
+        particle.Radius = 10 + SRandom.Float() * 50;
+        particle.Mass = MathF.PI * MathF.Pow(particle.Radius, 2);
+        particle.CoefficientOfRestitution = 0.8f;
+        particle.Position = mousePositionOnScreen;
+        _scene.Add(particle);
+        
+        _timeSinceLastSpawn = 0;
+    }
+
+    private void SpawnAABox(Vector2 mousePositionOnScreen)
+    {
+        AABox box = new AABox();
+        box.Width = 10 + SRandom.Float() * 50;
+        box.Height = 10 + SRandom.Float() * 50;
+        box.Mass = box.Width * box.Height;
+        box.CoefficientOfRestitution = 0.2f;
+        box.Position = mousePositionOnScreen;
+        _scene.Add(box);
+        
+        _timeSinceLastSpawn = 0;
     }
 
     protected override void Draw(GameTime gameTime)
