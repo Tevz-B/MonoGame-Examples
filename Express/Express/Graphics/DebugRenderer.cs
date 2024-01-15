@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using Artificial_I.Artificial.Spectrum;
 using Express.Math;
 using Express.Scene;
@@ -95,9 +97,13 @@ public class DebugRenderer : DrawableGameComponent
         {
             IPosition itemWithPosition = item as IPosition;
             IVelocity itemWithVelocity = item as IVelocity;
+            IRotation itemWithRotation = item as IRotation;
             IRadius itemWithRadius = item as IRadius;
             IRectangleSize itemWithRectangleSize = item as IRectangleSize;
             IAaHalfPlaneCollider aaHalfPlaneCollider = item as IAaHalfPlaneCollider;
+            IHalfPlaneCollider halfPlaneCollider = item as IHalfPlaneCollider;
+            IConvexCollider convex  = item as IConvexCollider;
+            
             if (itemWithPosition is not null)
             {
                 _primitiveBatch.DrawPointAtColor(itemWithPosition.Position, _itemColor);
@@ -138,6 +144,40 @@ public class DebugRenderer : DrawableGameComponent
                     _primitiveBatch.DrawLine(new Vector2(topLeft.X, aaHPlane.Distance), new Vector2(bottomRight.X, aaHPlane.Distance), _colliderColor);
                 }
 
+            }
+
+            if (halfPlaneCollider is not null)
+            {
+                HalfPlane hPlane = halfPlaneCollider.HalfPlane;
+                
+                Vector2 pointOnPlane = hPlane.Normal * hPlane.Distance;
+                Vector2 planeDirection = new Vector2(hPlane.Normal.Y, -hPlane.Normal.X);
+
+                float screenDiagonalLength = MathF.Sqrt(MathF.Pow(GraphicsDevice.Viewport.Width, 2) +
+                                                        MathF.Pow(GraphicsDevice.Viewport.Height, 2));
+
+                Vector2 lineVectorStart = planeDirection * screenDiagonalLength;
+                Vector2 lineVectorEnd = planeDirection * -screenDiagonalLength;
+
+                Vector2 hPlaneStart = lineVectorStart + pointOnPlane;
+                Vector2 hPlaneEnd = lineVectorEnd + pointOnPlane;
+
+                _primitiveBatch.DrawLine(hPlaneStart, hPlaneEnd, _colliderColor);
+            }
+
+            if (convex is not null)
+            {
+                Vector2 offset = itemWithPosition is not null ? itemWithPosition.Position : Vector2.Zero;
+                float angle = itemWithRotation is not null ? itemWithRotation.RotationAngle : 0;
+                Matrix transform = Matrix.CreateRotationZ(angle) * (Matrix.CreateTranslation(offset.X, offset.Y, 0));
+                List<Vector2> vertices = convex.Bounds.Vertices;
+                for (int i = 0; i < vertices.Count; i++)
+                {
+                    int j = (i + 1) % vertices.Count;
+                    Vector2 start = Vector2.Transform(vertices[i], transform);
+                    Vector2 end = Vector2.Transform(vertices[j], transform);
+                    _primitiveBatch.DrawLine(start, end, itemWithPosition is not null ? _itemColor : _colliderColor);
+                }
             }
 
         }

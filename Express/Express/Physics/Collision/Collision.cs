@@ -19,8 +19,10 @@ public static class Collision
         IParticleCollider item1Particle = item1 as IParticleCollider;
         IAARectangleCollider item1IaaRectangle = item1 as IAARectangleCollider;
         IAaHalfPlaneCollider item2AaHalfPlane = item2 as IAaHalfPlaneCollider;
+        IHalfPlaneCollider item2HalfPlane = item2 as IHalfPlaneCollider;
         IAARectangleCollider item2IaaRectangle = item2 as IAARectangleCollider;
         IConvexCollider item2IConvex = item2 as IConvexCollider;
+        
         if (item1Particle is not null && item2 is IParticleCollider item2Particle)
         {
             ParticleParticleCollision.CollisionBetween(item1Particle, item2Particle);
@@ -29,6 +31,11 @@ public static class Collision
         else if (item1Particle is not null && item2AaHalfPlane is not null)
         {
             ParticleAaHalfPlaneCollision.CollisionBetween(item1Particle, item2AaHalfPlane);
+            return;
+        }
+        else if (item1Particle is not null && item2HalfPlane is not null)
+        {
+            ParticleHalfPlaneCollision.CollisionBetween(item1Particle, item2HalfPlane);
             return;
         }
         else if (item1Particle is not null && item2IaaRectangle is not null)

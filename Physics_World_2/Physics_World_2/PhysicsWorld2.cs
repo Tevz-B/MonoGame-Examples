@@ -70,6 +70,7 @@ public class PhysicsWorld2 : Game
         
         Limit ramp = new Limit(new HalfPlane(new Vector2(-1, -2), -1000));
         _scene.Add(ramp);
+        
         List<Vector2> wallVertices = new List<Vector2>
         {
             new Vector2(50, 700),
