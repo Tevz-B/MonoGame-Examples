@@ -106,7 +106,7 @@ public class DebugRenderer : DrawableGameComponent
             
             if (itemWithPosition is not null)
             {
-                _primitiveBatch.DrawPointAtColor(itemWithPosition.Position, _itemColor);
+                _primitiveBatch.DrawPoint(itemWithPosition.Position, _itemColor);
                 if (itemWithRadius is not null)
                 {
                     _primitiveBatch.DrawCircle(itemWithPosition.Position, itemWithRadius.Radius, 32, _itemColor);

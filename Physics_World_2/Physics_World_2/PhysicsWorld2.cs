@@ -39,8 +39,8 @@ public class PhysicsWorld2 : Game
         // Set resolution
         _graphics.PreferredBackBufferWidth = 1920;
         _graphics.PreferredBackBufferHeight = 1080;
-        _graphics.ApplyChanges();
         _graphics.SynchronizeWithVerticalRetrace = false; // Uncap framerate from refresh rate
+        _graphics.ApplyChanges();
 
         // _graphics.IsFullScreen = true;
         this.IsFixedTimeStep = false; // Unlock framerate

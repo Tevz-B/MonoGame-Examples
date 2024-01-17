@@ -20,10 +20,12 @@ public class PrimitiveBatch
     public PrimitiveBatch(GraphicsDevice graphicsDevice)
     {
         _graphicsDevice = graphicsDevice;
+        
         _basicEffect = new BasicEffect(graphicsDevice);
-        SetProjection();
-        _basicEffect.TextureEnabled = true;
         _basicEffect.VertexColorEnabled = true;
+        _basicEffect.TextureEnabled = false;
+        
+        SetProjection();
         graphicsDevice.DeviceReset += SetProjection;
     }
 
@@ -32,38 +34,19 @@ public class PrimitiveBatch
         _basicEffect.Projection = Matrix.CreateOrthographicOffCenter(-0.5f, _graphicsDevice.Viewport.Width - 0.5f, _graphicsDevice.Viewport.Height - 0.5f, -0.5f, 0, -1);
     }
 
-    public void Begin()
-    {
-        Begin(null, null, null, null, Matrix.Identity);
-    }
-
-    public void Begin(BlendState theBlendState)
-    {
-        Begin(theBlendState, null, null, null, Matrix.Identity);
-    }
-
-    public void Begin(BlendState theBlendState, DepthStencilState theDepthStencilState, RasterizerState theRasterizerState)
-    {
-        Begin(theBlendState, theDepthStencilState, theRasterizerState, null, Matrix.Identity);
-    }
-
-    public void Begin(BlendState theBlendState, DepthStencilState theDepthStencilState, RasterizerState theRasterizerState, Effect theEffect)
-    {
-        Begin(theBlendState, theDepthStencilState, theRasterizerState, theEffect, Matrix.Identity);
-    }
-
-    public void Begin(BlendState theBlendState, DepthStencilState theDepthStencilState, RasterizerState theRasterizerState, Effect theEffect, Matrix theTransformMatrix)
+    public void Begin(BlendState theBlendState = null, DepthStencilState theDepthStencilState = null, RasterizerState theRasterizerState = null, Effect theEffect = null, Matrix? theTransformMatrix0 = null)
     {
         theBlendState ??= BlendState.AlphaBlend;
         theDepthStencilState ??= DepthStencilState.None;
         theRasterizerState ??= RasterizerState.CullCounterClockwise;
         theEffect ??= _basicEffect;
-
+        Matrix theTransformMatrix = theTransformMatrix0 ?? Matrix.Identity;
 
          _blendState = theBlendState;
         _depthStencilState = theDepthStencilState;
         _rasterizerState = theRasterizerState;
         _effect = theEffect;
+        
         if (_effect is BasicEffect effect1)
         {
             effect1.World = theTransformMatrix;
@@ -71,12 +54,7 @@ public class PrimitiveBatch
 
         _beginCalled = true;
     }
-
-    public void DrawPointAtColor(Vector2 position, Color color)
-    {
-        DrawPoint(position, color);
-    }
-
+    
     public void DrawPoint(Vector2 position, Color color, float layerDepth = 0f)
     {
         DrawLine(new Vector2(position.X - 0.5f, position.Y - 0.5f), new Vector2(position.X + 0.5f, position.Y + 0.5f), color, layerDepth);
