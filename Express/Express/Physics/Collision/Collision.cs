@@ -17,20 +17,20 @@ public static class Collision
     private static void CollisionBetween(object item1, object item2, bool recurse)
     {
         IParticleCollider item1Particle = item1 as IParticleCollider;
-        IAARectangleCollider item1IaaRectangle = item1 as IAARectangleCollider;
-        IAaHalfPlaneCollider item2AaHalfPlane = item2 as IAaHalfPlaneCollider;
+        IAARectangleCollider item1AARectangle = item1 as IAARectangleCollider;
+        IAAHalfPlaneCollider item2AAHalfPlane = item2 as IAAHalfPlaneCollider;
         IHalfPlaneCollider item2HalfPlane = item2 as IHalfPlaneCollider;
-        IAARectangleCollider item2IaaRectangle = item2 as IAARectangleCollider;
-        IConvexCollider item2IConvex = item2 as IConvexCollider;
+        IAARectangleCollider item2AARectangle = item2 as IAARectangleCollider;
+        IConvexCollider item2Convex = item2 as IConvexCollider;
         
         if (item1Particle is not null && item2 is IParticleCollider item2Particle)
         {
             ParticleParticleCollision.CollisionBetween(item1Particle, item2Particle);
             return;
         }
-        else if (item1Particle is not null && item2AaHalfPlane is not null)
+        else if (item1Particle is not null && item2AAHalfPlane is not null)
         {
-            ParticleAaHalfPlaneCollision.CollisionBetween(item1Particle, item2AaHalfPlane);
+            ParticleAAHalfPlaneCollision.CollisionBetween(item1Particle, item2AAHalfPlane);
             return;
         }
         else if (item1Particle is not null && item2HalfPlane is not null)
@@ -38,23 +38,23 @@ public static class Collision
             ParticleHalfPlaneCollision.CollisionBetween(item1Particle, item2HalfPlane);
             return;
         }
-        else if (item1Particle is not null && item2IaaRectangle is not null)
+        else if (item1Particle is not null && item2AARectangle is not null)
         {
-            ParticleAaRectangleCollision.CollisionBetween(item1Particle, item2IaaRectangle);
+            ParticleAARectangleCollision.CollisionBetween(item1Particle, item2AARectangle);
             return;
         }
-        else if (item1IaaRectangle is not null && item2AaHalfPlane is not null)
+        else if (item1AARectangle is not null && item2AAHalfPlane is not null)
         {
-            AARectangleAAHalfPlaneCollision.CollisionBetween(item1IaaRectangle, item2AaHalfPlane);
+            AARectangleAAHalfPlaneCollision.CollisionBetween(item1AARectangle, item2AAHalfPlane);
         }
-        else if (item1IaaRectangle is not null && item2IaaRectangle is not null)
+        else if (item1AARectangle is not null && item2AARectangle is not null)
         {
-            AaRectangleAaRectangleCollision.CollisionBetween(item1IaaRectangle, item2IaaRectangle);
+            AARectangleAARectangleCollision.CollisionBetween(item1AARectangle, item2AARectangle);
             return;
         }
-        else if (item1Particle is not null && item2IConvex is not null)
+        else if (item1Particle is not null && item2Convex is not null)
         {
-            ParticleConvexCollision.CollisionBetween(item1Particle, item2IConvex);
+            ParticleConvexCollision.CollisionBetween(item1Particle, item2Convex);
             return;
         }
 

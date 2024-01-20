@@ -100,7 +100,7 @@ public class DebugRenderer : DrawableGameComponent
             IRotation itemWithRotation = item as IRotation;
             IRadius itemWithRadius = item as IRadius;
             IRectangleSize itemWithRectangleSize = item as IRectangleSize;
-            IAaHalfPlaneCollider aaHalfPlaneCollider = item as IAaHalfPlaneCollider;
+            IAAHalfPlaneCollider aaHalfPlaneCollider = item as IAAHalfPlaneCollider;
             IHalfPlaneCollider halfPlaneCollider = item as IHalfPlaneCollider;
             IConvexCollider convex  = item as IConvexCollider;
             
@@ -126,7 +126,7 @@ public class DebugRenderer : DrawableGameComponent
 
             if (aaHalfPlaneCollider is not null)
             {
-                AaHalfPlane aaHPlane = aaHalfPlaneCollider.AaHalfPlane;
+                AAHalfPlane aaHPlane = aaHalfPlaneCollider.AAHalfPlane;
                 if (aaHPlane.Direction == AxisDirection.NegativeX)
                 {
                     _primitiveBatch.DrawLine(new Vector2(-aaHPlane.Distance, topLeft.Y), new Vector2(-aaHPlane.Distance, bottomRight.Y), _colliderColor);

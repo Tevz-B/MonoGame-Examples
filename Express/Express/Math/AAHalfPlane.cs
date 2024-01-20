@@ -3,11 +3,11 @@ using Microsoft.Xna.Framework;
 
 namespace Express.Math;
 
-public class AaHalfPlane : HalfPlane
+public class AAHalfPlane : HalfPlane
 {
     protected AxisDirection _direction;
 
-    public AaHalfPlane(AxisDirection theDirection, float theDistance)
+    public AAHalfPlane(AxisDirection theDirection, float theDistance)
     {
         _distance = theDistance;
         _direction = theDirection;

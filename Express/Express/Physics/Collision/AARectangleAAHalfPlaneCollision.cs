@@ -6,7 +6,7 @@ namespace Express.Physics.Collision;
 
 public class AARectangleAAHalfPlaneCollision
 {
-    public static void CollisionBetween(IAARectangleCollider aaRectangle, IAaHalfPlaneCollider aaHalfPlane)
+    public static void CollisionBetween(IAARectangleCollider aaRectangle, IAAHalfPlaneCollider aaHalfPlane)
     {
         if (DetectCollision(aaRectangle, aaHalfPlane) && Collision.ShouldResolveCollision(aaRectangle, aaHalfPlane))
         {
@@ -15,41 +15,41 @@ public class AARectangleAAHalfPlaneCollision
         }
     }
     
-    static bool DetectCollision(IAARectangleCollider aaRectangle, IAaHalfPlaneCollider aaHalfPlane)
+    static bool DetectCollision(IAARectangleCollider aaRectangle, IAAHalfPlaneCollider aaHalfPlane)
     {
-        switch (aaHalfPlane.AaHalfPlane.Direction)
+        switch (aaHalfPlane.AAHalfPlane.Direction)
         {
         default :
         case AxisDirection.PositiveX :
-            return aaRectangle.Position.X - aaRectangle.Width / 2 < aaHalfPlane.AaHalfPlane.Distance;
+            return aaRectangle.Position.X - aaRectangle.Width / 2 < aaHalfPlane.AAHalfPlane.Distance;
         case AxisDirection.NegativeX :
-            return aaRectangle.Position.X + aaRectangle.Width / 2 > -aaHalfPlane.AaHalfPlane.Distance;
+            return aaRectangle.Position.X + aaRectangle.Width / 2 > -aaHalfPlane.AAHalfPlane.Distance;
         case AxisDirection.PositiveY :
-            return aaRectangle.Position.Y - aaRectangle.Height / 2 < aaHalfPlane.AaHalfPlane.Distance;
+            return aaRectangle.Position.Y - aaRectangle.Height / 2 < aaHalfPlane.AAHalfPlane.Distance;
         case AxisDirection.NegativeY :
-            return aaRectangle.Position.Y + aaRectangle.Height / 2 > -aaHalfPlane.AaHalfPlane.Distance;
+            return aaRectangle.Position.Y + aaRectangle.Height / 2 > -aaHalfPlane.AAHalfPlane.Distance;
         }
 
         }
 
-    static void ResolveCollision(IAARectangleCollider aaRectangle, IAaHalfPlaneCollider aaHalfPlane)
+    static void ResolveCollision(IAARectangleCollider aaRectangle, IAAHalfPlaneCollider aaHalfPlane)
     {
         // RELAXATION STEP
         // First we relax the collision, so the two objects don't collide any more.
         Vector2 relaxDistance;
-        switch (aaHalfPlane.AaHalfPlane.Direction)
+        switch (aaHalfPlane.AAHalfPlane.Direction)
         {
         case AxisDirection.PositiveX :
-            relaxDistance = new Vector2(aaRectangle.Position.X - aaRectangle.Width / 2 - aaHalfPlane.AaHalfPlane.Distance, 0);
+            relaxDistance = new Vector2(aaRectangle.Position.X - aaRectangle.Width / 2 - aaHalfPlane.AAHalfPlane.Distance, 0);
             break;
         case AxisDirection.NegativeX :
-            relaxDistance = new Vector2(aaRectangle.Position.X + aaRectangle.Width / 2 + aaHalfPlane.AaHalfPlane.Distance, 0);
+            relaxDistance = new Vector2(aaRectangle.Position.X + aaRectangle.Width / 2 + aaHalfPlane.AAHalfPlane.Distance, 0);
             break;
         case AxisDirection.PositiveY :
-            relaxDistance = new Vector2(0, aaRectangle.Position.Y - aaRectangle.Height / 2 - aaHalfPlane.AaHalfPlane.Distance);
+            relaxDistance = new Vector2(0, aaRectangle.Position.Y - aaRectangle.Height / 2 - aaHalfPlane.AAHalfPlane.Distance);
             break;
         case AxisDirection.NegativeY :
-            relaxDistance = new Vector2(0, aaRectangle.Position.Y + aaRectangle.Height / 2 + aaHalfPlane.AaHalfPlane.Distance);
+            relaxDistance = new Vector2(0, aaRectangle.Position.Y + aaRectangle.Height / 2 + aaHalfPlane.AAHalfPlane.Distance);
             break;
         default: relaxDistance = Vector2.Zero;
             break;

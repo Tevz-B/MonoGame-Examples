@@ -23,7 +23,7 @@ namespace Express.Scene;
         {
             ArrayList itemsAtCoordinate = _grid[gridCoordinate];
             return new ArrayList(itemsAtCoordinate);
-        }
+        } 
 
         public ArrayList GetItemsAround(Point gridCoordinate, int distance)
         {

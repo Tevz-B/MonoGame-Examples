@@ -2,8 +2,8 @@ using Express.Math;
 
 namespace Express.Scene.Objects.Colliders;
 
-public interface IAaHalfPlaneCollider 
+public interface IAAHalfPlaneCollider 
 {
-    ref AaHalfPlane AaHalfPlane { get; }
+    ref AAHalfPlane AAHalfPlane { get; }
     
 }
