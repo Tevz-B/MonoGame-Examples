@@ -71,7 +71,7 @@ public static class Collision
         bool result = true;
         if (customCollider1 is not null)
         {
-            result &= customCollider1.CollidingWith(item2, result);
+            result &= customCollider1.CollidingWith(item2, true);
         }
 
         if (customCollider2 is not null)
@@ -226,6 +226,7 @@ public static class Collision
             
             if (mass1Inverse > 0 && movableItem1 is not null)
             {
+                
                 movableItem1.Velocity += (collisionNormal * (impact * mass1Inverse));
             }
 

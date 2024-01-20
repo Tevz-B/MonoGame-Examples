@@ -9,9 +9,6 @@ public class Obstacle : IConvexCollider, IPosition, IRotatable, IAngularMass
 {
     protected ConvexPolygon _bounds;
     protected Vector2 _position;
-    protected float _rotationAngle;
-    protected float _angularVelocity;
-    protected float _angularMass;
 
     public Obstacle(ConvexPolygon bounds)
     {

@@ -26,8 +26,8 @@ public class PhysicsWorld2 : Game
     private const int SpawnsPerSecond = 10;
     private const double TimePerSpawn = 1.0 / SpawnsPerSecond;
     
-    private MouseState _prevState = new MouseState();
-    private double _timeSinceLastSpawn = 0;
+    private MouseState _prevState;
+    private double _timeSinceLastSpawn;
 
     public PhysicsWorld2()
     {
@@ -59,13 +59,13 @@ public class PhysicsWorld2 : Game
     protected override void Initialize()
     {
         // Bounds
-        AALimit floor = new AALimit(new AaHalfPlane(AxisDirection.NegativeY, -1000));
+        AALimit floor = new AALimit(new AAHalfPlane(AxisDirection.NegativeY, -1000));
         _scene.Add(floor);
-        AALimit leftWall = new AALimit(new AaHalfPlane(AxisDirection.PositiveX, 50));
+        AALimit leftWall = new AALimit(new AAHalfPlane(AxisDirection.PositiveX, 50));
         _scene.Add(leftWall);
-        AALimit rightWall = new AALimit(new AaHalfPlane(AxisDirection.NegativeX, -1500));
+        AALimit rightWall = new AALimit(new AAHalfPlane(AxisDirection.NegativeX, -1500));
         _scene.Add(rightWall);
-        AALimit ceiling = new AALimit(new AaHalfPlane(AxisDirection.PositiveY, 100));
+        AALimit ceiling = new AALimit(new AAHalfPlane(AxisDirection.PositiveY, 100));
         _scene.Add(ceiling);
         
         Limit ramp = new Limit(new HalfPlane(new Vector2(-1, -2), -1000));
@@ -169,6 +169,9 @@ public class PhysicsWorld2 : Game
         ball.Radius = 10 + SRandom.Float() * 50;
         ball.Mass = ball.Radius * ball.Radius * MathF.PI;
         ball.CoefficientOfRestitution = 0.85f;
+        ball.RotationAngle = SRandom.Float() * MathF.PI * 2;
+        ball.AngularVelocity = (SRandom.Float() - 0.5f) * 5;
+        ball.AngularMass = ball.Mass * MathF.Pow(ball.Radius, 2) / 2;
         ball.Position = mousePositionOnScreen;
         _scene.Add(ball);
 

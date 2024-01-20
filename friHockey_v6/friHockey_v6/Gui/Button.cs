@@ -10,7 +10,6 @@ namespace friHockey_v6.Gui;
 public class Button : ISceneUser
 {
 
-    protected IScene _scene;
     protected Image _backgroundImage;
     protected Label _label;
     protected Rectangle _inputArea;

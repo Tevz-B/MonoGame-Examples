@@ -11,6 +11,11 @@ public static class MovementPhysics
         {
             movable.Position += movable.Velocity * (float)elapsed.TotalSeconds;
         }
+
+        if (item is IRotatable rotatable)
+        {
+            rotatable.RotationAngle += rotatable.AngularVelocity * (float)elapsed.TotalSeconds;
+        }
     }
     
     public static void SimulateMovement(IMovable item, TimeSpan elapsed)
