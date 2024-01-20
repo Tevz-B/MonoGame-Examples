@@ -1,5 +1,5 @@
 using Express.Graphics;
-using Express.Scene.Objects;
+using Express.Scene.Objects.Movement;
 using friHockey_v6.Level;
 using friHockey_v6.SceneObjects;
 using Microsoft.Xna.Framework;
@@ -29,8 +29,8 @@ public class GameRenderer : DrawableGameComponent, IProjector
 
     public override void Initialize()
     {
-        float scaleX = (float)this.Game.Window.ClientBounds.Width / 320f;
-        float scaleY = (float)this.Game.Window.ClientBounds.Height / 480f;
+        float scaleX = this.Game.Window.ClientBounds.Width / 320f;
+        float scaleY = this.Game.Window.ClientBounds.Height / 480f;
         
         _camera = Matrix.CreateScale(new Vector3(scaleX, scaleY, 1f));
         this.Game.Services.AddService<IProjector>(this);

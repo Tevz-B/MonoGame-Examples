@@ -1,7 +1,10 @@
 using System;
-using Express.Scene.Objects;
+using Express.Physics.Collision.Arbitrary;
+using Express.Physics.Collision.AxisAligned;
 using Express.Scene.Objects.Colliders;
+using Express.Scene.Objects.Movement;
 using Express.Scene.Objects.Physical_Properties;
+using Express.Scene.Objects.Rotation;
 using Microsoft.Xna.Framework;
 
 namespace Express.Physics.Collision;

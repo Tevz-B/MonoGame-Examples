@@ -41,7 +41,7 @@ public class DrawPrimitives : SpriteBatchDemoComponent
 
         _effect = new BasicEffect(this.GraphicsDevice);
         _effect.TextureEnabled = true;
-        _effect.Texture = Sprites1024[0];
+        _effect.Texture = _sprites1024[0];
         _effect.VertexColorEnabled = true;
     }
 

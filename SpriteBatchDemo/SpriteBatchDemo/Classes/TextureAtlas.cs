@@ -39,23 +39,23 @@ public class TextureAtlas : SpriteBatchDemoComponent
     public override void Draw(GameTime gameTime)
     {
         base.Draw(gameTime);
-        SpriteBatch.Begin();
+        _spriteBatch.Begin();
         if (_useTextureAtlas)
         {
-            foreach (Item item in Scene)
+            foreach (Item item in _scene)
             {
-                SpriteBatch.Draw(Sprites1024[0], item.Position, Rectangle256[item.RectangleIndex % 16], item.Color, 0, Vector2.Zero, 0.1f, SpriteEffects.None, 0);
+                _spriteBatch.Draw(_sprites1024[0], item.Position, _rectangle256[item.RectangleIndex % 16], item.Color, 0, Vector2.Zero, 0.1f, SpriteEffects.None, 0);
             }
         }
         else
         {
-            foreach (Item item in Scene)
+            foreach (Item item in _scene)
             {
-                SpriteBatch.Draw(Sprites256[item.RectangleIndex % 16], item.Position, null, item.Color, 0, Vector2.Zero, 0.1f, SpriteEffects.None, 0);
+                _spriteBatch.Draw(_sprites256[item.RectangleIndex % 16], item.Position, null, item.Color, 0, Vector2.Zero, 0.1f, SpriteEffects.None, 0);
             }
         }
 
-        SpriteBatch.End();
+        _spriteBatch.End();
     }
 }
         

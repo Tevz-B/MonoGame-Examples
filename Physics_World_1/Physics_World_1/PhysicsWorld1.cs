@@ -5,7 +5,7 @@ using Express.Math;
 using Express.Physics;
 using Express.Physics.Collision;
 using Express.Scene;
-using Express.Scene.Objects;
+using Express.Scene.Objects.Movement;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 
@@ -49,13 +49,13 @@ public class PhysicsWorld1 : Game
 
     protected override void Initialize()
     {
-        AaLimit floor = new AaLimit(new AaHalfPlane(AxisDirection.NegativeY, -1000));
+        AALimit floor = new AALimit(new AAHalfPlane(AxisDirection.NegativeY, -1000));
         _scene.Add(floor);
-        AaLimit leftWall = new AaLimit(new AaHalfPlane(AxisDirection.PositiveX, 50));
+        AALimit leftWall = new AALimit(new AAHalfPlane(AxisDirection.PositiveX, 50));
         _scene.Add(leftWall);
-        AaLimit rightWall = new AaLimit(new AaHalfPlane(AxisDirection.NegativeX, -1500));
+        AALimit rightWall = new AALimit(new AAHalfPlane(AxisDirection.NegativeX, -1500));
         _scene.Add(rightWall);
-        AaLimit ceiling = new AaLimit(new AaHalfPlane(AxisDirection.PositiveY, 100));
+        AALimit ceiling = new AALimit(new AAHalfPlane(AxisDirection.PositiveY, 100));
         _scene.Add(ceiling);
         base.Initialize();
     }

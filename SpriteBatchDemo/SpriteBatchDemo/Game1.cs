@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using SpriteBatchDemo.Classes;
@@ -24,7 +22,7 @@ public class Game1 : Game
 
     protected override void Initialize()
     {
-        this.Components.Add( new FPSComponent(this));
+        this.Components.Add( new FpsComponent(this));
         
         // INSTRUCTION:
         // Uncomment one of the four tests.

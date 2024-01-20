@@ -1,10 +1,11 @@
 using System.Collections.Generic;
 using Express.Math;
-using Express.Scene.Objects;
 using Express.Scene.Objects.Colliders;
+using Express.Scene.Objects.Movement;
+using Express.Scene.Objects.Rotation;
 using Microsoft.Xna.Framework;
 
-namespace Express.Physics.Collision;
+namespace Express.Physics.Collision.Arbitrary;
 
 public static class ParticleConvexCollision
 {

@@ -1,9 +1,12 @@
 using Express.Math;
 using Express.Scene.Objects;
 using Express.Scene.Objects.Colliders;
+using Express.Scene.Objects.Movement;
+using Express.Scene.Objects.Physical_Properties;
+using Express.Scene.Objects.Rotation;
 using Microsoft.Xna.Framework;
 
-namespace Physics_World_2;
+namespace Physics_World_2.SceneObjects;
 
 public class Obstacle : IConvexCollider, IPosition, IRotatable, IAngularMass
 {

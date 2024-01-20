@@ -1,6 +1,5 @@
 using Express.Physics;
 using Express.Physics.Collision;
-using Express.Scene.Objects;
 using Express.Scene.Objects.Colliders;
 using friHockey_v2.Scene;
 using Microsoft.Xna.Framework;

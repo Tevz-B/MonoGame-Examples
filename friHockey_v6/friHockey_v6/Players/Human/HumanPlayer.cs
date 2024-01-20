@@ -1,4 +1,3 @@
-using System;
 using friHockey_v6.Graphics;
 using friHockey_v6.SceneObjects;
 using Microsoft.Xna.Framework;

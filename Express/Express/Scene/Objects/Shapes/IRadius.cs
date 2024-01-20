@@ -1,4 +1,4 @@
-namespace Express.Scene.Objects;
+namespace Express.Scene.Objects.Shapes;
 
 public interface IRadius
 {

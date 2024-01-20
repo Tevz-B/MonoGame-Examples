@@ -1,5 +1,6 @@
 using Express.Scene.Objects;
 using Express.Scene.Objects.Colliders;
+using Express.Scene.Objects.Composites;
 using Express.Scene.Objects.Physical_Properties;
 using friHockey_v4.Audio;
 using friHockey_v4.Scene.Objects.Walls;

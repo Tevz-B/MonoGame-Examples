@@ -1,5 +1,5 @@
 using System;
-using Express.Scene.Objects;
+using Express.Scene.Objects.Movement;
 using friHockey_v6.Level;
 using friHockey_v6.SceneObjects;
 using Microsoft.Xna.Framework;

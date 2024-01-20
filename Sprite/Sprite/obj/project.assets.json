@@ -102,19 +102,19 @@
     ]
   },
   "packageFolders": {
-    "/Users/tevzb/.nuget/packages/": {}
+    "C:\\Users\\zvet2\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/tevzb/code/monogame/Sprite/Sprite/Sprite.csproj",
+      "projectUniqueName": "C:\\Users\\zvet2\\code\\monogame\\Sprite\\Sprite\\Sprite.csproj",
       "projectName": "Sprite",
-      "projectPath": "/Users/tevzb/code/monogame/Sprite/Sprite/Sprite.csproj",
-      "packagesPath": "/Users/tevzb/.nuget/packages/",
-      "outputPath": "/Users/tevzb/code/monogame/Sprite/Sprite/obj/",
+      "projectPath": "C:\\Users\\zvet2\\code\\monogame\\Sprite\\Sprite\\Sprite.csproj",
+      "packagesPath": "C:\\Users\\zvet2\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\zvet2\\code\\monogame\\Sprite\\Sprite\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/Users/tevzb/.nuget/NuGet/NuGet.Config"
+        "C:\\Users\\zvet2\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net6.0"
@@ -158,12 +158,30 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
+        "downloadDependencies": [
+          {
+            "name": "Microsoft.AspNetCore.App.Ref",
+            "version": "[6.0.20, 6.0.20]"
+          },
+          {
+            "name": "Microsoft.NETCore.App.Host.win-x64",
+            "version": "[6.0.20, 6.0.20]"
+          },
+          {
+            "name": "Microsoft.NETCore.App.Ref",
+            "version": "[6.0.20, 6.0.20]"
+          },
+          {
+            "name": "Microsoft.WindowsDesktop.App.Ref",
+            "version": "[6.0.20, 6.0.20]"
+          }
+        ],
         "frameworkReferences": {
           "Microsoft.NETCore.App": {
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/x64/sdk/6.0.414/RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.306\\RuntimeIdentifierGraph.json"
       }
     }
   }

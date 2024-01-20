@@ -1,4 +1,4 @@
-namespace Express.Scene.Objects;
+namespace Express.Scene.Objects.Physical_Properties;
 
 public interface IAngularMass
 {

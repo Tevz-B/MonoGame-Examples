@@ -2,7 +2,6 @@ using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using Microsoft.Xna.Framework.Input.Touch;
 
 namespace SpriteBatchDemo.Classes;
 
@@ -14,7 +13,7 @@ public class ImmediateVsDeferred : SpriteBatchDemoComponent
     public ImmediateVsDeferred(Game game) 
         : base(game)
     {
-        MaxItems = 4000;
+        _maxItems = 4000;
     }
 
     public override void Update(GameTime gameTime)
@@ -44,11 +43,11 @@ public class ImmediateVsDeferred : SpriteBatchDemoComponent
     public override void Draw(GameTime gameTime)
     {
         base.Draw(gameTime);
-        SpriteBatch.Begin(_sortMode, null);
-        foreach (Item item in Scene)
+        _spriteBatch.Begin(_sortMode, null);
+        foreach (Item item in _scene)
         {
-            SpriteBatch.Draw(Sprites256[0], item.Position, Rectangle16[item.RectangleIndex % 12], item.Color);
+            _spriteBatch.Draw(_sprites256[0], item.Position, _rectangle16[item.RectangleIndex % 12], item.Color);
         }
-        SpriteBatch.End();
+        _spriteBatch.End();
     }
 }

@@ -1,4 +1,4 @@
-using Express.Scene.Objects;
+using Express.Scene.Objects.Composites;
 using Express.Scene.Objects.Physical_Properties;
 using Microsoft.Xna.Framework;
 

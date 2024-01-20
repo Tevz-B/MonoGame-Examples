@@ -41,11 +41,11 @@ public class TextureSorting : SpriteBatchDemoComponent
     public override void Draw(GameTime gameTime)
     {
         base.Draw(gameTime);
-        SpriteBatch.Begin(_sortMode, null);
-        foreach (Item item in Scene)
+        _spriteBatch.Begin(_sortMode, null);
+        foreach (Item item in _scene)
         {
-            SpriteBatch.Draw(Sprites256[item.RectangleIndex % 16], item.Position, null, item.Color, 0, Vector2.Zero, 0.1f, SpriteEffects.None, 0);
+            _spriteBatch.Draw(_sprites256[item.RectangleIndex % 16], item.Position, null, item.Color, 0, Vector2.Zero, 0.1f, SpriteEffects.None, 0);
         }
-        SpriteBatch.End();
+        _spriteBatch.End();
     }
 }

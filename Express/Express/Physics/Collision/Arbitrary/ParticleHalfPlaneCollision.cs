@@ -1,7 +1,7 @@
 using Express.Scene.Objects.Colliders;
 using Microsoft.Xna.Framework;
 
-namespace Express.Physics.Collision;
+namespace Express.Physics.Collision.Arbitrary;
 
 public class ParticleHalfPlaneCollision
 {

@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace SpriteBatchDemo.Classes
 {
-    public class FPSComponent : DrawableGameComponent
+    public class FpsComponent : DrawableGameComponent
     {
         private SpriteBatch _spriteBatch;
         private SpriteFont _spriteFont;
@@ -15,14 +15,14 @@ namespace SpriteBatchDemo.Classes
         private bool _writeToConsole = false;
 
 
-        public FPSComponent(Game game, SpriteBatch batch, SpriteFont font)
+        public FpsComponent(Game game, SpriteBatch batch, SpriteFont font)
             : base(game)
         {
             _spriteFont = font;
             _spriteBatch = batch;
         }
 
-        public FPSComponent(Game game)
+        public FpsComponent(Game game)
             : base(game)
         {
             _spriteFont = null;

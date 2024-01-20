@@ -9,7 +9,7 @@ public class Sprite
     protected Rectangle _sourceRectangle;
     protected Vector2 _origin;
     
-    public Texture2D texture
+    public Texture2D Texture
     {
         get => _texture;
         set => _texture = value;

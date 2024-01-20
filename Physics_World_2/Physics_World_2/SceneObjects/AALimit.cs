@@ -1,7 +1,7 @@
 using Express.Math;
 using Express.Scene.Objects.Colliders;
 
-namespace Physics_World_2;
+namespace Physics_World_2.SceneObjects;
 
 
 public class AALimit : IAAHalfPlaneCollider

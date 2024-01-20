@@ -1,28 +1,26 @@
 using System;
-using System.Runtime.CompilerServices;
-using System.Xml.Schema;
 using Microsoft.Xna.Framework;
 
 namespace SpriteBatchDemo.Classes;
 
 public static class SRandom
 {
-    private static Random random = new Random();
+    private static Random _random = new Random();
     public static float Float(float min, float max)
     {
-        double val = (random.NextDouble() * (max - min) + min);
+        double val = (_random.NextDouble() * (max - min) + min);
         return (float)val;
     }
     
     public static float Float(float max)
     {
-        double val = (random.NextDouble() * max);
+        double val = (_random.NextDouble() * max);
         return (float)val;
     }
 
     public static float Float()
     {
-        double val = random.NextDouble();
+        double val = _random.NextDouble();
         return (float)val;
     }
 
@@ -38,11 +36,11 @@ public static class SRandom
 
     public static int Int(int max)
     {
-        return random.Next(max);
+        return _random.Next(max);
     }
 
     public static int Int()
     {
-        return random.Next();
+        return _random.Next();
     }
 }

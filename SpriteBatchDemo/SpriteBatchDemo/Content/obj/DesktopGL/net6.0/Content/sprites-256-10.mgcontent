@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <SourceFile>/Users/tevzb/code/monogame/SpriteBatchDemo/SpriteBatchDemo/Content/sprites-256-10.png</SourceFile>
-  <SourceTime>2015-10-21T15:22:08+02:00</SourceTime>
-  <DestFile>/Users/tevzb/code/monogame/SpriteBatchDemo/SpriteBatchDemo/Content/bin/DesktopGL/Content/sprites-256-10.xnb</DestFile>
-  <DestTime>2023-11-01T13:12:45.0511781+01:00</DestTime>
+  <SourceFile>C:/Users/zvet2/code/monogame/SpriteBatchDemo/SpriteBatchDemo/Content/sprites-256-10.png</SourceFile>
+  <SourceTime>2023-11-20T17:35:04.909681+01:00</SourceTime>
+  <DestFile>C:/Users/zvet2/code/monogame/SpriteBatchDemo/SpriteBatchDemo/Content/bin/DesktopGL/Content/sprites-256-10.xnb</DestFile>
+  <DestTime>2024-01-20T09:00:13.011835+01:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2022-07-26T13:44:56+02:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

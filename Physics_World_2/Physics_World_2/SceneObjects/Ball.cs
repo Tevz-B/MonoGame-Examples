@@ -1,8 +1,9 @@
 using Express.Scene.Objects;
+using Express.Scene.Objects.Composites;
 using Express.Scene.Objects.Physical_Properties;
 using Microsoft.Xna.Framework;
 
-namespace Physics_World_2;
+namespace Physics_World_2.SceneObjects;
 
 public class Ball : ICircle, ICoefficientOfRestitution
 {

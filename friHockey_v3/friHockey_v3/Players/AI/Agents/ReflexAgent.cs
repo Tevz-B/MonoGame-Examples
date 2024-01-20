@@ -1,4 +1,3 @@
-using System.Collections;
 using friHockey_v3.Scene;
 using friHockey_v3.Scene.Objects;
 using Microsoft.Xna.Framework;

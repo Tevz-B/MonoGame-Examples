@@ -8,9 +8,11 @@ using Express.Physics;
 using Express.Physics.Collision;
 using Express.Scene;
 using Express.Scene.Objects;
+using Express.Scene.Objects.Movement;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Physics_World_2.SceneObjects;
 
 namespace Physics_World_2;
 

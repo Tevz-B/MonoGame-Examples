@@ -2,7 +2,7 @@ using Express.Math;
 using Express.Scene.Objects.Colliders;
 using Microsoft.Xna.Framework;
 
-namespace Express.Physics.Collision;
+namespace Express.Physics.Collision.AxisAligned;
 
 public class AARectangleAAHalfPlaneCollision
 {

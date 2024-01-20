@@ -5,4 +5,4 @@
 	- Basically, you have to exclude `arm64` for the simulator architecture, both from your project and the Pod project.
 - create new version: create new solution from template (Monogame Crossplatform desktop application), then copy most files and delete Game1.cs, fix Program.cs to run propper file. 
   (dont copy obj and bin dirs, copy only Content.mgcb and resources from Content dir)
-- add lib/proj : solution->add existing project -> select *.proj file
+- add lib/proj : solution->add existing project -> select *.proj file 

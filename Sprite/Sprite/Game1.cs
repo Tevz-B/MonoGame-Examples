@@ -1,5 +1,4 @@
-﻿using System;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
@@ -7,10 +6,10 @@ namespace Sprite;
 
 public class Game1 : Game
 {
-    private Texture2D background;
-    private Texture2D gameSprites;
-    private Rectangle playerBounds;
-    private Vector2 center;
+    private Texture2D _background;
+    private Texture2D _gameSprites;
+    private Rectangle _playerBounds;
+    private Vector2 _center;
     
     private GraphicsDeviceManager _graphics;
     private SpriteBatch _spriteBatch;
@@ -25,8 +24,8 @@ public class Game1 : Game
     protected override void Initialize()
     {
         // Add your initialization logic here
-        playerBounds = new Rectangle(0, 0, 256, 256);
-        center = new Vector2(_graphics.GraphicsDevice.Viewport.Width / 2, _graphics.GraphicsDevice.Viewport.Height / 2);
+        _playerBounds = new Rectangle(0, 0, 256, 256);
+        _center = new Vector2(_graphics.GraphicsDevice.Viewport.Width / 2f, _graphics.GraphicsDevice.Viewport.Height / 2f);
         
         base.Initialize();
     }
@@ -36,8 +35,8 @@ public class Game1 : Game
         _spriteBatch = new SpriteBatch(GraphicsDevice);
 
         // use this.Content to load your game content here
-        background = Content.Load<Texture2D>("background");
-        gameSprites = Content.Load<Texture2D>("gameSprites");
+        _background = Content.Load<Texture2D>("background");
+        _gameSprites = Content.Load<Texture2D>("gameSprites");
     }
 
     protected override void Update(GameTime gameTime)
@@ -56,7 +55,7 @@ public class Game1 : Game
         GraphicsDevice.Clear(Color.White);
         _spriteBatch.Begin();
         
-        _spriteBatch.Draw( background, new Rectangle((int)0, (int)0, (int)_graphics.GraphicsDevice.Viewport.Width, (int)_graphics.GraphicsDevice.Viewport.Height), null, Color.Blue, 0, Vector2.Zero, SpriteEffects.None, 0 );
+        _spriteBatch.Draw( _background, new Rectangle(0, 0, _graphics.GraphicsDevice.Viewport.Width, _graphics.GraphicsDevice.Viewport.Height), null, Color.Blue, 0, Vector2.Zero, SpriteEffects.None, 0 );
         //     demonstration of sprite draw (uncomment to view)
         //     player (whole texture)
         // _spriteBatch.Draw(gameSprites, Vector2.Zero, Color.White);
@@ -77,7 +76,7 @@ public class Game1 : Game
         // _spriteBatch.Draw(gameSprites, center, playerBounds, Color.White, (float)Math.PI / 2, new Vector2(playerBounds.Width / 2, playerBounds.Height / 2), 1, SpriteEffects.None, 0);
 
         //     player sprite mirrored
-        _spriteBatch.Draw( gameSprites, center, playerBounds, Color.White, 0, new Vector2(playerBounds.Width / 2, playerBounds.Height / 2), 1, SpriteEffects.FlipHorizontally, 0);
+        _spriteBatch.Draw( _gameSprites, _center, _playerBounds, Color.White, 0, new Vector2(_playerBounds.Width / 2f, _playerBounds.Height / 2f), 1, SpriteEffects.FlipHorizontally, 0);
         
         _spriteBatch.End();
 

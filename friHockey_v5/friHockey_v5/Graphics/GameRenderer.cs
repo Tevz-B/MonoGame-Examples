@@ -1,5 +1,5 @@
 using Express.Graphics;
-using Express.Scene.Objects;
+using Express.Scene.Objects.Movement;
 using friHockey_v5.Level;
 using friHockey_v5.SceneObjects;
 using Microsoft.Xna.Framework;
@@ -9,7 +9,6 @@ namespace friHockey_v5.Graphics;
 
 public class GameRenderer : DrawableGameComponent
 {
-
     private SpriteBatch _spriteBatch;
     private Sprite _malletSprite, _malletShadow;
     private Sprite _puckSprite, _puckShadow;

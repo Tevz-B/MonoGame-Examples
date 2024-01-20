@@ -1,5 +1,6 @@
 using System;
-using Express.Scene.Objects;
+using Express.Scene.Objects.Movement;
+using Express.Scene.Objects.Rotation;
 
 namespace Express.Physics;
 

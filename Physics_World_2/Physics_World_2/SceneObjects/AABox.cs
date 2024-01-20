@@ -1,23 +1,20 @@
 using Express.Scene.Objects;
+using Express.Scene.Objects.Composites;
 using Express.Scene.Objects.Physical_Properties;
 using Microsoft.Xna.Framework;
 
-namespace Physics_World_2;
+namespace Physics_World_2.SceneObjects;
 
 public class AABox : IAARectangle, ICoefficientOfRestitution
 {
     protected Vector2 _position;
     protected Vector2 _velocity;
-    protected float _width;
-    protected float _height;
-    protected float _mass;
-    protected float _coefficientOfRestitution;
 
     public AABox()
     {
         _position = new Vector2();
         _velocity = new Vector2();
-        _coefficientOfRestitution = 1;
+        CoefficientOfRestitution = 1;
     }
 
     public ref Vector2 Position => ref _position;

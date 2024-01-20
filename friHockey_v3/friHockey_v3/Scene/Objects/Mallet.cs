@@ -1,5 +1,5 @@
-using System;
 using Express.Scene.Objects;
+using Express.Scene.Objects.Composites;
 using Microsoft.Xna.Framework;
 
 namespace friHockey_v3.Scene.Objects;

@@ -1,6 +1,6 @@
 using Microsoft.Xna.Framework;
 
-namespace Express.Scene.Objects;
+namespace Express.Scene.Objects.Movement;
 
 public interface IVelocity
 {

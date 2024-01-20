@@ -4,14 +4,14 @@ using Express.Scene.Objects.Colliders;
 namespace Physics_World_1;
 
 
-public class AaLimit : IAaHalfPlaneCollider
+public class AALimit : IAAHalfPlaneCollider
 {
-    protected AaHalfPlane _limit;
+    protected AAHalfPlane _limit;
 
-    public AaLimit(AaHalfPlane theLimit)
+    public AALimit(AAHalfPlane theLimit)
     {
         _limit = theLimit;
     }
 
-    ref AaHalfPlane IAaHalfPlaneCollider.AaHalfPlane => ref _limit;
+    ref AAHalfPlane IAAHalfPlaneCollider.AAHalfPlane => ref _limit;
 }

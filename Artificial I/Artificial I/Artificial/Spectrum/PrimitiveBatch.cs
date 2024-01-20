@@ -75,7 +75,7 @@ public class PrimitiveBatch
         Vector2 end = Vector2.Zero;
         for (int i = 1; i <= divisions; i++)
         {
-            float angle = (float)i / (float)divisions * (float)Math.PI * 2;
+            float angle = i / (float)divisions * (float)Math.PI * 2;
             end.X = center.X + radius * (float)Math.Cos(angle);
             end.Y = center.Y + radius * (float)Math.Sin(angle);
             DrawLine(start, end, color, layerDepth);
