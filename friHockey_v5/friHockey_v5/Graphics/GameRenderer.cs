@@ -63,7 +63,7 @@ public class GameRenderer : DrawableGameComponent
 
     public override void Draw(GameTime gameTime)
     {
-        GraphicsDevice.Clear(Color.Yellow);
+        GraphicsDevice.Clear(Color.Black);
         _spriteBatch.Begin( SpriteSortMode.BackToFront, null, null, null, null, null, _camera );
 
         _spriteBatch.Draw(_background, new Vector2(0, -20), null, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.9f );
