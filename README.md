@@ -5,7 +5,7 @@ This is a rewrite of game demos in C# and MonoGame. The original demos were deve
 
 ## Game Demos
 - FriHockey
-- Spirte Batch Rendering Examples
+- Sprite Batch Rendering Examples
 - Physics World
 
 ## Libraries
