@@ -4,18 +4,32 @@ using Microsoft.Xna.Framework;
 
 namespace Express.Physics.Collision.AxisAligned;
 
-public class AARectangleAAHalfPlaneCollision
+public class AARectangleAAHalfPlaneCollision : CollisionAlgorithm<IAARectangleCollider, IAAHalfPlaneCollider>
 {
-    public static void CollisionBetween(IAARectangleCollider aaRectangle, IAAHalfPlaneCollider aaHalfPlane)
+    private AARectangleAAHalfPlaneCollision() {}
+
+    private static AARectangleAAHalfPlaneCollision _instance;
+    
+    public static AARectangleAAHalfPlaneCollision Instance()
     {
-        if (DetectCollision(aaRectangle, aaHalfPlane) && Collision.ShouldResolveCollision(aaRectangle, aaHalfPlane))
+        if (_instance is null)
+        {
+            _instance = new AARectangleAAHalfPlaneCollision();
+        }
+
+        return _instance;
+    }
+    
+    public override void CollisionBetween(IAARectangleCollider aaRectangle, IAAHalfPlaneCollider aaHalfPlane)
+    {
+        if (DetectCollision(aaRectangle, aaHalfPlane) && ShouldResolveCollision(aaRectangle, aaHalfPlane))
         {
             ResolveCollision(aaRectangle, aaHalfPlane);
-            Collision.ReportCollision(aaRectangle, aaHalfPlane);
+            ReportCollision(aaRectangle, aaHalfPlane);
         }
     }
     
-    static bool DetectCollision(IAARectangleCollider aaRectangle, IAAHalfPlaneCollider aaHalfPlane)
+    protected override bool DetectCollision(IAARectangleCollider aaRectangle, IAAHalfPlaneCollider aaHalfPlane)
     {
         switch (aaHalfPlane.AAHalfPlane.Direction)
         {
@@ -29,10 +43,9 @@ public class AARectangleAAHalfPlaneCollision
         case AxisDirection.NegativeY :
             return aaRectangle.Position.Y + aaRectangle.Height / 2 > -aaHalfPlane.AAHalfPlane.Distance;
         }
-
         }
 
-    static void ResolveCollision(IAARectangleCollider aaRectangle, IAAHalfPlaneCollider aaHalfPlane)
+    protected override void ResolveCollision(IAARectangleCollider aaRectangle, IAAHalfPlaneCollider aaHalfPlane)
     {
         // RELAXATION STEP
         // First we relax the collision, so the two objects don't collide any more.
@@ -55,11 +68,11 @@ public class AARectangleAAHalfPlaneCollision
             break;
         }
 
-        Collision.RelaxCollision(aaRectangle, aaHalfPlane, relaxDistance);
+        RelaxCollision(aaRectangle, aaHalfPlane, relaxDistance);
         // ENERGY EXCHANGE STEP
         // In a collision, energy is exchanged only along the collision normal.
         // For particles this is simply the line between both centers.
         Vector2 collisionNormal = Vector2.Normalize(relaxDistance);
-        Collision.ExchangeEnergy(aaRectangle, aaHalfPlane, collisionNormal);
+        ExchangeEnergy(aaRectangle, aaHalfPlane, collisionNormal);
     }
 }

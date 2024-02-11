@@ -3,32 +3,45 @@ using Microsoft.Xna.Framework;
 
 namespace Express.Physics.Collision.AxisAligned;
 
-public static  class ParticleAARectangleCollision
+public class ParticleAARectangleCollision : CollisionAlgorithm<IParticleCollider, IAARectangleCollider>
 {
-    public static void CollisionBetween(IParticleCollider particle, IAARectangleCollider aaRectangle)
+    private ParticleAARectangleCollision() {}
+
+    protected static ParticleAARectangleCollision _instance;
+
+    public static ParticleAARectangleCollision Instance()
     {
-        if (DetectCollision(particle, aaRectangle) && Collision.ShouldResolveCollision(particle, aaRectangle))
+        if (_instance is null)
+        {
+            _instance = new ParticleAARectangleCollision();
+        }
+        return _instance;
+    }
+    
+    public override void CollisionBetween(IParticleCollider particle, IAARectangleCollider aaRectangle)
+    {
+        if (DetectCollision(particle, aaRectangle) && ShouldResolveCollision(particle, aaRectangle))
         {
             ResolveCollision(particle, aaRectangle);
-            Collision.ReportCollision(particle, aaRectangle);
+            ReportCollision(particle, aaRectangle);
         }
     }
     
-    public static bool DetectCollision(IParticleCollider particle, IAARectangleCollider aaRectangle)
+    protected override bool DetectCollision(IParticleCollider particle, IAARectangleCollider aaRectangle)
     {
         Vector2 relaxDistance = CalculateRelaxDistance(particle, aaRectangle);
         return relaxDistance.LengthSquared() > 0;
     }
 
-    public static void ResolveCollision(IParticleCollider particle, IAARectangleCollider aaRectangle)
+    protected override void ResolveCollision(IParticleCollider particle, IAARectangleCollider aaRectangle)
     {
         Vector2 relaxDistance = CalculateRelaxDistance(particle, aaRectangle);
-        Collision.RelaxCollision(particle, aaRectangle, relaxDistance);
+        RelaxCollision(particle, aaRectangle, relaxDistance);
         Vector2 collisionNormal = Vector2.Normalize(relaxDistance);
-        Collision.ExchangeEnergy(particle, aaRectangle, collisionNormal);
+        ExchangeEnergy(particle, aaRectangle, collisionNormal);
     }
 
-    public static Vector2 CalculateRelaxDistance(IParticleCollider particle, IAARectangleCollider aaRectangle)
+    private Vector2 CalculateRelaxDistance(IParticleCollider particle, IAARectangleCollider aaRectangle)
     {
         Vector2 relaxDistance = Vector2.Zero;
         Vector2 nearestVertex = aaRectangle.Position;

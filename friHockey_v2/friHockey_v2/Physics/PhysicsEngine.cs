@@ -27,7 +27,7 @@ public class PhysicsEngine : GameComponent
                 {
                     if (item1 is IParticleCollider particleCollider1 && item2 is IParticleCollider particleCollider2)
                     {
-                        ParticleParticleCollision.CollisionBetween(particleCollider1, particleCollider2);
+                        ParticleParticleCollision.Instance().CollisionBetween(particleCollider1, particleCollider2);
                     }
                 }
 

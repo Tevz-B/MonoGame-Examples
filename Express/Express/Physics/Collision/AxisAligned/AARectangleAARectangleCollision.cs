@@ -3,25 +3,38 @@ using Microsoft.Xna.Framework;
 
 namespace Express.Physics.Collision.AxisAligned;
 
-public static class AARectangleAARectangleCollision
+public class AARectangleAARectangleCollision : CollisionAlgorithm<IAARectangleCollider, IAARectangleCollider>
 {
-    public static void CollisionBetween(IAARectangleCollider aaRectangle1, IAARectangleCollider aaRectangle2)
+    private AARectangleAARectangleCollision() {}
+
+    protected static AARectangleAARectangleCollision _instance;
+
+    public static AARectangleAARectangleCollision Instance()
     {
-        if (DetectCollision(aaRectangle1, aaRectangle2) && Collision.ShouldResolveCollision(aaRectangle1, aaRectangle2))
+        if (_instance is null)
+        {
+            _instance = new AARectangleAARectangleCollision();
+        }
+        return _instance;
+    }
+    
+    public override void CollisionBetween(IAARectangleCollider aaRectangle1, IAARectangleCollider aaRectangle2)
+    {
+        if (DetectCollision(aaRectangle1, aaRectangle2) && ShouldResolveCollision(aaRectangle1, aaRectangle2))
         {
             ResolveCollision(aaRectangle1, aaRectangle2);
-            Collision.ReportCollision(aaRectangle1, aaRectangle2);
+            ReportCollision(aaRectangle1, aaRectangle2);
         }
     }
     
-    public static bool DetectCollision(IAARectangleCollider aaRectangle1, IAARectangleCollider aaRectangle2)
+    protected override bool DetectCollision(IAARectangleCollider aaRectangle1, IAARectangleCollider aaRectangle2)
     {
         float horizontalDistance = System.Math.Abs(aaRectangle1.Position.X - aaRectangle2.Position.X);
         float verticalDistance = System.Math.Abs(aaRectangle1.Position.Y - aaRectangle2.Position.Y);
         return horizontalDistance < aaRectangle1.Width / 2 + aaRectangle2.Width / 2 && verticalDistance < aaRectangle1.Height / 2 + aaRectangle2.Height / 2;
     }
 
-    public static void ResolveCollision(IAARectangleCollider aaRectangle1, IAARectangleCollider aaRectangle2)
+    protected override void ResolveCollision(IAARectangleCollider aaRectangle1, IAARectangleCollider aaRectangle2)
     {
         float horizontalDifference = aaRectangle1.Position.X - aaRectangle2.Position.X;
         float horizontalCollidedDistance = System.Math.Abs(horizontalDifference);
@@ -45,7 +58,7 @@ public static class AARectangleAARectangleCollision
         }
 
         Vector2 relaxDistanceVector = collisionNormal * relaxDistance;
-        Collision.RelaxCollision(aaRectangle1, aaRectangle2, relaxDistanceVector);
-        Collision.ExchangeEnergy(aaRectangle1, aaRectangle2, collisionNormal);
+        RelaxCollision(aaRectangle1, aaRectangle2, relaxDistanceVector);
+        ExchangeEnergy(aaRectangle1, aaRectangle2, collisionNormal);
     }
 }
