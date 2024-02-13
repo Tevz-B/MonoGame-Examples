@@ -35,11 +35,11 @@ public class SpriteBatchDemo : Game
         // Test 2: Separate textures vs texture atlas.
         // this.Components.Add(new TextureAtlas(this));
 
-        // Test 3: Defered vs. texture sprite sort mode.
-        // this.Components.Add(new TextureSorting(this));
+        // Test 3: Deferred vs. texture sprite sort mode.
+        this.Components.Add(new TextureSorting(this));
 
         // Extra test: Test drawing triangles with one or multiple calls.
-        this.Components.Add(new DrawPrimitives(this));
+        // this.Components.Add(new DrawPrimitives(this));
 
         base.Initialize();
     }

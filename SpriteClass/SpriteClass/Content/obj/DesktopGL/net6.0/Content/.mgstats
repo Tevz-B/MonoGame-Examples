@@ -1,3 +1,0 @@
-Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Size,Build Seconds
-"/Users/tevzb/code/monogame/SpriteClass/SpriteClass/Content/background.png","/Users/tevzb/code/monogame/SpriteClass/SpriteClass/Content/bin/DesktopGL/Content/background.xnb","TextureProcessor","Texture2DContent",5460,3145813,0.519372
-"/Users/tevzb/code/monogame/SpriteClass/SpriteClass/Content/gameSprites.png","/Users/tevzb/code/monogame/SpriteClass/SpriteClass/Content/bin/DesktopGL/Content/gameSprites.xnb","TextureProcessor","Texture2DContent",14137,524373,0.019081
