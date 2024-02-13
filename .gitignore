@@ -9,3 +9,4 @@
 *.user
 Express/Express/Scene/GridScene.cs
 MonoGame notes
+SpriteBatchDemo/SpriteBatchDemo/bin/**

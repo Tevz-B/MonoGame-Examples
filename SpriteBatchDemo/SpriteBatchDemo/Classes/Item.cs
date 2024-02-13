@@ -15,9 +15,9 @@ public class Item
     public Item()
     {
         Position = SRandom.Vector2(320, 480);
-        Angle = SRandom.Float( (float)Math.PI );
+        Angle = SRandom.Float(MathF.PI);
         Speed = SRandom.Float(200, 700);
-        Velocity = new Vector2((float)Math.Cos(Angle), (float)Math.Sin(Angle));
+        Velocity = new Vector2((float)Math.Cos(Angle), (float)Math.Sin(Angle)) * Speed;
         Color = Color.Multiply(Color.White, SRandom.Float(1));
         SpriteIndex = SRandom.Int();
         RectangleIndex = SRandom.Int();

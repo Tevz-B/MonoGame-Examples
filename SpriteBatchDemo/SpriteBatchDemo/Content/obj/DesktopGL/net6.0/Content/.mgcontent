@@ -4,26 +4,26 @@
   <Platform>DesktopGL</Platform>
   <Config />
   <SourceFiles>
-    <File>C:/Users/zvet2/code/monogame/SpriteBatchDemo/SpriteBatchDemo/Content/sprites-1024-0.png</File>
-    <File>C:/Users/zvet2/code/monogame/SpriteBatchDemo/SpriteBatchDemo/Content/sprites-1024-1.png</File>
-    <File>C:/Users/zvet2/code/monogame/SpriteBatchDemo/SpriteBatchDemo/Content/sprites-1024-2.png</File>
-    <File>C:/Users/zvet2/code/monogame/SpriteBatchDemo/SpriteBatchDemo/Content/sprites-1024-3.png</File>
-    <File>C:/Users/zvet2/code/monogame/SpriteBatchDemo/SpriteBatchDemo/Content/sprites-256-0.png</File>
-    <File>C:/Users/zvet2/code/monogame/SpriteBatchDemo/SpriteBatchDemo/Content/sprites-256-1.png</File>
-    <File>C:/Users/zvet2/code/monogame/SpriteBatchDemo/SpriteBatchDemo/Content/sprites-256-10.png</File>
-    <File>C:/Users/zvet2/code/monogame/SpriteBatchDemo/SpriteBatchDemo/Content/sprites-256-11.png</File>
-    <File>C:/Users/zvet2/code/monogame/SpriteBatchDemo/SpriteBatchDemo/Content/sprites-256-12.png</File>
-    <File>C:/Users/zvet2/code/monogame/SpriteBatchDemo/SpriteBatchDemo/Content/sprites-256-13.png</File>
-    <File>C:/Users/zvet2/code/monogame/SpriteBatchDemo/SpriteBatchDemo/Content/sprites-256-14.png</File>
-    <File>C:/Users/zvet2/code/monogame/SpriteBatchDemo/SpriteBatchDemo/Content/sprites-256-15.png</File>
-    <File>C:/Users/zvet2/code/monogame/SpriteBatchDemo/SpriteBatchDemo/Content/sprites-256-2.png</File>
-    <File>C:/Users/zvet2/code/monogame/SpriteBatchDemo/SpriteBatchDemo/Content/sprites-256-3.png</File>
-    <File>C:/Users/zvet2/code/monogame/SpriteBatchDemo/SpriteBatchDemo/Content/sprites-256-4.png</File>
-    <File>C:/Users/zvet2/code/monogame/SpriteBatchDemo/SpriteBatchDemo/Content/sprites-256-5.png</File>
-    <File>C:/Users/zvet2/code/monogame/SpriteBatchDemo/SpriteBatchDemo/Content/sprites-256-6.png</File>
-    <File>C:/Users/zvet2/code/monogame/SpriteBatchDemo/SpriteBatchDemo/Content/sprites-256-7.png</File>
-    <File>C:/Users/zvet2/code/monogame/SpriteBatchDemo/SpriteBatchDemo/Content/sprites-256-8.png</File>
-    <File>C:/Users/zvet2/code/monogame/SpriteBatchDemo/SpriteBatchDemo/Content/sprites-256-9.png</File>
+    <File>/Users/tevzb/code/monogame/SpriteBatchDemo/SpriteBatchDemo/Content/sprites-1024-0.png</File>
+    <File>/Users/tevzb/code/monogame/SpriteBatchDemo/SpriteBatchDemo/Content/sprites-1024-1.png</File>
+    <File>/Users/tevzb/code/monogame/SpriteBatchDemo/SpriteBatchDemo/Content/sprites-1024-2.png</File>
+    <File>/Users/tevzb/code/monogame/SpriteBatchDemo/SpriteBatchDemo/Content/sprites-1024-3.png</File>
+    <File>/Users/tevzb/code/monogame/SpriteBatchDemo/SpriteBatchDemo/Content/sprites-256-0.png</File>
+    <File>/Users/tevzb/code/monogame/SpriteBatchDemo/SpriteBatchDemo/Content/sprites-256-1.png</File>
+    <File>/Users/tevzb/code/monogame/SpriteBatchDemo/SpriteBatchDemo/Content/sprites-256-10.png</File>
+    <File>/Users/tevzb/code/monogame/SpriteBatchDemo/SpriteBatchDemo/Content/sprites-256-11.png</File>
+    <File>/Users/tevzb/code/monogame/SpriteBatchDemo/SpriteBatchDemo/Content/sprites-256-12.png</File>
+    <File>/Users/tevzb/code/monogame/SpriteBatchDemo/SpriteBatchDemo/Content/sprites-256-13.png</File>
+    <File>/Users/tevzb/code/monogame/SpriteBatchDemo/SpriteBatchDemo/Content/sprites-256-14.png</File>
+    <File>/Users/tevzb/code/monogame/SpriteBatchDemo/SpriteBatchDemo/Content/sprites-256-15.png</File>
+    <File>/Users/tevzb/code/monogame/SpriteBatchDemo/SpriteBatchDemo/Content/sprites-256-2.png</File>
+    <File>/Users/tevzb/code/monogame/SpriteBatchDemo/SpriteBatchDemo/Content/sprites-256-3.png</File>
+    <File>/Users/tevzb/code/monogame/SpriteBatchDemo/SpriteBatchDemo/Content/sprites-256-4.png</File>
+    <File>/Users/tevzb/code/monogame/SpriteBatchDemo/SpriteBatchDemo/Content/sprites-256-5.png</File>
+    <File>/Users/tevzb/code/monogame/SpriteBatchDemo/SpriteBatchDemo/Content/sprites-256-6.png</File>
+    <File>/Users/tevzb/code/monogame/SpriteBatchDemo/SpriteBatchDemo/Content/sprites-256-7.png</File>
+    <File>/Users/tevzb/code/monogame/SpriteBatchDemo/SpriteBatchDemo/Content/sprites-256-8.png</File>
+    <File>/Users/tevzb/code/monogame/SpriteBatchDemo/SpriteBatchDemo/Content/sprites-256-9.png</File>
   </SourceFiles>
   <DestFiles>
     <File xsi:nil="true" />

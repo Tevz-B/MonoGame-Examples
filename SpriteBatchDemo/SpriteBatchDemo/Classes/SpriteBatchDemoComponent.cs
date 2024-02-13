@@ -49,7 +49,7 @@ public class SpriteBatchDemoComponent : DrawableGameComponent
 
     public override void Update(GameTime gameTime)
     {
-        float dt = (float)gameTime.ElapsedGameTime.TotalSeconds / 10f;
+        float dt = (float)gameTime.ElapsedGameTime.TotalSeconds;
         foreach (Item item in _scene)
         {
             item.Position += Vector2.Multiply(item.Velocity, dt);
@@ -64,6 +64,7 @@ public class SpriteBatchDemoComponent : DrawableGameComponent
             else if (item.Position.Y > this.GraphicsDevice.Viewport.Height) 
                 item.Velocity.Y = -Math.Abs(item.Velocity.Y);
         }
+        base.Update(gameTime);
     }
 
     public override void Draw(GameTime gameTime)

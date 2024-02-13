@@ -62,6 +62,7 @@ public class DrawPrimitives : SpriteBatchDemoComponent
                 Console.WriteLine("Switching to one call.");
             }
         }
+        base.Update(gameTime);
     }
 
     public override void Draw(GameTime gameTime)

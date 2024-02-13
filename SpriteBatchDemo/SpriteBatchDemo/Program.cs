@@ -1,2 +1,2 @@
-﻿using var game = new SpriteBatchDemo.Game1();
+﻿using var game = new SpriteBatchDemo.SpriteBatchDemo();
 game.Run();
