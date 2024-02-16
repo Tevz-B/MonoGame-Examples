@@ -1,6 +1,6 @@
 using Microsoft.Xna.Framework;
 
-namespace friHockey_v1.Protocols;
+namespace friHockey_v1.Interfaces;
 
 public interface IPosition
 {

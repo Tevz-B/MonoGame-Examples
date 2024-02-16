@@ -1,6 +1,6 @@
 using System.Net.Mime;
 using friHockey_v1.Graphics;
-using friHockey_v1.Protocols;
+using friHockey_v1.Interfaces;
 using friHockey_v1.Scene;
 using friHockey_v1.Scene.Objects;
 using Microsoft.Xna.Framework;

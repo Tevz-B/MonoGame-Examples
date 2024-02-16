@@ -1,5 +1,5 @@
 using System.Collections;
-using friHockey_v1.Protocols;
+using friHockey_v1.Interfaces;
 using Microsoft.Xna.Framework;
 
 namespace friHockey_v1.Scene.Objects;
