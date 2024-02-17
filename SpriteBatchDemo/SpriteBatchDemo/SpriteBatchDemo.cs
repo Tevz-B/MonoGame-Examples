@@ -24,7 +24,7 @@ public class SpriteBatchDemo : Game
     {
         this.Components.Add( new FpsComponent(this));
         
-        // INSTRUCTION:
+        // INSTRUCTIONS:
         // Uncomment one of the four tests.
         // Observe console output for FPS display.
         // Click on screen to toggle the mode being used.
@@ -33,10 +33,10 @@ public class SpriteBatchDemo : Game
         // this.Components.Add(new ImmediateVsDeferred(this));
 	
         // Test 2: Separate textures vs texture atlas.
-        // this.Components.Add(new TextureAtlas(this));
+        this.Components.Add(new TextureAtlas(this));
 
         // Test 3: Deferred vs. texture sprite sort mode.
-        this.Components.Add(new TextureSorting(this));
+        // this.Components.Add(new TextureSorting(this));
 
         // Extra test: Test drawing triangles with one or multiple calls.
         // this.Components.Add(new DrawPrimitives(this));

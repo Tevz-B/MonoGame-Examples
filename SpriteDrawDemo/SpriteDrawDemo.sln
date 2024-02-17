@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpriteClass", "SpriteClass\SpriteClass.csproj", "{C2FE9405-6475-440F-B601-D3379C9EAA7E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpriteDrawDemo", "SpriteDrawDemo\SpriteDrawDemo.csproj", "{C2FE9405-6475-440F-B601-D3379C9EAA7E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -2,11 +2,11 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using SpriteClass.Classes;
+using SpriteClassDemo.Classes;
 
-namespace SpriteClass;
+namespace SpriteClassDemo;
 
-public class Game1 : Game
+public class SpriteClassDemo : Game
 {
     private Texture2D _background;
     private Sprite _playerSprite;
@@ -16,7 +16,7 @@ public class Game1 : Game
     private GraphicsDeviceManager _graphics;
     private SpriteBatch _spriteBatch;
 
-    public Game1()
+    public SpriteClassDemo()
     {
         _graphics = new GraphicsDeviceManager(this);
         Content.RootDirectory = "Content";

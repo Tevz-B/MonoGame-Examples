@@ -1,10 +1,11 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
-namespace Sprite;
+namespace SpriteDrawDemo;
 
-public class Game1 : Game
+public class SpriteDrawDemo : Game
 {
     private Texture2D _background;
     private Texture2D _gameSprites;
@@ -14,7 +15,7 @@ public class Game1 : Game
     private GraphicsDeviceManager _graphics;
     private SpriteBatch _spriteBatch;
 
-    public Game1()
+    public SpriteDrawDemo()
     {
         _graphics = new GraphicsDeviceManager(this);
         Content.RootDirectory = "Content";
@@ -55,28 +56,28 @@ public class Game1 : Game
         GraphicsDevice.Clear(Color.White);
         _spriteBatch.Begin();
         
-        _spriteBatch.Draw( _background, new Rectangle(0, 0, _graphics.GraphicsDevice.Viewport.Width, _graphics.GraphicsDevice.Viewport.Height), null, Color.Blue, 0, Vector2.Zero, SpriteEffects.None, 0 );
+        // _spriteBatch.Draw( _background, new Rectangle(0, 0, _graphics.GraphicsDevice.Viewport.Width, _graphics.GraphicsDevice.Viewport.Height), null, Color.Blue, 0, Vector2.Zero, SpriteEffects.None, 0 );
         //     demonstration of sprite draw (uncomment to view)
         //     player (whole texture)
-        // _spriteBatch.Draw(gameSprites, Vector2.Zero, Color.White);
+        // _spriteBatch.Draw(_gameSprites, Vector2.Zero, Color.White);
         
         //     player (whole texture in the centre - corner)
-        // _spriteBatch.Draw(gameSprites, center, Color.White);
+        // _spriteBatch.Draw(_gameSprites, _center, Color.White);
         
         //     player (whole texture in the centre)
-        // _spriteBatch.Draw(gameSprites, center, null, Color.White, 0, new Vector2(256, 128), 1, SpriteEffects.None, 0);
+        // _spriteBatch.Draw(_gameSprites, _center, null, Color.White, 0, new Vector2(256, 128), 1, SpriteEffects.None, 0);
         
         //     only the player sprite
-        // _spriteBatch.Draw(gameSprites, center, playerBounds, Color.White, 0, new Vector2(0, 0), 1, SpriteEffects.None, 0);
+        // _spriteBatch.Draw(_gameSprites, _center, _playerBounds, Color.White, 0, new Vector2(0, 0), 1, SpriteEffects.None, 0);
 
         //     player sprite rotated
-        // _spriteBatch.Draw(gameSprites, center, playerBounds, Color.White, (float)Math.PI / 2, Vector2.Zero, 1, SpriteEffects.None, 0);
+        // _spriteBatch.Draw(_gameSprites, _center, _playerBounds, Color.White, (float)Math.PI / 2, Vector2.Zero, 1, SpriteEffects.None, 0);
 
         //     player sprite rotated with origin in the centre
-        // _spriteBatch.Draw(gameSprites, center, playerBounds, Color.White, (float)Math.PI / 2, new Vector2(playerBounds.Width / 2, playerBounds.Height / 2), 1, SpriteEffects.None, 0);
+        _spriteBatch.Draw(_gameSprites, _center, _playerBounds, Color.White, (float)Math.PI / 2, new Vector2(_playerBounds.Width / 2f, _playerBounds.Height / 2f), 1, SpriteEffects.None, 0);
 
         //     player sprite mirrored
-        _spriteBatch.Draw( _gameSprites, _center, _playerBounds, Color.White, 0, new Vector2(_playerBounds.Width / 2f, _playerBounds.Height / 2f), 1, SpriteEffects.FlipHorizontally, 0);
+        // _spriteBatch.Draw( _gameSprites, _center, _playerBounds, Color.White, 0, new Vector2(_playerBounds.Width / 2f, _playerBounds.Height / 2f), 1, SpriteEffects.FlipHorizontally, 0);
         
         _spriteBatch.End();
 

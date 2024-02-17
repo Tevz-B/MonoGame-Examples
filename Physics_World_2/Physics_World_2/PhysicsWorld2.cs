@@ -207,7 +207,7 @@ public class PhysicsWorld2 : Game
 
     protected override void Draw(GameTime gameTime)
     {
-        GraphicsDevice.Clear(Color.Gray);
+        GraphicsDevice.Clear(Color.Black);
         base.Draw(gameTime);
         _spriteBatch.Begin();
         _spriteBatch.DrawString(_font, $"Physics World      total objects: {_scene.Count()}    fps: {_fps.FrameRate}", new Vector2(50, 30), Color.Green);

@@ -5,8 +5,7 @@
         <RollForward>Major</RollForward>
         <PublishReadyToRun>false</PublishReadyToRun>
         <TieredCompilation>false</TieredCompilation>
-        <AssemblyName>SpriteClass</AssemblyName>
-        <RootNamespace>SpriteClass</RootNamespace>
+        <RootNamespace>Sprite</RootNamespace>
     </PropertyGroup>
     <PropertyGroup>
         <ApplicationManifest>app.manifest</ApplicationManifest>
