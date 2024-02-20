@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Input.Touch;
 
 namespace SpriteDrawDemo;
 
@@ -46,9 +47,16 @@ public class SpriteDrawDemo : Game
             Keyboard.GetState().IsKeyDown(Keys.Escape))
             Exit();
 
-        // Add your update logic here
-
         base.Update(gameTime);
+
+        TouchCollection touches = TouchPanel.GetState();
+        foreach (TouchLocation touch in touches)
+        {
+            Vector2 position = touch.Position;
+        }
+
+        MouseState mouseState = Mouse.GetState();
+        Vector2 position = mouseState.Position;
     }
 
     protected override void Draw(GameTime gameTime)
