@@ -1,2 +1,2 @@
-﻿using var game = new MadDriver_v1.Game1();
+﻿using var game = new MadDriver_v1.MadDriver();
 game.Run();

@@ -7,11 +7,10 @@ public class Director : DrawableGameComponent
 {
     protected Camera _camera;
 
-    Director(Game theGame)
+    public Director(Game theGame)
         : base (theGame)
     {
-        _camera = new Camera();
-        _camera.Position = 300;
+        _camera = new Camera { Position = 300 };    
         GraphicsDevice.DeviceReset += DeviceResetEvent;
     }
 

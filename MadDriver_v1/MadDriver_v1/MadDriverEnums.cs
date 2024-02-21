@@ -7,6 +7,7 @@ public enum LevelType
     Highway,
     Graveyard,
     Warehouse,
+    _Intro,
     LastType
 }
 

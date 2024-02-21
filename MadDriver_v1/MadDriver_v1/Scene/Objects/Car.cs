@@ -1,8 +1,9 @@
+using Express.Scene.Objects.Movement;
 using Microsoft.Xna.Framework;
 
 namespace MadDriver_v1.Scene.Objects;
 
-public class Car
+public class Car : IMovable
 {
     protected CarType _type;
     protected Vector2 _position = new();
@@ -21,4 +22,7 @@ public class Car
         set => _damage = value;
     }
 
+    public ref Vector2 Position => ref _position;
+
+    public ref Vector2 Velocity => ref _velocity;
 }

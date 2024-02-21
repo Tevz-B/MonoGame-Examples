@@ -29,7 +29,7 @@ public class Level : GameComponent
         this.Reset();
     }
 
-    public void Reset()
+    public virtual void Reset()
     {
         Console.WriteLine("Resetting level.");
     }
@@ -39,6 +39,4 @@ public class Level : GameComponent
         Console.WriteLine("Unloading level.");
         base.Dispose(disposing);
     }
-
-
 }
