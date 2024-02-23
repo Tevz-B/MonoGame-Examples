@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
-using MadDriver_v1.Graphics;
-using MadDriver_v1.Scene;
+using MadDriver_v2.Graphics;
+using MadDriver_v2.Scene;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 
-namespace MadDriver_v1;
+namespace MadDriver_v2;
 
 public class MadDriver : Game
 {
@@ -18,8 +18,8 @@ public class MadDriver : Game
     public MadDriver()
     {
         _graphics = new GraphicsDeviceManager(this);
-        _graphics.PreferredBackBufferHeight = 920;
-        _graphics.PreferredBackBufferWidth = 520;
+        _graphics.PreferredBackBufferHeight = 900;
+        _graphics.PreferredBackBufferWidth = 600;
         
         Content.RootDirectory = "Content";
         IsMouseVisible = true;

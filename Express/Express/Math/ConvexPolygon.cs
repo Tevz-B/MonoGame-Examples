@@ -14,13 +14,13 @@ public class ConvexPolygon
         _vertices = new List<Vector2>(vertices);
         _edges = new List<Vector2>(_vertices.Count);
         _halfPlanes = new List<HalfPlane>(_vertices.Count);
-        for (int i = 0; i < this._vertices.Count; i++)
+        for (int i = 0; i < _vertices.Count; i++)
         {
-            int j = (i + 1) % this._vertices.Count;
-            Vector2 edge = this._vertices[j] - this._vertices[i];
+            int j = (i + 1) % _vertices.Count;
+            Vector2 edge = _vertices[j] - _vertices[i];
             _edges.Add(edge);
             Vector2 normal = Vector2.Normalize(new Vector2(edge.Y, -edge.X));
-            float distance = Vector2.Dot(this._vertices[i], normal);
+            float distance = Vector2.Dot(_vertices[i], normal);
             _halfPlanes.Add(new HalfPlane(normal, distance));
         }
     }

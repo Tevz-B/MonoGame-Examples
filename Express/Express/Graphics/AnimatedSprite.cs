@@ -31,7 +31,7 @@ public class AnimatedSprite
     void SetLoopingDuration(double duration)
     {
         _looping = true;
-        this._duration = duration;
+        _duration = duration;
     }
 
     public void AddFrame(AnimatedSpriteFrame frame)

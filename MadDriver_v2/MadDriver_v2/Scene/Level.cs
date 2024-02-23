@@ -1,7 +1,7 @@
 using System;
 using Microsoft.Xna.Framework;
 
-namespace MadDriver_v1.Scene;
+namespace MadDriver_v2.Scene;
 
 public class Level : GameComponent
 {

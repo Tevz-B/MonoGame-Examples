@@ -1,17 +1,17 @@
 using System;
 using Artificial_I.Artificial.Utils;
 using Express.Graphics;
-using MadDriver_v1.Scene;
-using MadDriver_v1.Scene.Objects;
+using MadDriver_v2.Scene;
+using MadDriver_v2.Scene.Objects;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace MadDriver_v1.Graphics;
+namespace MadDriver_v2.Graphics;
 
 public class GameRenderer : DrawableGameComponent
 {
-    protected ContentManager _content;
+     protected ContentManager _content;
     
     protected string[] _levelResourceNames = new string[(int)LevelType.LastType];
     

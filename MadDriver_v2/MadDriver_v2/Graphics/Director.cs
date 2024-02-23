@@ -1,7 +1,7 @@
 using System;
 using Microsoft.Xna.Framework;
 
-namespace MadDriver_v1.Graphics;
+namespace MadDriver_v2.Graphics;
 
 public class Director : DrawableGameComponent
 {
