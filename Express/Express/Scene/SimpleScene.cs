@@ -8,16 +8,11 @@ namespace Express.Scene;
 
 public class SimpleScene : GameComponent, IScene
 {
-    public class SimpleSceneEventArgs : EventArgs
-    {
-        public object Item { get; set; }
-    }
-    
     private List<object> _items;
     private List<SceneAction> _actions = new List<SceneAction>();
 
-    public event EventHandler ItemAdded;
-    public event EventHandler ItemRemoved;
+    public event EventHandler<IScene.SceneEventArgs> ItemAdded;
+    public event EventHandler<IScene.SceneEventArgs> ItemRemoved;
 
     IEnumerator<object> IEnumerable<object>.GetEnumerator()
     {
@@ -51,7 +46,7 @@ public class SimpleScene : GameComponent, IScene
                     sceneUser.AddedToScene(this);
                 }
 
-                ItemAdded?.Invoke(this, new SimpleSceneEventArgs{Item = item});
+                ItemAdded?.Invoke(this, new IScene.SceneEventArgs{Item = item});
             }
             else
             {
@@ -62,7 +57,7 @@ public class SimpleScene : GameComponent, IScene
                     sceneUser.RemovedFromScene(this);
                 }
 
-                ItemRemoved?.Invoke(this, new SimpleSceneEventArgs{Item = item});  
+                ItemRemoved?.Invoke(this, new IScene.SceneEventArgs{Item = item});  
             }
         }
         _actions.Clear();
@@ -84,4 +79,5 @@ public class SimpleScene : GameComponent, IScene
     {
         _items.Clear();
     }
+
 }

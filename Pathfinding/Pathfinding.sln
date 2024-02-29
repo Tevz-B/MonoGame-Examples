@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pathfinding", "Pathfinding\Pathfinding.csproj", "{80143065-5D6C-4394-87CB-F8ACE2F4ED85}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Artificial I", "..\Artificial I\Artificial I\Artificial I.csproj", "{64F44F86-2A90-40E0-8359-DEE16CB3B592}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Express", "..\Express\Express\Express.csproj", "{3E3AF2DD-7BD7-4736-AE1D-556EAC049839}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{80143065-5D6C-4394-87CB-F8ACE2F4ED85}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{80143065-5D6C-4394-87CB-F8ACE2F4ED85}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{80143065-5D6C-4394-87CB-F8ACE2F4ED85}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{80143065-5D6C-4394-87CB-F8ACE2F4ED85}.Release|Any CPU.Build.0 = Release|Any CPU
+		{64F44F86-2A90-40E0-8359-DEE16CB3B592}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{64F44F86-2A90-40E0-8359-DEE16CB3B592}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{64F44F86-2A90-40E0-8359-DEE16CB3B592}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{64F44F86-2A90-40E0-8359-DEE16CB3B592}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3E3AF2DD-7BD7-4736-AE1D-556EAC049839}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3E3AF2DD-7BD7-4736-AE1D-556EAC049839}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3E3AF2DD-7BD7-4736-AE1D-556EAC049839}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3E3AF2DD-7BD7-4736-AE1D-556EAC049839}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
