@@ -49,9 +49,6 @@ public class Agent : IParticle, ICustomUpdate, ICustomCollider
                 _velocity = Vector2.Zero;
                 _target = null;
             }
-
         }
-
     }
-
 }

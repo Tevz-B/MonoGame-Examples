@@ -23,13 +23,13 @@ public class SimpleScene : GameComponent, IScene
     {
         return _items.GetEnumerator();
     }
-    
+
     public SimpleScene(Game game)
         : base(game)
     {
         _items = new List<object>();
     }
-    
+
     public override void Update(GameTime gameTime)
     {
         for (int i = 0; i < _actions.Count; i++)
@@ -46,7 +46,7 @@ public class SimpleScene : GameComponent, IScene
                     sceneUser.AddedToScene(this);
                 }
 
-                ItemAdded?.Invoke(this, new IScene.SceneEventArgs{Item = item});
+                ItemAdded?.Invoke(this, new IScene.SceneEventArgs { Item = item });
             }
             else
             {
@@ -57,11 +57,12 @@ public class SimpleScene : GameComponent, IScene
                     sceneUser.RemovedFromScene(this);
                 }
 
-                ItemRemoved?.Invoke(this, new IScene.SceneEventArgs{Item = item});  
+                ItemRemoved?.Invoke(this, new IScene.SceneEventArgs { Item = item });
             }
         }
+
         _actions.Clear();
-        
+
         base.Update(gameTime);
     }
 
@@ -74,10 +75,9 @@ public class SimpleScene : GameComponent, IScene
     {
         _actions.Add(new SceneAction(SceneAction.SceneOperation.Remove, item));
     }
-    
+
     public void Clear()
     {
         _items.Clear();
     }
-
 }
