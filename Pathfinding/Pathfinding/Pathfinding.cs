@@ -14,7 +14,6 @@ namespace Pathfinding;
 
 public class Pathfinding : Game
 {
-    private GraphicsDeviceManager _graphics;
     private SpriteBatch _spriteBatch;
     private PrimitiveBatch _primitiveBatch;
     private Texture2D _neoTexture;
@@ -29,7 +28,11 @@ public class Pathfinding : Game
 
     public Pathfinding()
     {
-        _graphics = new GraphicsDeviceManager(this);
+        var graphics = new GraphicsDeviceManager(this);
+        graphics.PreferredBackBufferWidth = 1600;
+        graphics.PreferredBackBufferHeight = 900;
+        graphics.ApplyChanges();
+        
         Content.RootDirectory = "Content";
         IsMouseVisible = true;
     }
@@ -45,14 +48,15 @@ public class Pathfinding : Game
         _scene.Add(_agent);
         
         _gridEffect = new BasicEffect(GraphicsDevice);
+        _gridEffect.VertexColorEnabled = true;
         _gridEffect.World = Matrix.CreateRotationX(MathF.PI / 2f);
         _gridEffect.View = _view;
         _gridEffect.Projection = _projection;
         DebugRenderer debugRenderer = new DebugRenderer(this, _scene);
         debugRenderer.Effect = _gridEffect;
         debugRenderer.TransformMatrix = _gridEffect.World;
-        debugRenderer.ItemColor = Color.Transparent;
-        Components.Add(debugRenderer);
+        debugRenderer.ItemColor = Color.Yellow;
+        // Components.Add(debugRenderer);
 
         base.Initialize();
     }
@@ -130,6 +134,7 @@ public class Pathfinding : Game
             _agent.GoTo(new Vector2(pointOnGround.X, pointOnGround.Z));
         }
 
+        // Physics
         MovementPhysics.SimulateMovement(_agent, gameTime.ElapsedGameTime);
         ArrayList itemsNearAgent = _scene.GetItemsAround(_scene.CalculateGridCoordinate(_agent), 1);
         foreach (object item in itemsNearAgent)
@@ -147,10 +152,13 @@ public class Pathfinding : Game
 
     protected override void Draw(GameTime gameTime)
     {
-        GraphicsDevice.Clear(Color.CornflowerBlue);
+        GraphicsDevice.Clear(Color.LightBlue);
 
         _view.M41 = -_agent.Position.X;
+        _gridEffect.View = _view;
         _primitiveBatch.Begin(null, null, null, _gridEffect);
+        
+        // Grid
         for (int i = (int)-_view.Translation.X - 15; i < -_view.Translation.X + 15; i++)
         {
             _primitiveBatch.DrawLine(new Vector2(i, -15), new Vector2(i, 10), Color.Gray);
@@ -162,6 +170,7 @@ public class Pathfinding : Game
                 new Vector2(-_view.Translation.X + 15, i), Color.Gray);
         }
 
+        // Obstacles - line representation
         foreach (object item in _scene)
         {
             Obstacle obstacle = item is Obstacle ? item as Obstacle : null;
@@ -177,7 +186,8 @@ public class Pathfinding : Game
                     Color.Black);
             }
         }
-
+        
+        // Pathfinding
         Vector2 previous = _agent.Position;
         PathfindingAgent pathfindingAgent = _agent is PathfindingAgent ? _agent as PathfindingAgent : null;
         if (pathfindingAgent is not null)
@@ -196,6 +206,7 @@ public class Pathfinding : Game
         
         _spriteBatch.Begin();
         
+        // Agent
         Vector3 agentPosition =
             GraphicsDevice.Viewport.Project(new Vector3(_agent.Position.X, 0, _agent.Position.Y), _projection,
                 _view, Matrix.Identity);
@@ -230,6 +241,23 @@ public class Pathfinding : Game
 
         _spriteBatch.Draw(agentSprite.Texture, new Vector2(agentPosition.X, agentPosition.Y),
             agentSprite.SourceRectangle, Color.White, 0, agentSprite.Origin, agentScale, agentEffects, 0);
+        
+        // Obstacles - as texture
+        foreach (var item in _scene)        
+        {
+            if (item is Obstacle obstacle)
+            {
+                Vector3 obstaclePos =
+                    GraphicsDevice.Viewport.Project(new Vector3(obstacle.Position.X - 0.5f, 0, obstacle.Position.Y - 0.5f), _projection,
+                        _view, Matrix.Identity);
+                Vector3 obstacleTop = GraphicsDevice.Viewport.Project(new Vector3(obstacle.Position.X - 0.5f, 1, obstacle.Position.Y - 0.5f),
+                    _projection, _view, Matrix.Identity);
+                float obstacleScale = (obstaclePos.Y - obstacleTop.Y) / 90;
+                
+                _spriteBatch.Draw(_boulderTexture, new Vector2(obstaclePos.X, obstaclePos.Y),
+                    _boulderTexture.Bounds, Color.White, 0, Vector2.Zero, obstacleScale, SpriteEffects.None, 0);
+            }
+        }
         
         _spriteBatch.End();
         

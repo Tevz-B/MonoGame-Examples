@@ -34,22 +34,22 @@ public class PrimitiveBatch
         _basicEffect.Projection = Matrix.CreateOrthographicOffCenter(-0.5f, _graphicsDevice.Viewport.Width - 0.5f, _graphicsDevice.Viewport.Height - 0.5f, -0.5f, 0, -1);
     }
 
-    public void Begin(BlendState theBlendState = null, DepthStencilState theDepthStencilState = null, RasterizerState theRasterizerState = null, Effect theEffect = null, Matrix? theTransformMatrix0 = null)
+    public void Begin(BlendState theBlendState = null, DepthStencilState theDepthStencilState = null, RasterizerState theRasterizerState = null, Effect theEffect = null, Matrix? theTransformMatrix = null)
     {
         theBlendState ??= BlendState.AlphaBlend;
         theDepthStencilState ??= DepthStencilState.None;
         theRasterizerState ??= RasterizerState.CullCounterClockwise;
         theEffect ??= _basicEffect;
-        Matrix theTransformMatrix = theTransformMatrix0 ?? Matrix.Identity;
+        // Matrix theTransformMatrix = theTransformMatrix0 ?? Matrix.Identity;
 
          _blendState = theBlendState;
         _depthStencilState = theDepthStencilState;
         _rasterizerState = theRasterizerState;
         _effect = theEffect;
         
-        if (_effect is BasicEffect effect1)
+        if (theTransformMatrix is not null && _effect is BasicEffect effect1)
         {
-            effect1.World = theTransformMatrix;
+            effect1.World = theTransformMatrix.Value;
         }
 
         _beginCalled = true;

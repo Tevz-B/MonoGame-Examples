@@ -29,7 +29,7 @@ public class Agent : IParticle, ICustomUpdate, ICustomCollider
         set => _radius = value;
     }
 
-    public void GoTo(Vector2 theTarget)
+    public virtual void GoTo(Vector2 theTarget)
     {
         _target = theTarget;
     }

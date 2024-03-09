@@ -4,26 +4,27 @@ using System.Collections.Generic;
 using System.Linq;
 using Express.Scene;
 using Express.Scene.Objects;
+using Express.Scene.Objects.Colliders;
 using Microsoft.Xna.Framework;
 
 namespace Pathfinding;
 
-public class PathfindingAgent : Agent, ISceneUser
+public class PathfindingAgent : Agent, ISceneUser, ICustomCollider
 {
-    protected List<Vector2> waypoints = new();
-    protected GridScene scene;
-    protected List<SearchNode> fringe = new();
-    protected Dictionary<Point, int> expandedPoints = new();
+    protected List<Vector2> _waypoints = new();
+    protected GridScene _scene;
+    protected List<SearchNode> _fringe = new();
+    protected Dictionary<Point, int> _expandedPoints = new();
 
-    public List<Vector2> Waypoints => waypoints;
+    public List<Vector2> Waypoints => _waypoints;
 
-    void GoTo(Vector2 theTarget)
+    public override void GoTo(Vector2 theTarget)
     {
-        waypoints.Clear();
-        ArrayList gridCoordinatesToGoal = FindPathTo(scene.CalculateGridCoordinate(theTarget));
+        _waypoints.Clear();
+        ArrayList gridCoordinatesToGoal = FindPathTo(_scene.CalculateGridCoordinate(theTarget));
         foreach (Point gridCoordinate in gridCoordinatesToGoal)
         {
-            waypoints.Add(new Vector2(gridCoordinate.X + 0.5f, gridCoordinate.Y + 0.5f));
+            _waypoints.Add(new Vector2(gridCoordinate.X + 0.5f, gridCoordinate.Y + 0.5f));
         }
 
         _target = null;
@@ -32,22 +33,37 @@ public class PathfindingAgent : Agent, ISceneUser
     public ArrayList FindPathTo(Point goal)
     {
         ArrayList result = new ArrayList();
-        fringe.Clear();
-        expandedPoints.Clear();
+        _fringe.Clear();
+        _expandedPoints.Clear();
+        
+        // Check if goal is Obstacle
+        foreach (var itemAtGoal in _scene.GetItemsAt(goal))
+        {
+            if (itemAtGoal is Obstacle)
+            {
+                return result;
+            }
+        }
+        
+        // Add initial node from which the search starts.
         SearchNode initialNode = SearchNode.Node();
-        initialNode.Point = scene.CalculateGridCoordinate(_position);
-        fringe.Add(initialNode);
+        initialNode.Point = _scene.CalculateGridCoordinate(_position);
+        _fringe.Add(initialNode);
         while (true)
         {
-            if (fringe.Count == 0)
+            // If fringe is empty we're in a dead end with nowhere to go. Fail!
+            if (_fringe.Count == 0)
             {
                 return result;
             }
 
-            fringe.Sort((x, y) => x.TotalCost.CompareTo(y)); // descending or ascending
-            int lastIdx = fringe.Count - 1;
-            SearchNode node = fringe[lastIdx];
-            fringe.RemoveAt(lastIdx);
+            // Get the node with smallest cost.
+            _fringe.Sort((x, y) => -x.TotalCost.CompareTo(y.TotalCost)); // descending or ascending
+            int lastIdx = _fringe.Count - 1;
+            SearchNode node = _fringe[lastIdx];
+            _fringe.RemoveAt(lastIdx);
+            
+            // If this is the goal state return with success.
             if (node.Point == goal)
             {
                 while (true)
@@ -64,7 +80,8 @@ public class PathfindingAgent : Agent, ISceneUser
                 }
             }
 
-            fringe.AddRange(ExpandGoal(node, goal));
+            // Not a goal state - expand the node and add the successors to the list.
+            _fringe.AddRange(ExpandGoal(node, goal));
         }
     }
 
@@ -75,9 +92,9 @@ public class PathfindingAgent : Agent, ISceneUser
         {
             int newCost = node.RealCost + 1;
 
-            if (!expandedPoints.ContainsKey(point) || newCost < expandedPoints[point])
+            if (!_expandedPoints.ContainsKey(point) || newCost < _expandedPoints[point])
             {
-                expandedPoints[point] = newCost;
+                _expandedPoints[point] = newCost;
                 SearchNode newNode = SearchNode.Node();
                 newNode.Point = point;
                 newNode.Parent = node;
@@ -102,7 +119,7 @@ public class PathfindingAgent : Agent, ISceneUser
 
     public void AddPointIfClearTo(Point point, ArrayList array)
     {
-        ArrayList itemsAtPoint = scene.GetItemsAt(point);
+        ArrayList itemsAtPoint = _scene.GetItemsAt(point);
         if (itemsAtPoint.Count == 0 || (itemsAtPoint.Count == 1 && itemsAtPoint[0] == this))
         {
             array.Add(point);
@@ -113,10 +130,10 @@ public class PathfindingAgent : Agent, ISceneUser
     {
         if (_target is null)
         {
-            if (waypoints.Count > 0)
+            if (_waypoints.Count > 0)
             {
-                base.GoTo(waypoints.Last());
-                waypoints.RemoveAt(waypoints.Count - 1);
+                base.GoTo(_waypoints.Last());
+                _waypoints.RemoveAt(_waypoints.Count - 1);
             }
             else
             {
@@ -127,19 +144,19 @@ public class PathfindingAgent : Agent, ISceneUser
         base.Update(gameTime);
     }
 
-    void CollidedWithItem(object item)
+    void ICustomCollider.CollidedWith(object item)
     {
-        if (waypoints.Count > 0)
+        if (_waypoints.Count > 0)
         {
-            GoTo(waypoints[0]);
+            GoTo(_waypoints[0]);
         }
     }
 
 
     public IScene Scene
     {
-        get => scene;
-        set => scene = (GridScene)value;
+        get => _scene;
+        set => _scene = (GridScene)value;
     }
 
     public void AddedToScene(IScene scene)

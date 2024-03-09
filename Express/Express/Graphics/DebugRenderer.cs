@@ -93,7 +93,7 @@ public class DebugRenderer : DrawableGameComponent
         Matrix transformInverse = Matrix.Invert(_transformMatrix);
         Vector2 topLeft = Vector2.Transform(Vector2.Zero, transformInverse);
         Vector2 bottomRight = Vector2.Transform(new Vector2( GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height), transformInverse);
-        _primitiveBatch.Begin(_blendState, _depthStencilState, _rasterizerState, _effect, transformInverse);
+        _primitiveBatch.Begin(_blendState, _depthStencilState, _rasterizerState, _effect, _transformMatrix);
         foreach (object item in _scene)
         {
             IPosition itemWithPosition = item as IPosition;
