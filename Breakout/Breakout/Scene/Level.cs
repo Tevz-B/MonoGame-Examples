@@ -3,6 +3,7 @@ using Artificial_I.Artificial.Utils;
 using Breakout.Scene.Objects;
 using Express.Math;
 using Express.Scene;
+using Express.Scene.Objects;
 using Microsoft.Xna.Framework;
 
 namespace Breakout.Scene;
@@ -12,6 +13,7 @@ public class Level : GameComponent
     protected SimpleScene _scene;
     protected Paddle _paddle;
     protected int _bricksCount;
+    protected int _ballsCount;
     protected Rectangle _bounds;
 
     public Level(Game theGame)
@@ -35,6 +37,8 @@ public class Level : GameComponent
 
     public int BricksCount => _bricksCount;
     
+    public int BallsCount => _ballsCount;
+    
 
     public override void Initialize()
     {
@@ -47,7 +51,7 @@ public class Level : GameComponent
         _paddle.Position.Y = _bounds.Height - 70;
     }
 
-    public void ResetLevel(float speed)
+    public void ResetLevel(float ballSpeed)
     {
         _scene.Clear();
         
@@ -61,7 +65,7 @@ public class Level : GameComponent
         ResetPaddle();
         
         // Add Ball
-        AddBall(speed);
+        AddBall(ballSpeed);
         
         // Add Bricks
         for (int i = 0; i < (int)BrickStyle.Last; i++)
@@ -83,14 +87,14 @@ public class Level : GameComponent
         }
     }
 
-    protected void ResetPaddle()
+    public void ResetPaddle()
     {
         _paddle.RemoveAllPowerUps();
         _paddle.MagnetPower = 1;
         _paddle.Width = Constants.InitialPaddleWidth;
     }
 
-    protected void AddBall(float speed)
+    public void AddBall(float speed)
     {
         Ball ball = new Ball
         {
@@ -104,29 +108,36 @@ public class Level : GameComponent
 
     public override void Update(GameTime gameTime)
     {
-        ArrayList removeBricks = new ArrayList();
         foreach (object item in _scene)
         {
-            if (item is Brick brick && brick.Destroyed)
+            if (item is ICustomUpdate updatable)
             {
-                removeBricks.Add(brick);
+                updatable.Update(gameTime);
             }
-        }
-
-        foreach (Brick brick in removeBricks)
-        {
-            _scene.Remove(brick);
-            _bricksCount--;
         }
     }
 
     protected void ItemAddedToScene(object sender, IScene.SceneEventArgs args)
     {
-        
+        if (args.Item is Brick)
+        {
+            _bricksCount++;
+        }
+        else if (args.Item is Ball)
+        {
+            _ballsCount++;
+        }
     }
     
     protected void ItemRemovedFromScene(object sender, IScene.SceneEventArgs args)
     {
-        
+        if (args.Item is Brick)
+        {
+            _bricksCount--;
+        }
+        else if (args.Item is Ball)
+        {
+            _ballsCount--;
+        }
     }
 }

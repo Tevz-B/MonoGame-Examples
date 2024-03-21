@@ -31,7 +31,12 @@ public class Player : GameComponent
         //     _paddle.Position.X = touchInScene.X;
         // }
 
-        Vector2 mouseInScene = Vector2.Transform(Mouse.GetState().Position.ToVector2(), _inverseView);
+        var mouseState = Mouse.GetState();
+        Vector2 mouseInScene = Vector2.Transform(mouseState.Position.ToVector2(), _inverseView);
         _paddle.Position.X = mouseInScene.X;
+        if (mouseState.LeftButton == ButtonState.Pressed)
+        {
+            _paddle.ReleaseBalls();
+        }
     }
 }

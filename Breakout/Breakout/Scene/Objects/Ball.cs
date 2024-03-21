@@ -35,7 +35,7 @@ public class Ball : IParticle, ICustomCollider
         set => _radius = value;
     }
 
-    public bool CollidingWithItem(object item)
+    public bool CollidingWith(object item, bool defaultValue = true)
     {
         // Dont collide with balls
         if (item is Ball)
@@ -52,7 +52,7 @@ public class Ball : IParticle, ICustomCollider
         return true;
     }
 
-    public void CollidedWithItem(object item)
+    public void CollidedWith(object item)
     {
         // Make sure the vertical velocity is big enough after collision,
         // so we don't have to endlessly wait for the ball to come down.

@@ -10,8 +10,10 @@ public class Renderer : DrawableGameComponent
 {
     protected SpriteBatch _spriteBatch;
     protected Texture2D _breakoutTexture;
-    protected Sprite _brickSprite, _ballSprite, _paddleSprite, _lifeSprite;
-    protected Color[] _brickColor = new Color[(int)BrickStyle.Last];
+    protected Sprite _brickSprite, _ballSprite, _lifeSprite;
+    protected Sprite _paddleLeftSprite, _paddleMiddleSprite, _paddleRightSprite;
+    protected Sprite[] _powerUpSprite = new Sprite[(int)PowerUpType.LastType];
+    protected Color[,] _brickColor = new Color[(int)BrickStyle.Last, 2];
     protected Gameplay _gameplay;
     protected Matrix _camera;
 
@@ -37,11 +39,21 @@ public class Renderer : DrawableGameComponent
         
         _breakoutTexture = Game.Content.Load<Texture2D>("breakout");
         
-        _paddleSprite = new Sprite
+        _paddleLeftSprite = new Sprite
         {
             Texture = _breakoutTexture,
-            SourceRectangle = new Rectangle(1, 1, 123, 49),
-            Origin = new Vector2(61, 29)
+            SourceRectangle = new Rectangle(125, 26, 20, 23),
+            // Origin = new Vector2(61, 29)
+        };
+        _paddleMiddleSprite = new Sprite
+        {
+            Texture = _breakoutTexture,
+            SourceRectangle = new Rectangle(145, 26, 57, 23),
+        };
+        _paddleRightSprite = new Sprite
+        {
+            Texture = _breakoutTexture,
+            SourceRectangle = new Rectangle(202, 26, 20, 23),
         };
 
         _lifeSprite = new Sprite
@@ -64,11 +76,23 @@ public class Renderer : DrawableGameComponent
             Origin = new Vector2(25, 13)
         };
 
-        _brickColor[(int)BrickStyle.Blue] = Color.Blue;
-        _brickColor[(int)BrickStyle.Red] = Color.Red;
-        _brickColor[(int)BrickStyle.Magenta] = Color.Magenta;
-        _brickColor[(int)BrickStyle.Green] = Color.Lime;
-        _brickColor[(int)BrickStyle.Yellow] = Color.Yellow;
+        _brickColor[(int)BrickStyle.Blue, 0] = Color.Blue;
+        _brickColor[(int)BrickStyle.Red, 0] = Color.Red;
+        _brickColor[(int)BrickStyle.Magenta, 0] = Color.Magenta;
+        _brickColor[(int)BrickStyle.Green, 0] = Color.Lime;
+        _brickColor[(int)BrickStyle.Yellow, 0] = Color.Yellow;
+        _brickColor[(int)BrickStyle.Steel, 0] = Color.Gray;
+        _brickColor[(int)BrickStyle.Steel, 1] = Color.LightGray;
+
+        for (int i = 0; i < (int)PowerUpType.LastType; i++)
+        {
+            _powerUpSprite[i] = new Sprite();
+            _powerUpSprite[i].Texture = _breakoutTexture;
+            int x = i % 5;
+            int y = i / 5;
+            _powerUpSprite[i].SourceRectangle = new Rectangle(50 * x, 50 * (y + 1), 50, 50);
+            _powerUpSprite[i].Origin = new Vector2(25, 25);
+        }
     }
 
     public override void Draw(GameTime gameTime)
@@ -85,16 +109,26 @@ public class Renderer : DrawableGameComponent
             {
                 case Brick brick:
                     sprite = _brickSprite;
-                    color = _brickColor[(int)brick.Style];
+                    color = _brickColor[(int)brick.Style, brick.Power - 1];
                     break;
                 case Ball:
                     sprite = _ballSprite;
                     color = Color.Black;
                     break;
-                case Paddle:
-                    sprite = _paddleSprite;
-                    color = Color.Black;
+                case PowerUp powerUp:
+                    sprite = _powerUpSprite[(int)powerUp.Type];
+                    color = Color.White;
                     break;
+                case Paddle paddle:
+                    Rectangle paddleLeftDestination = new Rectangle((int)(paddle.Position.X - paddle.Width / 2), (int)(paddle.Position.Y - paddle.Height / 2), _paddleLeftSprite.SourceRectangle.Width, _paddleLeftSprite.SourceRectangle.Height);
+                    _spriteBatch.Draw(_paddleLeftSprite.Texture, paddleLeftDestination, _paddleLeftSprite.SourceRectangle, Color.White);
+                    Rectangle paddleRightDestination = new Rectangle((int)(paddle.Position.X + paddle.Width / 2 - _paddleRightSprite.SourceRectangle.Width), (int)(paddle.Position.Y - paddle.Height / 2), _paddleRightSprite.SourceRectangle.Width, _paddleRightSprite.SourceRectangle.Height);
+                    _spriteBatch.Draw(_paddleRightSprite.Texture, paddleRightDestination, _paddleRightSprite.SourceRectangle, Color.White);
+                    Rectangle paddleMiddleDestination = new Rectangle((int)(paddle.Position.X - paddle.Width / 2 + _paddleLeftSprite.SourceRectangle.Width), (int)(paddle.Position.Y - paddle.Height / 2), (int)(paddle.Width - _paddleLeftSprite.SourceRectangle.Width - _paddleRightSprite.SourceRectangle.Width), _paddleMiddleSprite.SourceRectangle.Height);
+                    _spriteBatch.Draw(_paddleMiddleSprite.Texture, paddleMiddleDestination, _paddleMiddleSprite.SourceRectangle, Color.White);
+                    
+                    break;
+                
                 default:
                     break;
             }

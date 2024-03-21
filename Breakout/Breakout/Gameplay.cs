@@ -25,16 +25,16 @@ public class Gameplay : GameComponent
         _renderer = new Renderer(Game, this);
         _debugRenderer = new DebugRenderer(Game, _level.Scene);
         
-        _player.UpdateOrder = 0;
-        _physics.UpdateOrder = 1;
-        _level.UpdateOrder = 2;
-        UpdateOrder = 3;
+        _player.UpdateOrder = 0;    // First the game should process input.		
+        _physics.UpdateOrder = 1;   // Then the physics engine updates the world.
+        _level.UpdateOrder = 2;     // Level updates the scene.
+        UpdateOrder = 4;            // At last gameplay rules are executed.
         
         Game.Components.Add(_level);
         Game.Components.Add(_player);
         Game.Components.Add(_physics);
         Game.Components.Add(_renderer);
-        // Game.Components.Add(_debugRenderer);
+        Game.Components.Add(_debugRenderer);
     }
 
     public Level Level => _level;
@@ -54,9 +54,18 @@ public class Gameplay : GameComponent
 
     public override void Update(GameTime gameTime)
     {
-        if (_level.BallsCount == 0)
+        if (_level.BallsCount <= 0)
         {
-            
+            _lives--;
+            if (_lives < 0)
+            {
+                Reset();
+            }
+            else
+            {
+                _level.ResetPaddle();
+                _level.AddBall(CalculateCurrentBallSpeed());
+            }
         }
 
         if (_level.BricksCount == 0)

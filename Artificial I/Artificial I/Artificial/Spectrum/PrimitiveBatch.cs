@@ -126,6 +126,11 @@ public class PrimitiveBatch
     public void Draw()
     {
         int lineCount = _vertexArray.Count() / 2;
+        if (lineCount < 1)
+        {
+            return;
+        }
+        
         _graphicsDevice.DrawUserPrimitives(PrimitiveType.LineList, _vertexArray.ToArray(), 0, lineCount);
         _vertexArray.Clear();
     }

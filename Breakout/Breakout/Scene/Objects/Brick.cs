@@ -14,6 +14,7 @@ public enum BrickStyle
     Magenta,
     Green,
     Yellow,
+    Steel,
     Last
 }
 
@@ -89,11 +90,9 @@ public class Brick : IAARectangleCollider, ICustomCollider, ISceneUser
 
     public void AddedToScene(IScene scene)
     {
-        throw new NotImplementedException();
     }
 
     public void RemovedFromScene(IScene scene)
     {
-        throw new NotImplementedException();
     }
 }

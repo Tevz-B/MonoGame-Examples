@@ -108,15 +108,6 @@ public class Paddle : IAARectangleCollider, ICustomCollider, ISceneUser, ICustom
         set => _scene = value;
     }
 
-    public void AddedToScene(IScene scene)
-    {
-        throw new NotImplementedException();
-    }
-
-    public void RemovedFromScene(IScene scene)
-    {
-        throw new NotImplementedException();
-    }
 
     public void Update(GameTime gameTime)
     {
@@ -131,5 +122,13 @@ public class Paddle : IAARectangleCollider, ICustomCollider, ISceneUser, ICustom
             ball.Ball.Position.Y = _position.Y - _height / 2f - ball.Ball.Radius;
 
         }
+    }
+    
+    public void AddedToScene(IScene scene)
+    {
+    }
+
+    public void RemovedFromScene(IScene scene)
+    {
     }
 }
