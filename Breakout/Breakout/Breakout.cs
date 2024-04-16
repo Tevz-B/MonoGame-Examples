@@ -4,6 +4,12 @@ using Microsoft.Xna.Framework.Input;
 
 namespace Breakout;
 
+// TODO:
+// doesnt end level (win condition),
+// sometimes stuck on big paddle,
+// speed is sometimes weird
+
+
 public class Breakout : Game
 {
     private GraphicsDeviceManager _graphics;
