@@ -5,8 +5,12 @@ This is a rewrite of game demos in C# and MonoGame. The original demos were deve
 
 ## Game Demos
 - FriHockey
-- Sprite Batch Rendering Examples
 - Physics World
+- Pathfinding
+- Mad Driver
+- Wall
+- Breakout
+- Sprite Batch Rendering Examples
 
 ## Libraries
 - Express
@@ -29,3 +33,10 @@ Most Examples use libraries 'Artificial I' and 'Express' which focus on physics 
 
 ### Code style
 - JetBrains Rider IDE code style can be configured in the settings or for advanced users in .editorconfig file
+
+### Linux problems
+- Make sure to have dotnet-sdk 6.0 installed and running in Rider terminal `dotnet --version`
+- XImporter/FbxImporter Error: missing `libdl.so` - try creating sym link to `libdl.so`.
+   - `ln -s /usr/lib/x86_64-linux-gnu/libdl.so.2 /usr/lib/x86_64-linux-gnu/libdl.so`
+- Other build errors: install missing libraries.
+   - `sudo apt install libminizip-dev`
