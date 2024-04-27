@@ -38,5 +38,7 @@ Most Examples use libraries 'Artificial I' and 'Express' which focus on physics 
 - Make sure to have dotnet-sdk 6.0 installed and running in Rider terminal `dotnet --version`
 - XImporter/FbxImporter Error: missing `libdl.so` - try creating sym link to `libdl.so`.
    - `ln -s /usr/lib/x86_64-linux-gnu/libdl.so.2 /usr/lib/x86_64-linux-gnu/libdl.so`
-- Other build errors: install missing libraries.
+- Other build errors: the solution is usually to install missing libraries.
    - `sudo apt install libminizip-dev`
+   - nvidia: nvtt - needs manual install
+   - ...
