@@ -25,7 +25,6 @@ public class Brick : IAARectangleCollider, ICustomCollider, ISceneUser
     protected float _width = 50;
     protected float _height = 24;
     protected int _power = 1;
-    protected bool _destroyed;
     protected IScene _scene;
 
     public int Power
@@ -53,9 +52,6 @@ public class Brick : IAARectangleCollider, ICustomCollider, ISceneUser
         get => _height;
         set => _height = value;
     }
-
-    public bool Destroyed => _destroyed;
-
     public bool CollidingWith(object item, bool defaultValue = true)
     {
         if (item is not Ball)
@@ -70,7 +66,7 @@ public class Brick : IAARectangleCollider, ICustomCollider, ISceneUser
             _scene.Remove(this);
             
             // Create power up randomly, but only if ball is not in breakthrough mode.
-            if (ball.BreakthroughPower == 0 && SRandom.Float() < Constants.PowerUpChance)
+            if (!ball.BreakthroughPower && SRandom.Float() < Constants.PowerUpChance)
             {
                 PowerUp powerUp = PowerUpFactory.CreateRandomPowerUp();
                 powerUp.Position = _position;

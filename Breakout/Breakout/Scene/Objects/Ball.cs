@@ -11,9 +11,9 @@ public class Ball : IParticle, ICustomCollider
     protected Vector2 _velocity = new();
     protected float _radius = 8;
     protected float _mass = 1;
-    protected int _breakthroughPower;
+    protected bool _breakthroughPower;
 
-    public int BreakthroughPower
+    public bool BreakthroughPower
     {
         get => _breakthroughPower;
         set => _breakthroughPower = value;
@@ -44,7 +44,7 @@ public class Ball : IParticle, ICustomCollider
         }
 
         // Dont Collide with bricks when the ball has breakthrough power
-        if (item is Brick && _breakthroughPower != 0)
+        if (item is Brick && _breakthroughPower)
         {
             return false;
         }

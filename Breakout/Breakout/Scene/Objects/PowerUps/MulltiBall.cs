@@ -21,8 +21,8 @@ public class MultiBall : PowerUp
                     Position = ball.Position,
                     BreakthroughPower = ball.BreakthroughPower
                 };
-                copy.Velocity.X = -ball.Position.X;
-                copy.Velocity.Y = ball.Position.Y;
+                copy.Velocity.X = -ball.Velocity.X;
+                copy.Velocity.Y = ball.Velocity.Y;
                 _scene.Add(copy);
                 
                 copy = new Ball
@@ -30,8 +30,8 @@ public class MultiBall : PowerUp
                     Position = ball.Position,
                     BreakthroughPower = ball.BreakthroughPower
                 };
-                copy.Velocity.X = ball.Position.X;
-                copy.Velocity.Y = -ball.Position.Y;
+                copy.Velocity.X = ball.Velocity.X;
+                copy.Velocity.Y = -ball.Velocity.Y;
                 _scene.Add(copy);
             }
 

@@ -6,9 +6,9 @@ public static class Constants
 {
     public static float MinimumBallVerticalVelocity => 100f;
 
-    public static float MaximumBallAngle => MathF.PI / 2f;
+    public static float MaximumBallAngle => MathF.PI / 3f;
 
-    public static int StartLives => 2;
+    public static int StartLives => 3;
 
     public static float InitialBallSpeed => 400;
 

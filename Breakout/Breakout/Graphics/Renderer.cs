@@ -43,7 +43,6 @@ public class Renderer : DrawableGameComponent
         {
             Texture = _breakoutTexture,
             SourceRectangle = new Rectangle(125, 26, 20, 23),
-            // Origin = new Vector2(61, 29)
         };
         _paddleMiddleSprite = new Sprite
         {
@@ -77,12 +76,17 @@ public class Renderer : DrawableGameComponent
         };
 
         _brickColor[(int)BrickStyle.Blue, 0] = Color.Blue;
+        _brickColor[(int)BrickStyle.Blue, 1] = Color.LightBlue;
         _brickColor[(int)BrickStyle.Red, 0] = Color.Red;
-        _brickColor[(int)BrickStyle.Magenta, 0] = Color.Magenta;
+        _brickColor[(int)BrickStyle.Red, 1] = Color.MistyRose;
+        _brickColor[(int)BrickStyle.Magenta, 0] = Color.Purple;
+        _brickColor[(int)BrickStyle.Magenta, 1] = Color.Magenta;
         _brickColor[(int)BrickStyle.Green, 0] = Color.Lime;
+        _brickColor[(int)BrickStyle.Green, 1] = Color.LightGreen;
         _brickColor[(int)BrickStyle.Yellow, 0] = Color.Yellow;
-        _brickColor[(int)BrickStyle.Steel, 0] = Color.Gray;
-        _brickColor[(int)BrickStyle.Steel, 1] = Color.LightGray;
+        _brickColor[(int)BrickStyle.Yellow, 1] = Color.LightYellow;
+        _brickColor[(int)BrickStyle.Steel, 0] = Color.DarkGray;
+        _brickColor[(int)BrickStyle.Steel, 1] = Color.Gray;
 
         for (int i = 0; i < (int)PowerUpType.LastType; i++)
         {

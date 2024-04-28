@@ -18,7 +18,7 @@ public class Breakthrough : PowerUp
         {
             if (item is Ball ball)
             {
-                ball.BreakthroughPower++;
+                ball.BreakthroughPower = true;
             }
 
         }
@@ -32,7 +32,7 @@ public class Breakthrough : PowerUp
         {
             if (item is Ball ball)
             {
-                ball.BreakthroughPower--;
+                ball.BreakthroughPower = false;
             }
 
         }

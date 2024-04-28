@@ -78,6 +78,9 @@ public class SimpleScene : GameComponent, IScene
 
     public void Clear()
     {
-        _items.Clear();
+        foreach (var item in _items)
+        {
+            Remove(item);
+        }
     }
 }

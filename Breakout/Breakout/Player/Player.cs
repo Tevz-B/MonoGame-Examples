@@ -22,7 +22,7 @@ public class Player : GameComponent
 
     public override void Update(GameTime gameTime)
     {
-        //// Touch version 
+        //// Touch version template
         // TouchCollection touches = TouchPanel.GetState();
         // if (touches.Count() == 1)
         // {
