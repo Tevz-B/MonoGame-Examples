@@ -34,7 +34,7 @@ public class Gameplay : GameComponent
         Game.Components.Add(_player);
         Game.Components.Add(_physics);
         Game.Components.Add(_renderer);
-        Game.Components.Add(_debugRenderer);
+        // Game.Components.Add(_debugRenderer);
     }
 
     public Level Level => _level;
