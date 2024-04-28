@@ -10,6 +10,7 @@ public class Renderer : DrawableGameComponent
 {
     protected SpriteBatch _spriteBatch;
     protected Texture2D _breakoutTexture;
+    protected Texture2D _background;
     protected Sprite _brickSprite, _ballSprite, _lifeSprite;
     protected Sprite _paddleLeftSprite, _paddleMiddleSprite, _paddleRightSprite;
     protected Sprite[] _powerUpSprite = new Sprite[(int)PowerUpType.LastType];
@@ -38,6 +39,7 @@ public class Renderer : DrawableGameComponent
         _spriteBatch = new SpriteBatch(GraphicsDevice);
         
         _breakoutTexture = Game.Content.Load<Texture2D>("breakout");
+        _background = Game.Content.Load<Texture2D>("background");
         
         _paddleLeftSprite = new Sprite
         {
@@ -102,8 +104,13 @@ public class Renderer : DrawableGameComponent
     public override void Draw(GameTime gameTime)
     {
         GraphicsDevice.Clear(Color.WhiteSmoke);
+        
         _spriteBatch.Begin(
             SpriteSortMode.Deferred, null, null, null, null, null, _camera);
+        
+        // Background
+        _spriteBatch.Draw(_background, new Rectangle(0,0, _gameplay.Level.Bounds.Width, _gameplay.Level.Bounds.Height), Color.White);
+        
         foreach (object item in _gameplay.Level.Scene)
         {
             Sprite sprite = null;
